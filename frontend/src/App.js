@@ -1,11 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  let secondArrowDegrees = 0;
+
+  setInterval(() => {
+    secondArrowDegrees += 6;
+  }, 1000)
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <div className="Clock-wrapper">
+          <div style={{'--second-arrow-degrees': `${secondArrowDegrees}deg` }} className="Clock-second-arrow"></div>
+        </div>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
