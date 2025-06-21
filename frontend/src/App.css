@@ -1,34 +1,9 @@
-.Clock-wrapper {
-  height: 100px;
-  aspect-ratio: 1/1;
-
-  background-color: white;
-  border-radius: 50%;
-
-  position: relative;
-}
-
-.Clock-second-arrow {
-  height: 45px;
-  width: 2px;
-
-  left: calc(50% - 1px);
-  top: calc(100px / 2 - 45px);
-
-  background-color: black;
-
-  transform: rotate(var(--second-arrow-degrees));
-  transform-origin: bottom center;
-
-  position: absolute;
-}
-
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #bdbdbd;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

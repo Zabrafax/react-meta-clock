@@ -1,0 +1,41 @@
+.Clock-wrapper {
+    height: 100px;
+    aspect-ratio: 1/1;
+
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid #c5c5c5;
+    box-shadow: 0 0 8px black inset, 0 0 40px #565656;
+
+    position: relative;
+}
+
+.Clock-second-arrow {
+    height: 45px;
+    width: 2px;
+
+    left: calc(50% - 1px);
+    top: calc(100px / 2 - 45px);
+
+    background-color: black;
+
+    transform: rotate(var(--second-arrow-degrees));
+    transform-origin: bottom center;
+
+    position: absolute;
+}
+
+.Clock-minute-arrow {
+    height: 40px;
+    width: 4px;
+
+    left: calc(50% - (4px / 2));
+    top: calc(100px / 2 - 40px);
+
+    background-color: black;
+
+    transform: rotate(var(--second-arrow-degrees));
+    transform-origin: bottom center;
+
+    position: absolute;
+}
