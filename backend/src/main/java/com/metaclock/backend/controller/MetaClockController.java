@@ -1,4 +1,4 @@
-package com.metaclock.backend.controlller;
+package com.metaclock.backend.controller;
 
 import com.metaclock.backend.core.MetaClock;
 import org.springframework.web.bind.annotation.GetMapping;

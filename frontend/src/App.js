@@ -8,13 +8,6 @@ function App() {
 
   const speedDivider = 50;
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setSecondArrowDegrees(secondArrowDegrees + 6);
-  //     setMinuteArrowDegrees(minuteArrowDegrees + 0.1);
-  //   }, 1000);
-  // });
-
   useEffect(() => {
     setTimeout(() => {
       setSecondArrowDegrees(secondArrowDegrees + (6 / speedDivider));
