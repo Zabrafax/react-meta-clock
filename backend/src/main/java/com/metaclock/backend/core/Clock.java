@@ -11,29 +11,21 @@ public class Clock {
     @Getter
     private boolean isManual;
     @Setter
-    @Getter
     private int hours;
     @Setter
-    @Getter
     private int minutes;
     @Setter
-    @Getter
     private int seconds;
 
-    @Getter
     @Setter
-    private float hoursAngleInRadians;
-    @Getter
+    private float hourArrowDegrees;
     @Setter
-    private float minutesAngleInRadians;
-    @Getter
+    private float minuteArrowDegrees;
     @Setter
-    private float secondsAngleInRadians;
+    private float secondArrowDegrees;
 
     public Clock() {
         this.isManual = false;
-
-        startAutoUpdate();
     }
 
     private void updateToCurrentTime() {
@@ -43,26 +35,59 @@ public class Clock {
         this.seconds = currentTime.getSecond();
     }
 
-    private void countAnglesInRadians() {
+    private void countAnglesInDegrees() {
         int AMPMHours = this.hours > 12 ? this.hours - 12 : this.hours;
 
-        this.hoursAngleInRadians = (float) (AMPMHours * 30) +
+        this.hourArrowDegrees = (float) (AMPMHours * 30) +
                 (float) (this.minutes * 0.5) +
                 (float) (this.seconds * (0.5 / 60));
 
-        this.minutesAngleInRadians = (float) (this.minutes * 6)+ (float) (this.seconds * 0.1);
+        this.minuteArrowDegrees = (float) (this.minutes * 6)+ (float) (this.seconds * 0.1);
 
-        this.secondsAngleInRadians = (float) (this.seconds * 6);
+        this.secondArrowDegrees = (float) (this.seconds * 6);
     }
 
-    private void startAutoUpdate() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                updateToCurrentTime();
-                countAnglesInRadians();
-            }
-        }, 0, 1000);
+    public float getSecondArrowDegrees() {
+        updateToCurrentTime();
+        countAnglesInDegrees();
+        return this.secondArrowDegrees;
     }
+
+    public float getMinuteArrowDegrees() {
+        updateToCurrentTime();
+        countAnglesInDegrees();
+        return this.minuteArrowDegrees;
+    }
+
+    public float getHourArrowDegrees() {
+        updateToCurrentTime();
+        countAnglesInDegrees();
+        return this.hourArrowDegrees;
+    }
+
+    public float getSeconds() {
+        updateToCurrentTime();
+        return this.seconds;
+    }
+
+    public int getMinutes() {
+        updateToCurrentTime();
+        return this.minutes;
+    }
+
+    public int getHours() {
+        updateToCurrentTime();
+        return this.hours;
+    }
+
+//    private void startAutoUpdate() {
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                updateToCurrentTime();
+//                countAnglesInRadians();
+//            }
+//        }, 0, 1000);
+//    }
 }

@@ -38,8 +38,8 @@ public class MetaClock {
     }
 
     private void displayCurrentAngleInRadians() {
-        System.out.println("Hours in radians: " + clock.getHoursAngleInRadians());
-        System.out.println("Minutes in radians: " + clock.getMinutesAngleInRadians());
-        System.out.println("Seconds in radians: " + clock.getSecondsAngleInRadians());
+        System.out.println("Hours in degrees: " + clock.getHourArrowDegrees());
+        System.out.println("Minutes in degrees: " + clock.getMinuteArrowDegrees());
+        System.out.println("Seconds in degrees: " + clock.getSecondArrowDegrees());
     }
 }

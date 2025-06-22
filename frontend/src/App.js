@@ -9,11 +9,39 @@ function App() {
   const speedDivider = 50;
 
   useEffect(() => {
-    setTimeout(() => {
-      setSecondArrowDegrees(secondArrowDegrees + (6 / speedDivider));
-      setMinuteArrowDegrees(minuteArrowDegrees + (0.1 / speedDivider));
-    }, 1000 / speedDivider);
-  });
+    // setInterval(() => {
+    //   setSecondArrowDegrees(secondArrowDegrees + (6 / speedDivider));
+    //   setMinuteArrowDegrees(minuteArrowDegrees + (0.1 / speedDivider));
+    // }, 1000 / speedDivider);
+
+    const socket = new WebSocket("ws://localhost:8080/clock/current-time");
+
+    socket.onopen = () => {
+      console.log("WebSocket connected");
+    };
+
+    socket.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.secondArrowDegrees !== undefined) setSecondArrowDegrees(data.secondArrowDegrees);
+        if (data.minuteArrowDegrees !== undefined) setMinuteArrowDegrees(data.minuteArrowDegrees);
+      } catch (e) {
+        console.error("WebSocket parsing error:", e);
+      }
+    };
+
+    socket.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    socket.onclose = () => {
+      console.log("WebSocket closed");
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, []);
 
   return (
     <div className="App">
