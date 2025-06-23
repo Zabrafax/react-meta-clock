@@ -36,31 +36,35 @@
 }
 
 .Clock-minute-arrow {
-    height: 40px;
-    width: 4px;
+    height: 52px;
+    width: 8px;
 
-    left: calc(50% - (4px / 2));
-    top: calc(100px / 2 - 40px);
+    left: calc(50% - (8px / 2));
+    top: calc(100px / 2 - 52px + (8px / 2));
 
     background-color: black;
 
+    border-radius: 0 0 100px 100px;
+
     transform: rotate(var(--minute-arrow-degrees));
-    transform-origin: bottom center;
+    transform-origin: calc(8px / 2) calc(52px - (8px / 2));
 
     position: absolute;
 }
 
 .Clock-hour-arrow {
-    height: 48px;
-    width: 4px;
+    height: 45px;
+    width: 8px;
 
-    left: calc(50% - (4px / 2));
-    top: calc(100px / 2 - 48px);
+    left: calc(50% - (8px / 2));
+    top: calc(100px / 2 - 45px + (8px / 2));
 
     background-color: black;
 
+    border-radius: 0 0 100px 100px;
+
     transform: rotate(var(--hour-arrow-degrees));
-    transform-origin: bottom center;
+    transform-origin: calc(8px / 2) calc(45px - (8px / 2));
 
     position: absolute;
 }

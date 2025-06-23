@@ -35,8 +35,8 @@ public class TimeSocketHandler extends TextWebSocketHandler {
                         ClockCoordinates[] clockCoordinates = metaClock.getClockCoordinatesArray();
 
                         String json = mapper.writeValueAsString(clockCoordinates);
-//                        session.sendMessage(new TextMessage(json));
-                        session.sendMessage(new TextMessage("{\"test\": \"hello\"}"));
+                        session.sendMessage(new TextMessage(json));
+                        //session.sendMessage(new TextMessage("{\"test\": \"hello\"}"));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
