@@ -50,17 +50,17 @@ public class MetaClock {
             }
             for(int col = 2; col < 4; col++) {
                 ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(1, row, col);
+                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(1, row, col - 2);
                 clockCoordinatesArray[col * 2 + row] = clockCoordinates;
             }
             for(int col = 4; col < 6; col++) {
                 ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(2, row, col);
+                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(2, row, col - 4);
                 clockCoordinatesArray[col * 2 + row] = clockCoordinates;
             }
             for(int col = 6; col < 8; col++) {
                 ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(3, row, col);
+                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(2, row, col - 6);
                 clockCoordinatesArray[col * 2 + row] = clockCoordinates;
             }
         }
