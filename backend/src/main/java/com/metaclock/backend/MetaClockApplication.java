@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 
 @SpringBootApplication(scanBasePackages = "com.metaclock.backend")
 public class MetaClockApplication {
@@ -19,15 +20,5 @@ public class MetaClockApplication {
 	@Bean
 	public NumbersMapping3X2 numbersMapping3X2() {
 		return new NumbersMapping3X2();
-	}
-
-	@Bean
-	public MetaClock metaClock() {
-		return new MetaClock();
-	}
-
-	@Bean
-	public TimeSocketHandler timeSocketHandler() {
-		return new TimeSocketHandler();
 	}
 }

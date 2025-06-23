@@ -65,7 +65,7 @@ public class Clock {
         return this.hourArrowDegrees;
     }
 
-    public float getSeconds() {
+    public int getSeconds() {
         updateToCurrentTime();
         return this.seconds;
     }
@@ -79,15 +79,4 @@ public class Clock {
         updateToCurrentTime();
         return this.hours;
     }
-
-//    private void startAutoUpdate() {
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                updateToCurrentTime();
-//                countAnglesInRadians();
-//            }
-//        }, 0, 1000);
-//    }
 }
