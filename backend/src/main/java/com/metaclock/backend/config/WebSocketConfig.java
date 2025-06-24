@@ -15,6 +15,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(timeSocketHandler, "/clock/current-time").setAllowedOrigins("*");
+        registry.addHandler(timeSocketHandler, "/clock/grid3x8/coordinates").setAllowedOrigins("*");
     }
 }

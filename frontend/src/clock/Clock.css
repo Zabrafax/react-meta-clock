@@ -11,7 +11,7 @@
     height: 100px;
     aspect-ratio: 1/1;
 
-    background-color: white;
+    background-color: #eeeeee;
     border-radius: 50%;
     /*border: 2px solid #c5c5c5;*/
     box-shadow: 3px 0 6px #5d5d5d inset;
@@ -43,8 +43,8 @@
     top: calc(100px / 2 - 52px + (8px / 2));
 
     background-color: black;
-
     border-radius: 0 0 100px 100px;
+    box-shadow: 0 0 2px black;
 
     transform: rotate(var(--minute-arrow-degrees));
     transform-origin: calc(8px / 2) calc(52px - (8px / 2));
@@ -60,8 +60,8 @@
     top: calc(100px / 2 - 45px + (8px / 2));
 
     background-color: black;
-
     border-radius: 0 0 100px 100px;
+    box-shadow: 0 0 2px black;
 
     transform: rotate(var(--hour-arrow-degrees));
     transform-origin: calc(8px / 2) calc(45px - (8px / 2));

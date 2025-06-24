@@ -16,6 +16,11 @@ public class MetaClock {
     private int ROW_COUNT = 3;
     private int COLUMN_COUNT = 8;
 
+    private int number1;
+    private int number2;
+    private int number3;
+    private int number4;
+
     @Autowired
     private NumbersMapping3X2 numbersMapping3X2;
 
@@ -40,32 +45,41 @@ public class MetaClock {
     }
 
     public ClockCoordinates[] getClockCoordinatesArray() {
+        updateNumbers();
+
         ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[COLUMN_COUNT * ROW_COUNT];
 
         for(int row = 0; row < 3; row++) {
             for(int col = 0; col < 2; col++) {
                 ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(0, row, col);
+                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number1, row, col);
                 clockCoordinatesArray[row * 8 + col] = clockCoordinates;
             }
             for(int col = 2; col < 4; col++) {
                 ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(1, row, col - 2);
+                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number2, row, col - 2);
                 clockCoordinatesArray[row * 8 + col] = clockCoordinates;
             }
             for(int col = 4; col < 6; col++) {
                 ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(2, row, col - 4);
+                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number3, row, col - 4);
                 clockCoordinatesArray[row * 8 + col] = clockCoordinates;
             }
             for(int col = 6; col < 8; col++) {
                 ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(3, row, col - 6);
+                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number4, row, col - 6);
                 clockCoordinatesArray[row * 8 + col] = clockCoordinates;
             }
         }
 
         return clockCoordinatesArray;
+    }
+
+    private void updateNumbers() {
+        this.number1 = clock.getHours() / 10;
+        this.number2 = clock.getHours() % 10;
+        this.number3 = clock.getMinutes() / 10;
+        this.number4 = clock.getMinutes() % 10;
     }
 
     private void displayCurrentClockTime() {

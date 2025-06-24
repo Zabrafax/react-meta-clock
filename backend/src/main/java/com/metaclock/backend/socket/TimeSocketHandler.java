@@ -30,7 +30,7 @@ public class TimeSocketHandler extends TextWebSocketHandler {
             @Override
             public void run() {
                 if(session.isOpen()) {
-                    System.out.println("Sending message to client...");
+                    //System.out.println("Sending message to client...");
                     try {
                         ClockCoordinates[] clockCoordinates = metaClock.getClockCoordinatesArray();
 

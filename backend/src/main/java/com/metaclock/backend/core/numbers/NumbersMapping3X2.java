@@ -20,11 +20,11 @@ public class NumbersMapping3X2 {
                 1
              */
             {
-                    null,
+                    new ClockCoordinates(225, 225), //null
                     new ClockCoordinates(180, 180),
-                    null,
+                    new ClockCoordinates(225, 225), //null
                     new ClockCoordinates(0, 180),
-                    null,
+                    new ClockCoordinates(225, 225), //null
                     new ClockCoordinates(0, 0)
             },
             /*
@@ -43,11 +43,77 @@ public class NumbersMapping3X2 {
              */
             {
                     new ClockCoordinates(90, 90),
+                    new ClockCoordinates(180, 270),
+                    new ClockCoordinates(90, 90),
+                    new ClockCoordinates(0, 270),
+                    new ClockCoordinates(90, 90),
+                    new ClockCoordinates(0, 270)
+            },
+            /*
+                4
+             */
+            {
+                    new ClockCoordinates(180, 180),
+                    new ClockCoordinates(180, 180),
+                    new ClockCoordinates(90, 0),
+                    new ClockCoordinates(180, 0),
+                    new ClockCoordinates(225, 225), //null
+                    new ClockCoordinates(0, 0)
+            },
+            /*
+                5
+             */
+            {
+                    new ClockCoordinates(180, 90),
+                    new ClockCoordinates(270, 270),
+                    new ClockCoordinates(90, 0),
                     new ClockCoordinates(270, 180),
                     new ClockCoordinates(90, 90),
-                    new ClockCoordinates(270, 0),
-                    new ClockCoordinates(90, 90),
+                    new ClockCoordinates(0, 270)
+            },
+            /*
+                6
+             */
+            {
+                    new ClockCoordinates(90, 180),
+                    new ClockCoordinates(270, 270),
+                    new ClockCoordinates(180, 0),
+                    new ClockCoordinates(180, 270),
+                    new ClockCoordinates(90, 0),
                     new ClockCoordinates(270, 0)
+            },
+            /*
+                7
+             */
+            {
+                    new ClockCoordinates(90, 90),
+                    new ClockCoordinates(180, 270),
+                    new ClockCoordinates(225, 225), //null
+                    new ClockCoordinates(0, 180),
+                    new ClockCoordinates(225, 225), //null
+                    new ClockCoordinates(0, 0)
+            },
+            /*
+                8
+             */
+            {
+                    new ClockCoordinates(90, 180),
+                    new ClockCoordinates(270, 180),
+                    new ClockCoordinates(0, 90),
+                    new ClockCoordinates(0, 270),
+                    new ClockCoordinates(90, 0),
+                    new ClockCoordinates(0, 270)
+            },
+            /*
+                9
+             */
+            {
+                    new ClockCoordinates(90, 180),
+                    new ClockCoordinates(180, 270),
+                    new ClockCoordinates(90, 0),
+                    new ClockCoordinates(0, 180),
+                    new ClockCoordinates(90, 90),
+                    new ClockCoordinates(0, 270)
             },
     };
 

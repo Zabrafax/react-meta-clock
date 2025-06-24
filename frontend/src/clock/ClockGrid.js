@@ -13,7 +13,7 @@ function ClockGrid(props) {
         useState(() => Array.from({length: total}));
 
     useEffect(() => {
-        const socket = new WebSocket("ws://localhost:8080/clock/current-time");
+        const socket = new WebSocket("ws://localhost:8080/clock/grid" + rows + "x" + cols + "/coordinates");
 
         socket.onopen = () => {
             console.log("WebSocket connected");
@@ -23,7 +23,7 @@ function ClockGrid(props) {
             try {
                 const data = JSON.parse(event.data);
 
-                console.log("Полученные данные:", data);
+                //console.log("Data received:", data);
 
                 const dataMinuteArray = data.map(clockCoordinates =>
                     clockCoordinates ? clockCoordinates.minuteArrowDegrees : null
