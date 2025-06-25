@@ -13,10 +13,11 @@ function ClockGrid(props) {
         useState(() => Array.from({length: total}));
 
     useEffect(() => {
-        const socket = new WebSocket("ws://localhost:8080/clock/grid" + rows + "x" + cols + "/coordinates");
+        const socket = new WebSocket("ws://localhost:8080/clock/coordinates");
 
         socket.onopen = () => {
-            console.log("WebSocket connected");
+            socket.send(JSON.stringify({ type: "subscribe", rows, cols }));
+            console.log("Websocket connected, subscribe message sent");
         };
 
         socket.onmessage = (event) => {
