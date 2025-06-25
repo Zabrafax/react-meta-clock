@@ -3,7 +3,9 @@ import './BaseLayout.css';
 function Header() {
     return (
         <header className="Header">
-            <p>Header</p>
+            <div className="Header__logo">
+                <h1>Meta Clock</h1>
+            </div>
         </header>
     );
 }
