@@ -51,7 +51,7 @@ function ClockGrid(props) {
         return () => {
             socket.close();
         };
-    }, []);
+    }, [cols, rows]);
 
     return (
         <div

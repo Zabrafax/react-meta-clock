@@ -75,7 +75,6 @@ public class TimeSocketHandler extends TextWebSocketHandler {
         //System.out.println("Sending data to clients, total: " + clients.size());
         for (Map.Entry<WebSocketSession, GridSize> entry : clients.entrySet()) {
             WebSocketSession session = entry.getKey();
-            GridSize grid = entry.getValue();
 
             if(session.isOpen()) {
                 //System.out.println("Sending message to client...");
@@ -84,6 +83,7 @@ public class TimeSocketHandler extends TextWebSocketHandler {
 
                     String json = mapper.writeValueAsString(clockCoordinates);
                     session.sendMessage(new TextMessage(json));
+
                     //System.out.println("Sent clock data to " + session.getId());
                     //session.sendMessage(new TextMessage("{\"test\": \"hello\"}"));
                 } catch (IOException e) {
