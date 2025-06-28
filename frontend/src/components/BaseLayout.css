@@ -35,6 +35,8 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: 2rem;
+
+    user-select: none;
 }
 
 .Header__a__button {
@@ -76,6 +78,20 @@
 
 .Header__a__button:active:after {
     transform: scaleX(0.8);
+}
+
+.Settings__window {
+    position: fixed;
+    top: 6rem;
+    left: auto;
+    width: 100%;
+    max-width: 1400px;
+    height: 70%;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 }
 
 .Main {
