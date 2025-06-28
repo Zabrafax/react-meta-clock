@@ -4,11 +4,11 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Main from "./components/Main";
 import Header from "./components/Header";
+import SettingsWindow from "./components/SettingsWindow";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Header />
       <Main />
   </React.StrictMode>
 );

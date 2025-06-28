@@ -1,5 +1,5 @@
 .Header {
-    z-index: 1000;
+    z-index: 900;
     position: absolute;
 
     width: 100%;
@@ -80,22 +80,8 @@
     transform: scaleX(0.8);
 }
 
-.Settings__window {
-    position: fixed;
-    top: 6rem;
-    left: auto;
-    width: 100%;
-    max-width: 1400px;
-    height: 70%;
-    background: rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
 .Main {
-    z-index: 999;
+    z-index: 800;
     position: absolute;
     top: 6rem;
 

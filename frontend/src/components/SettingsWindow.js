@@ -1,4 +1,4 @@
-import './BaseLayout.css';
+import './SettingsWindow.css';
 
 function SettingsWindow() {
     return (

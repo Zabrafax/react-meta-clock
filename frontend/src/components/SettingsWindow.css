@@ -1,0 +1,16 @@
+.Settings__window {
+    z-index: 1000;
+    position: absolute;
+    top: calc(6rem + 1rem);
+    left: auto;
+
+    width: calc(100vw - 6rem);
+    max-width: 1400px;
+    height: calc(100vh - 6rem - 1rem - 3rem);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.2);
+}

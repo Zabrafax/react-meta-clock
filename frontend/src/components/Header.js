@@ -1,14 +1,6 @@
 import './BaseLayout.css';
-import SettingsWindow from "./SettingsWindow";
-import { useState } from 'react';
 
-function Header() {
-    const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-
-    const openSettings = () => {
-        setIsSettingsVisible(!isSettingsVisible);
-    }
-
+function Header({ onSettingsClick }) {
     return (
         <header className="Header">
             <div className="Header__logo">
@@ -16,12 +8,9 @@ function Header() {
             </div>
             <div className="Header__buttons">
                 <a className="Header__a__button">ACCOUNT</a>
-                <a className="Header__a__button" onClick={openSettings}>SETTINGS</a>
+                <a className="Header__a__button" onClick={onSettingsClick}>SETTINGS</a>
                 <a className="Header__a__button">FULLSCREEN</a>
             </div>
-            {isSettingsVisible &&
-                <SettingsWindow />
-            }
         </header>
     );
 }
