@@ -48,6 +48,7 @@
 
     transform: rotate(var(--minute-arrow-degrees));
     transform-origin: calc(8px / 2) calc(52px - (8px / 2));
+    transition: transform 500ms;
 
     position: absolute;
 }
@@ -65,6 +66,7 @@
 
     transform: rotate(var(--hour-arrow-degrees));
     transform-origin: calc(8px / 2) calc(45px - (8px / 2));
+    transition: transform 500ms;
 
     position: absolute;
 }

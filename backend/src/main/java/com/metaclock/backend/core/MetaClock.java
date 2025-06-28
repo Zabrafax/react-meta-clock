@@ -13,13 +13,12 @@ import java.util.TimerTask;
 
 @Component
 public class MetaClock {
-    private int ROW_COUNT = 3;
-    private int COLUMN_COUNT = 8;
-
     private int number1;
     private int number2;
     private int number3;
     private int number4;
+    private int number5;
+    private int number6;
 
     @Autowired
     private NumbersMapping3X2 numbersMapping3X2;
@@ -44,31 +43,44 @@ public class MetaClock {
         }, 0, 1000);
     }
 
-    public ClockCoordinates[] getClockCoordinatesArray() {
+    public ClockCoordinates[] getClockCoordinatesArray(int rows, int cols) {
         updateNumbers();
 
-        ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[COLUMN_COUNT * ROW_COUNT];
+        ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[rows * cols];
 
-        for(int row = 0; row < 3; row++) {
+        for(int row = 0; row < rows; row++) {
             for(int col = 0; col < 2; col++) {
                 ClockCoordinates clockCoordinates =
                         numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number1, row, col);
-                clockCoordinatesArray[row * 8 + col] = clockCoordinates;
+                clockCoordinatesArray[row * cols + col] = clockCoordinates;
             }
             for(int col = 2; col < 4; col++) {
                 ClockCoordinates clockCoordinates =
                         numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number2, row, col - 2);
-                clockCoordinatesArray[row * 8 + col] = clockCoordinates;
+                clockCoordinatesArray[row * cols + col] = clockCoordinates;
             }
             for(int col = 4; col < 6; col++) {
                 ClockCoordinates clockCoordinates =
                         numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number3, row, col - 4);
-                clockCoordinatesArray[row * 8 + col] = clockCoordinates;
+                clockCoordinatesArray[row * cols + col] = clockCoordinates;
             }
             for(int col = 6; col < 8; col++) {
                 ClockCoordinates clockCoordinates =
                         numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number4, row, col - 6);
-                clockCoordinatesArray[row * 8 + col] = clockCoordinates;
+                clockCoordinatesArray[row * cols + col] = clockCoordinates;
+            }
+
+            if(cols == 12) {
+                for(int col = 8; col < 10; col++) {
+                    ClockCoordinates clockCoordinates =
+                            numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number5, row, col - 8);
+                    clockCoordinatesArray[row * cols + col] = clockCoordinates;
+                }
+                for(int col = 10; col < 12; col++) {
+                    ClockCoordinates clockCoordinates =
+                            numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number6, row, col - 10);
+                    clockCoordinatesArray[row * cols + col] = clockCoordinates;
+                }
             }
         }
 
@@ -80,6 +92,8 @@ public class MetaClock {
         this.number2 = clock.getHours() % 10;
         this.number3 = clock.getMinutes() / 10;
         this.number4 = clock.getMinutes() % 10;
+        this.number5 = clock.getSeconds() / 10;
+        this.number6 = clock.getSeconds() % 10;
     }
 
     private void displayCurrentClockTime() {

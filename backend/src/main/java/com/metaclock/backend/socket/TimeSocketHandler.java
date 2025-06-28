@@ -79,7 +79,7 @@ public class TimeSocketHandler extends TextWebSocketHandler {
             if(session.isOpen()) {
                 //System.out.println("Sending message to client...");
                 try {
-                    ClockCoordinates[] clockCoordinates = metaClock.getClockCoordinatesArray();
+                    ClockCoordinates[] clockCoordinates = metaClock.getClockCoordinatesArray(entry.getValue().rows, entry.getValue().cols);
 
                     String json = mapper.writeValueAsString(clockCoordinates);
                     session.sendMessage(new TextMessage(json));

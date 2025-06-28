@@ -1,5 +1,5 @@
 import './ClockGrid.css';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Clock from "./Clock";
 
 function ClockGrid(props) {
@@ -11,6 +11,9 @@ function ClockGrid(props) {
         useState(() => Array.from({length: total}));
     const [hourArrowDegreesArray, setHourArrowDegreesArray] =
         useState(() => Array.from({length: total}));
+
+    const previousMinuteArrowDegreesArray = useRef("");
+    const previousHourArrowDegreesArray = useRef("");
 
     useEffect(() => {
         const socket = new WebSocket("ws://localhost:8080/clock/coordinates");
@@ -32,6 +35,9 @@ function ClockGrid(props) {
                 const dataHourArray = data.map(clockCoordinates =>
                     clockCoordinates ? clockCoordinates.hourArrowDegrees : null
                 );
+
+                previousMinuteArrowDegreesArray.current = minuteArrowDegreesArray;
+                previousHourArrowDegreesArray.current = hourArrowDegreesArray;
 
                 setMinuteArrowDegreesArray(dataMinuteArray);
                 setHourArrowDegreesArray(dataHourArray);
@@ -61,7 +67,6 @@ function ClockGrid(props) {
             {Array.from({length: total}).map((_, i) => (
                 <Clock
                     key={i}
-                    secondArrowDegrees={i}
                     minuteArrowDegrees={minuteArrowDegreesArray[i] != null ? minuteArrowDegreesArray[i] : 0}
                     hourArrowDegrees={hourArrowDegreesArray[i] != null ? hourArrowDegreesArray[i] : 0}
                 />
