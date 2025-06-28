@@ -8,9 +8,24 @@
     max-width: 1400px;
     height: calc(100vh - 6rem - 1rem - 3rem);
 
+    padding: 0.5rem 3rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba( 255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 16px;
+    box-shadow: 0 4px 45px rgba(0, 0, 0, 0.3);
+}
+
+.Settings__window h2 {
+    position: absolute;
+    top: 0;
+    left: 2rem;
+
+    font-size: 1.75rem;
+    font-weight: 300;
 }
