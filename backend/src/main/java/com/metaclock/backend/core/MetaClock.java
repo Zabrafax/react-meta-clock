@@ -70,6 +70,9 @@ public class MetaClock {
                 clockCoordinatesArray[row * cols + col] = clockCoordinates;
             }
 
+            /*
+                In case of 3x12 grid
+             */
             if(cols == 12) {
                 for(int col = 8; col < 10; col++) {
                     ClockCoordinates clockCoordinates =

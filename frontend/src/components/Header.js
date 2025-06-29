@@ -1,6 +1,6 @@
 import './BaseLayout.css';
 
-function Header({ onSettingsClick }) {
+function Header({ onSettingsClick, onFullScreenClick}) {
     return (
         <header className="Header">
             <div className="Header__logo">
@@ -9,7 +9,7 @@ function Header({ onSettingsClick }) {
             <div className="Header__buttons">
                 <a className="Header__a__button">ACCOUNT</a>
                 <a className="Header__a__button" onClick={onSettingsClick}>SETTINGS</a>
-                <a className="Header__a__button">FULLSCREEN</a>
+                <a className="Header__a__button" onClick={onFullScreenClick}>FULLSCREEN</a>
             </div>
         </header>
     );

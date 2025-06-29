@@ -8,10 +8,9 @@
     max-width: 1400px;
     height: calc(100vh - 6rem - 1rem - 3rem);
 
-    padding: 0.5rem 3rem;
-
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
 
     background: rgba( 255, 255, 255, 0.85);
@@ -21,11 +20,70 @@
     box-shadow: 0 4px 45px rgba(0, 0, 0, 0.3);
 }
 
+.Settings__top__wrapper {
+    width: 100%;
+    height: fit-content;
+
+    padding: 0.5rem 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .Settings__window h2 {
-    position: absolute;
-    top: 0;
-    left: 2rem;
+    margin: 0;
 
     font-size: 1.75rem;
     font-weight: 300;
+}
+
+.Closing__cross {
+    position: relative;
+
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+}
+
+.Closing__cross:before, .Closing__cross:after {
+    position: absolute;
+    content: '';
+
+    left: 0.75rem;
+
+    height: 1.5rem;
+    width: 1.5px;
+
+    background-color: black;
+
+    transition: transform 0.1s;
+}
+
+.Closing__cross:before {
+    transform: rotate(-45deg);
+}
+
+.Closing__cross:after {
+    transform: rotate(45deg);
+}
+
+.Closing__cross:hover, .Closing__cross:active {
+    cursor: pointer;
+}
+
+.Closing__cross:hover:before {
+    transform: scale(1.2) rotate(-45deg);
+}
+
+.Closing__cross:hover:after {
+    transform: scale(1.2) rotate(45deg);
+}
+
+.Closing__cross:active:before {
+    transform: scale(0.9) rotate(-45deg);
+}
+
+.Closing__cross:active:after {
+    transform: scale(0.9) rotate(45deg);
 }
