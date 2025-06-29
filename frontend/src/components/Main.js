@@ -1,5 +1,5 @@
 import './BaseLayout.css'
-import ClockGrid from "../clock/ClockGrid";
+import ClockGrid from "./clock/ClockGrid";
 import React, {useState, useEffect} from "react";
 import Header from "./Header";
 import SettingsWindow from "./SettingsWindow";
