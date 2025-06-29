@@ -72,16 +72,25 @@ function Main() {
     return (
         <>
             {!isFullscreen && <Header onSettingsClick={onSettingsClick} onFullScreenClick={toggleFullscreen} />}
+
             <main
                 className="Main"
-                style={{marginTop: isFullscreen ? "0" : "6rem"}}
+                style={{
+                    marginTop: isFullscreen ? "0" : "5rem",
+                    minHeight: isFullscreen ? "100vh" : "calc(100vh - 5rem - 5rem)",
+                    justifyContent: isFullscreen ? "center" : "start"
+                }}
             >
                 <ClockGrid rows={rows} cols={cols} />
-                <button onClick={changeGridSize}>Change grid</button>
             </main>
-            {isSettingsVisible && <SettingsWindow onSettingsCrossClick={onSettingsCrossClick} />}
 
-            <Footer />
+            {isSettingsVisible &&
+                <SettingsWindow
+                    onSettingsCrossClick={onSettingsCrossClick}
+                    changeGridSize={changeGridSize} />
+            }
+
+            {!isFullscreen && <Footer />}
         </>
     );
 }

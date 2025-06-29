@@ -4,9 +4,9 @@
     top: calc(6rem + 1rem);
     left: auto;
 
-    width: calc(100vw - 6rem);
+    width: calc(100vw - 5rem);
     max-width: 1400px;
-    height: calc(100vh - 6rem - 1rem - 3rem);
+    height: calc(100vh - 5rem - 1rem - 3rem);
 
     display: flex;
     flex-direction: column;
