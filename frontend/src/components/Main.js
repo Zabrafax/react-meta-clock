@@ -3,6 +3,7 @@ import ClockGrid from "./clock/ClockGrid";
 import React, {useState, useEffect} from "react";
 import Header from "./Header";
 import SettingsWindow from "./SettingsWindow";
+import Footer from "./Footer";
 
 function Main() {
     /*
@@ -73,12 +74,14 @@ function Main() {
             {!isFullscreen && <Header onSettingsClick={onSettingsClick} onFullScreenClick={toggleFullscreen} />}
             <main
                 className="Main"
-                style={{top: isFullscreen ? "0" : "6rem"}}
+                style={{marginTop: isFullscreen ? "0" : "6rem"}}
             >
                 <ClockGrid rows={rows} cols={cols} />
                 <button onClick={changeGridSize}>Change grid</button>
             </main>
             {isSettingsVisible && <SettingsWindow onSettingsCrossClick={onSettingsCrossClick} />}
+
+            <Footer />
         </>
     );
 }

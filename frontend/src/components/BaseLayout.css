@@ -82,8 +82,7 @@
 
 .Main {
     z-index: 800;
-    position: absolute;
-    top: 6rem;
+    margin-top: 6rem;
 
     width: 100%;
     max-width: 1600px;
@@ -99,4 +98,20 @@
     align-items: center;
 
     background-color: #ffffff;
+}
+
+.Footer {
+    z-index: 900;
+
+    width: 100%;
+    height: fit-content;
+
+    padding: 1.5rem 3rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e3e3e3;
 }
