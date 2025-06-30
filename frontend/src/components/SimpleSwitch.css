@@ -3,6 +3,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    white-space: pre;
 }
 
 .Choices__wrapper {
@@ -10,4 +12,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.Choices__text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.Choices__line {
+    height: 2px;
+    width: 15px;
+
+    background: black;
 }
