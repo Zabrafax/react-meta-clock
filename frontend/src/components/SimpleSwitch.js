@@ -1,18 +1,24 @@
-import './SimpleSwitch.css'
+import styles from './SimpleSwitch.module.css'
 import { useState, useEffect, useRef } from 'react';
 
-function SimpleSwitch({ name, onEnable, onDisable } ) {
+function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
+    const [leftLineOffset, setLeftLineOffset] = useState(0);
     const [lineWidth, setLineWidth] = useState(0);
-    const [isEnabled, setIsEnabled] = useState(true);
+    const [isEnabled, setIsEnabled] = useState(initialState);
 
+    const preText = useRef(null);
     const enableRef = useRef(null);
+    const middleText = useRef(null);
     const disableRef = useRef(null);
 
     useEffect(() => {
         if (enableRef.current && disableRef.current) {
+            const leftWidth = preText.current.getBoundingClientRect().width;
             const enableWidth = enableRef.current.getBoundingClientRect().width;
+            const middleWidth = middleText.current.getBoundingClientRect().width;
             const disableWidth = disableRef.current.getBoundingClientRect().width;
 
+            setLeftLineOffset(!!isEnabled ? leftWidth : leftWidth + enableWidth + middleWidth);
             setLineWidth(!!isEnabled ? enableWidth : disableWidth);
         }
     }, [isEnabled]);
@@ -28,20 +34,39 @@ function SimpleSwitch({ name, onEnable, onDisable } ) {
     }
 
     return (
-        <div className="Simple__switch">
+        <div className={styles.Simple__switch}>
             <p>{name + ": "}</p>
-            <div className="Choices__wrapper">
-                <div className="Choices__text">
-                    <p>[ </p>
-                    <a ref={enableRef} onClick={enable}>Enable</a>
-                    <p> | </p>
-                    <a ref={disableRef} onClick={disable}>Disable</a>
-                    <p>]</p>
+            <div className={styles.Choices__wrapper}>
+                <div className={styles.Choices__text}>
+                    <p ref={preText}>[ </p>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a
+                        className={isEnabled ? undefined : styles.a__disabled}
+                        ref={enableRef}
+                        onClick={enable}
+                    >
+                        Enable
+                    </a>
+                    <p ref={middleText}> | </p>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a
+                        className={!isEnabled ? undefined : styles.a__disabled}
+                        ref={disableRef}
+                        onClick={disable}
+                    >
+                        Disable
+                    </a>
+                    <p> ]</p>
                 </div>
-                <div
-                    className="Choices__line"
-                    style={{width: lineWidth + "px"}}
-                ></div>
+                <div className={styles.Choices__line__wrapper}>
+                    <div
+                        className={styles.Choices__line}
+                        style={{
+                            width: lineWidth + "px",
+                            left: leftLineOffset + "px"
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );

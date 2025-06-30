@@ -54,10 +54,26 @@ function Main() {
     }, []);
 
     /*
+        Initial settings
+     */
+    const [isSecondsEnabled, setIsSecondsEnabled] = useState(true);
+    const [isSeparatorsEnabled, setIsSeparatorsEnabled] = useState(false);
+
+    /*
         Grid size change
      */
     const [cols, setCols] = useState(12);
     const [rows, setRows] = useState(3);
+
+    useEffect(() => {
+        if(!!isSecondsEnabled) {
+            setRows(3);
+            setCols(12);
+        } else {
+            setRows(3);
+            setCols(8);
+        }
+    }, [isSecondsEnabled, setRows, setCols]);
 
     return (
         <>
@@ -77,8 +93,10 @@ function Main() {
             {isSettingsVisible &&
                 <SettingsWindow
                     onSettingsCrossClick={onSettingsCrossClick}
-                    setRows={setRows}
-                    setCols={setCols}
+                    isSecondsEnabled={isSecondsEnabled}
+                    setIsSecondsEnabled={setIsSecondsEnabled}
+                    isSeparatorsEnabled={isSeparatorsEnabled}
+                    setIsSeparatorsEnabled={setIsSeparatorsEnabled}
                 />
             }
 

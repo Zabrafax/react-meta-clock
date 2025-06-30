@@ -1,15 +1,28 @@
 import './SettingsWindow.css';
 import SimpleSwitch from "./SimpleSwitch";
 
-function SettingsWindow({ onSettingsCrossClick, setRows, setCols }) {
+function SettingsWindow({
+                            onSettingsCrossClick,
+                            isSecondsEnabled,
+                            setIsSecondsEnabled,
+                            isSeparatorsEnabled,
+                            setIsSeparatorsEnabled
+                        }) {
+
     const disableSeconds = () => {
-        setRows(3);
-        setCols(8);
+        setIsSecondsEnabled(false);
     }
 
     const enableSeconds = () => {
-        setRows(3);
-        setCols(12);
+        setIsSecondsEnabled(true);
+    }
+
+    const enableSeparators = () => {
+        setIsSeparatorsEnabled(true);
+    }
+
+    const disableSeparators = () => {
+        setIsSeparatorsEnabled(false);
     }
 
     return (
@@ -24,7 +37,8 @@ function SettingsWindow({ onSettingsCrossClick, setRows, setCols }) {
             </div>
             <div className="Settings__main__wrapper">
                 <div className="Setting__switch__wrapper">
-                    <SimpleSwitch name="Seconds" onEnable={enableSeconds} onDisable={disableSeconds}/>
+                    <SimpleSwitch name="Seconds" initialState={isSecondsEnabled} onEnable={enableSeconds} onDisable={disableSeconds}/>
+                    <SimpleSwitch name="Separators" initialState={isSeparatorsEnabled} onEnable={enableSeparators} onDisable={disableSeparators}/>
                 </div>
             </div>
         </div>

@@ -7,6 +7,10 @@
     white-space: pre;
 }
 
+p, a {
+    font-size: 1.5rem;
+}
+
 .Choices__wrapper {
     display: flex;
     flex-direction: column;
@@ -21,9 +25,30 @@
     justify-content: center;
 }
 
+a:hover {
+    opacity: 1;
+}
+
+.a__disabled {
+    opacity: 0.3;
+}
+
+.Choices__line__wrapper {
+    position: relative;
+
+    width: 100%;
+    height: fit-content;
+}
+
 .Choices__line {
+    position: absolute;
+    top: -0.3rem;
+    left: 0;
+
     height: 2px;
     width: 15px;
 
     background: black;
+
+    transition: 0.5s cubic-bezier(.56,.46,.44,.97);
 }
