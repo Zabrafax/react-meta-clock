@@ -59,16 +59,6 @@ function Main() {
     const [cols, setCols] = useState(12);
     const [rows, setRows] = useState(3);
 
-    const changeGridSize = () => {
-        if (cols === 8) {
-            setCols(12);
-            setRows(3);
-        } else {
-            setCols(8);
-            setRows(3);
-        }
-    };
-
     return (
         <>
             {!isFullscreen && <Header onSettingsClick={onSettingsClick} onFullScreenClick={toggleFullscreen} />}
@@ -87,7 +77,9 @@ function Main() {
             {isSettingsVisible &&
                 <SettingsWindow
                     onSettingsCrossClick={onSettingsCrossClick}
-                    changeGridSize={changeGridSize} />
+                    setRows={setRows}
+                    setCols={setCols}
+                />
             }
 
             {!isFullscreen && <Footer />}
