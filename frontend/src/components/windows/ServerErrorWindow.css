@@ -1,9 +1,35 @@
 .Server__error__window {
     z-index: 1000;
     position: absolute;
-    top: calc(5rem + 8rem);
+    top: calc(5rem + (100vh - 5rem - 5rem - 200px) / 3);
     left: auto;
 
     width: 400px;
-    height: calc(100vh - 5rem - 12rem - 12rem - 5rem);
+    height: fit-content;
+    max-height: 300px;
+}
+
+.Server__error__window__main__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    text-align: left;
+}
+
+.Server__error__window__main__wrapper p {
+    font-size: 1.2rem;
+}
+
+.Server__error__window__main__wrapper p:not(:first-of-type) {
+    margin-top: 0.5rem;
+}
+
+.Server__error__window__main__wrapper .Small__a__button {
+    margin-top: 1rem;
+
+    align-self: center;
+
+    font-size: 1.2rem;
 }
