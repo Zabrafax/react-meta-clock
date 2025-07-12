@@ -2,10 +2,16 @@ import './BaseLayout.css'
 import ClockGrid from "./clock/ClockGrid";
 import React, {useState, useEffect} from "react";
 import Header from "./Header";
-import SettingsWindow from "./SettingsWindow";
+import ServerErrorWindow from "./windows/ServerErrorWindow";
+import SettingsWindow from "./windows/SettingsWindow";
 import Footer from "./Footer";
 
 function Main() {
+    /*
+        Server error window
+     */
+    const [isServerErrorWindowVisible, setIsServerErrorWindowVisible] = useState(true);
+
     /*
         Settings window button
      */
@@ -89,6 +95,10 @@ function Main() {
             >
                 <ClockGrid rows={rows} cols={cols} />
             </main>
+
+            {isServerErrorWindowVisible &&
+                <ServerErrorWindow />
+            }
 
             {isSettingsVisible &&
                 <SettingsWindow

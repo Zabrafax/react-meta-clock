@@ -1,0 +1,9 @@
+.Server__error__window {
+    z-index: 1000;
+    position: absolute;
+    top: calc(5rem + 8rem);
+    left: auto;
+
+    width: 400px;
+    height: calc(100vh - 5rem - 12rem - 12rem - 5rem);
+}

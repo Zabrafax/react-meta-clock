@@ -1,13 +1,4 @@
-.Settings__window {
-    z-index: 1000;
-    position: absolute;
-    top: calc(6rem + 1rem);
-    left: auto;
-
-    width: calc(100vw - 5rem);
-    max-width: 1400px;
-    height: calc(100vh - 5rem - 1rem - 3rem);
-
+.Window {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -20,7 +11,7 @@
     box-shadow: 0 4px 45px rgba(0, 0, 0, 0.3);
 }
 
-.Settings__top__wrapper {
+.Window__top__wrapper {
     width: 100%;
     height: fit-content;
 
@@ -32,7 +23,7 @@
     align-items: center;
 }
 
-.Settings__window h2 {
+.Window h2 {
     margin: 0;
 
     font-size: 1.75rem;
@@ -86,4 +77,14 @@
 
 .Closing__cross:active:after {
     transform: scale(0.9) rotate(45deg);
+}
+
+.Window__main__wrapper {
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
