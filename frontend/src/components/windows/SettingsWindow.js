@@ -1,6 +1,7 @@
 import './SettingsWindow.css';
 import './Window.css';
 import SimpleSwitch from "../SimpleSwitch";
+import ColorPicker from "../Buttons/ColorPicker";
 
 function SettingsWindow({
                             onSettingsCrossClick,
@@ -41,6 +42,7 @@ function SettingsWindow({
                     <SimpleSwitch name="Seconds" initialState={isSecondsEnabled} onEnable={enableSeconds} onDisable={disableSeconds}/>
                     <SimpleSwitch name="Separators" initialState={isSeparatorsEnabled} onEnable={enableSeparators} onDisable={disableSeparators}/>
                 </div>
+                <ColorPicker name="Theme Color" />
             </div>
         </div>
     );
