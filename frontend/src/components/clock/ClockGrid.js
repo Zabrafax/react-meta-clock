@@ -22,7 +22,7 @@ function ClockGrid(props) {
 
         socket.onopen = () => {
             socket.send(JSON.stringify({ type: "subscribe", rows, cols }));
-            setIsServerErrorWindowVisible(false);
+            //setIsServerErrorWindowVisible(false);
             console.log("Websocket connected, subscribe message sent");
         };
 
@@ -50,17 +50,24 @@ function ClockGrid(props) {
         };
 
         socket.onerror = (error) => {
+            setIsServerErrorWindowVisible(true);
             console.error("WebSocket error:", error);
         };
 
-        socket.onclose = () => {
-            setIsServerErrorWindowVisible(true);
-            console.log("WebSocket closed");
+        socket.onclose = (event) => {
+            const errorCodes = [1002, 1006, 1008, 1009, 1011, 1015];
+            if(errorCodes.includes(event.code)) {
+                setIsServerErrorWindowVisible(true);
+                console.log("WebSocket closed with error: " + event.code);
+            }
+            console.log("WebSocket closed: " + event.code);
         };
 
         return () => {
             // setIsServerErrorWindowVisible(true);
-            socket.close();
+            if (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING) {
+                socket.close();
+            }
         };
     }, [cols, rows]);
 
