@@ -7,6 +7,8 @@ function ClockGrid(props) {
     const cols = props.cols;
     const total = rows * cols;
 
+    const setIsServerErrorWindowVisible = props.setIsServerErrorWindowVisible;
+
     const [minuteArrowDegreesArray, setMinuteArrowDegreesArray] =
         useState(() => Array.from({length: total}));
     const [hourArrowDegreesArray, setHourArrowDegreesArray] =
@@ -20,6 +22,7 @@ function ClockGrid(props) {
 
         socket.onopen = () => {
             socket.send(JSON.stringify({ type: "subscribe", rows, cols }));
+            setIsServerErrorWindowVisible(false);
             console.log("Websocket connected, subscribe message sent");
         };
 
@@ -51,10 +54,12 @@ function ClockGrid(props) {
         };
 
         socket.onclose = () => {
+            setIsServerErrorWindowVisible(true);
             console.log("WebSocket closed");
         };
 
         return () => {
+            // setIsServerErrorWindowVisible(true);
             socket.close();
         };
     }, [cols, rows]);

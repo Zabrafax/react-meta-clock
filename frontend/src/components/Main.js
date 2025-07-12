@@ -10,7 +10,7 @@ function Main() {
     /*
         Server error window
      */
-    const [isServerErrorWindowVisible, setIsServerErrorWindowVisible] = useState(true);
+    const [isServerErrorWindowVisible, setIsServerErrorWindowVisible] = useState(false);
 
     /*
         Settings window button
@@ -93,7 +93,7 @@ function Main() {
                     justifyContent: isFullscreen ? "center" : "start"
                 }}
             >
-                <ClockGrid rows={rows} cols={cols} />
+                <ClockGrid rows={rows} cols={cols} setIsServerErrorWindowVisible={setIsServerErrorWindowVisible}/>
             </main>
 
             {isServerErrorWindowVisible &&
