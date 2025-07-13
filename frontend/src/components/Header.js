@@ -2,7 +2,7 @@ import './BaseLayout.css';
 import {useTheme} from "./contexts/ThemeContext";
 
 function Header({ onSettingsClick, onFullScreenClick}) {
-    const { allFirstThemeColors, currentThemeNumber } = useTheme();
+    const { allFirstThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
 
     return (
         <header
@@ -13,9 +13,20 @@ function Header({ onSettingsClick, onFullScreenClick}) {
                 <h1>Meta Clock</h1>
             </div>
             <div className="Header__buttons">
-                <a className="Header__a__button">ACCOUNT</a>
-                <a className="Header__a__button" onClick={onSettingsClick}>SETTINGS</a>
-                <a className="Header__a__button" onClick={onFullScreenClick}>FULLSCREEN</a>
+                <a
+                    className="Header__a__button"
+                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                >ACCOUNT</a>
+                <a
+                    className="Header__a__button"
+                    onClick={onSettingsClick}
+                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                >SETTINGS</a>
+                <a
+                    className="Header__a__button"
+                    onClick={onFullScreenClick}
+                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                >FULLSCREEN</a>
             </div>
         </header>
     );
