@@ -1,6 +1,6 @@
 import "./Window.css";
 import "./ServerErrorWindow.css";
-import "../Buttons/SmallAButton.css"
+import "../buttons/SmallAButton.css"
 
 function ServerErrorWindow(onServerErrorCrossClick) {
     return (

@@ -1,7 +1,7 @@
 import './SettingsWindow.css';
 import './Window.css';
 import SimpleSwitch from "../SimpleSwitch";
-import ColorPicker from "../Buttons/ColorPicker";
+import ThemeSwitch from "../buttons/ThemeSwitch";
 
 function SettingsWindow({
                             onSettingsCrossClick,
@@ -27,6 +27,9 @@ function SettingsWindow({
         setIsSeparatorsEnabled(false);
     }
 
+    const themeSecondColors = ["#edc600", "#000000", "#edc600"]
+    const themeColors = ["#000042", "#ffffff", "#bb1515"];
+
     return (
         <div className="Settings__window Window">
             <div className="Window__top__wrapper">
@@ -42,7 +45,8 @@ function SettingsWindow({
                     <SimpleSwitch name="Seconds" initialState={isSecondsEnabled} onEnable={enableSeconds} onDisable={disableSeconds}/>
                     <SimpleSwitch name="Separators" initialState={isSeparatorsEnabled} onEnable={enableSeparators} onDisable={disableSeparators}/>
                 </div>
-                <ColorPicker name="Theme Color" />
+                <ThemeSwitch name="Theme Colors" colors={themeColors} secondColors={themeSecondColors} />
+                {/*<ColorPicker name="Theme Color" />*/}
             </div>
         </div>
     );

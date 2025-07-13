@@ -12,7 +12,7 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
     const disableRef = useRef(null);
 
     useEffect(() => {
-        if (enableRef.current && disableRef.current) {
+        if (enableRef.current && disableRef.current && preText.current && middleText.current) {
             const leftWidth = preText.current.getBoundingClientRect().width;
             const enableWidth = enableRef.current.getBoundingClientRect().width;
             const middleWidth = middleText.current.getBoundingClientRect().width;
@@ -47,7 +47,7 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
                     >
                         Enable
                     </a>
-                    <p ref={middleText}> | </p>
+                    <p ref={middleText}> / </p>
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a
                         className={!isEnabled ? undefined : styles.a__disabled}

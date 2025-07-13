@@ -1,0 +1,58 @@
+.ThemeSwitch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    white-space: pre;
+}
+
+p, a {
+    font-size: 1.5rem;
+}
+
+.Choices__wrapper {
+    height: 1.5rem;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Choice__options {
+    height: 1.3rem;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.Choice__option {
+    height: 100%;
+    aspect-ratio: 3/1;
+}
+
+.Choices__line__wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 0.2rem;
+}
+
+.Choices__line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: 100%;
+    width: 15px;
+
+    background: black;
+
+    transition: 0.5s cubic-bezier(.56,.46,.44,.97);
+}
