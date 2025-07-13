@@ -11,7 +11,7 @@ function Main() {
     /*
         Theme
      */
-    const { allFirstThemeColors, currentThemeNumber } = useTheme();
+    const { allFirstThemeColors, allSecondThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
 
     /*
         Server error window
@@ -88,7 +88,13 @@ function Main() {
     }, [isSecondsEnabled, setRows, setCols]);
 
     return (
-        <>
+        <div
+            className="Page__back__wrapper"
+            style={{
+                color: allTextThemeColors[currentThemeNumber],
+                backgroundColor: allFirstThemeColors[currentThemeNumber]
+            }}
+        >
             {!isFullscreen && <Header onSettingsClick={onSettingsClick} onFullScreenClick={toggleFullscreen} />}
 
             <main
@@ -118,7 +124,7 @@ function Main() {
             }
 
             {!isFullscreen && <Footer />}
-        </>
+        </div>
     );
 }
 

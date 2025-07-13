@@ -3,6 +3,7 @@ import './Window.css';
 import SimpleSwitch from "../SimpleSwitch";
 import ThemeSwitch from "../buttons/ThemeSwitch";
 import {useTheme} from "../contexts/ThemeContext";
+import {HEXtoRGBA} from "../utils/colorUtils";
 
 function SettingsWindow({
                             onSettingsCrossClick,
@@ -12,7 +13,7 @@ function SettingsWindow({
                             setIsSeparatorsEnabled
                         }) {
 
-    const { allFirstThemeColors, allAccentThemeColors } = useTheme();
+    const { allFirstThemeColors, allAccentThemeColors, currentThemeNumber } = useTheme();
 
     const disableSeconds = () => {
         setIsSecondsEnabled(false);
@@ -31,7 +32,10 @@ function SettingsWindow({
     }
 
     return (
-        <div className="Settings__window Window">
+        <div
+            className="Settings__window Window"
+            style={{backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], 0.75)}}
+        >
             <div className="Window__top__wrapper">
                 <h2>Settings</h2>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

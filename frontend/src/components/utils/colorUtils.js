@@ -31,3 +31,17 @@ export function darkenColor(hex, percent = 20) {
         .slice(1)
         .toUpperCase();
 }
+
+export function HEXtoRGBA(hex, aPercent = 0.5) {
+    hex = hex.replace(/^#/, "");
+
+    if (hex.length === 3) {
+        hex = hex.split("").map(c => c + c).join("");
+    }
+
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    return `rgba(${r}, ${g}, ${b}, ${aPercent})`;
+}

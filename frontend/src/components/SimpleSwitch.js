@@ -1,7 +1,10 @@
 import styles from './SimpleSwitch.module.css'
 import { useState, useEffect, useRef } from 'react';
+import {useTheme} from "./contexts/ThemeContext";
 
 function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
+    const { allTextThemeColors, currentThemeNumber } = useTheme();
+
     const [leftLineOffset, setLeftLineOffset] = useState(0);
     const [lineWidth, setLineWidth] = useState(0);
     const [isEnabled, setIsEnabled] = useState(initialState);
@@ -63,7 +66,8 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
                         className={styles.Choices__line}
                         style={{
                             width: lineWidth + "px",
-                            left: leftLineOffset + "px"
+                            left: leftLineOffset + "px",
+                            backgroundColor: allTextThemeColors[currentThemeNumber]
                         }}
                     />
                 </div>
