@@ -22,7 +22,7 @@
     left: 0;
     right: 0;
 
-    background-color: black;
+    background-color: var(--after-color, black);
 
     transform: scaleX(0);
     transition: transform 0.2s;

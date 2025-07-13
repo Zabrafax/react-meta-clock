@@ -1,10 +1,16 @@
 import "./Window.css";
 import "./ServerErrorWindow.css";
 import "../buttons/SmallAButton.css"
+import {useTheme} from "../contexts/ThemeContext";
 
-function ServerErrorWindow(onServerErrorCrossClick) {
+function ServerErrorWindow() {
+    const { allFirstThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
+
     return (
-        <div className="Server__error__window Window">
+        <div
+            className="Server__error__window Window"
+            style={{ backgroundColor: allFirstThemeColors[currentThemeNumber] }}
+        >
             <div className="Window__top__wrapper">
                 <h2>Connection Error</h2>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -17,7 +23,11 @@ function ServerErrorWindow(onServerErrorCrossClick) {
                 <p>Unable to connect to the server</p>
                 <p>Please check your internet connection or try again later :3</p>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="Small__a__button" onClick={() => window.location.reload()}>Reload page</a>
+                <a
+                    className="Small__a__button"
+                    onClick={() => window.location.reload()}
+                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                >Reload page</a>
             </div>
         </div>
     );
