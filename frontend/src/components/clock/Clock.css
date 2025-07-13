@@ -14,7 +14,7 @@
     background-color: #eeeeee;
     border-radius: 50%;
     /*border: 2px solid #c5c5c5;*/
-    box-shadow: 3px 0 6px #5d5d5d inset;
+    box-shadow: 3px 0 6px #000000 inset;
     /*box-shadow: 0 0 8px black inset, 0 0 40px #565656;*/
 
     position: relative;

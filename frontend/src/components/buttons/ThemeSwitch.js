@@ -1,8 +1,10 @@
 import styles from './ThemeSwitch.module.css'
 import {useEffect, useRef, useState} from "react";
+import {useTheme} from "../contexts/ThemeContext";
 
-function ThemeSwitch({ name, colors, secondColors }) {
-    const [currentColor, setCurrentColor] = useState(0);
+function ThemeSwitch({ name, choiceColors, lineColors }) {
+    const { currentThemeNumber, setCurrentThemeNumber } = useTheme();
+
     const [lineColor, setLineColor] = useState(0);
 
     const [leftLineOffset, setLeftLineOffset] = useState(0);
@@ -14,29 +16,31 @@ function ThemeSwitch({ name, colors, secondColors }) {
         if(colorRefs.current[0]) {
             const basicLineWidth = colorRefs.current[0].getBoundingClientRect().width;
 
-            setLeftLineOffset(basicLineWidth * currentColor);
+            setLeftLineOffset(basicLineWidth * currentThemeNumber);
             setLineWidth(basicLineWidth);
         }
 
-        setLineColor(secondColors[currentColor]);
-    }, [currentColor, colors, colorRefs]);
+        setLineColor(lineColors[currentThemeNumber]);
+
+    }, [currentThemeNumber, choiceColors, colorRefs, lineColors, setCurrentThemeNumber]);
 
     useEffect(() => {
-        colorRefs.current = colorRefs.current.slice(0, colors.length);
-    }, [colors, colorRefs]);
+        colorRefs.current = colorRefs.current.slice(0, choiceColors.length);
+    }, [choiceColors, colorRefs]);
 
     return (
         <div className={styles.ThemeSwitch}>
             <p>{name + ": "}</p>
             <div className={styles.Choices__wrapper}>
                 <div className={styles.Choice__options}>
-                    {colors.map((color, index) => (
+                    {choiceColors.map((color, index) => (
+                        // eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid
                         <a
                             key={index}
                             ref={el => (colorRefs.current[index] = el)}
                             className={styles.Choice__option}
                             style={{ backgroundColor: color }}
-                            onClick={() => setCurrentColor(index)}
+                            onClick={() => setCurrentThemeNumber(index)}
                         ></a>
                     ))}
                 </div>

@@ -5,8 +5,14 @@ import Header from "./Header";
 import ServerErrorWindow from "./windows/ServerErrorWindow";
 import SettingsWindow from "./windows/SettingsWindow";
 import Footer from "./Footer";
+import { useTheme } from "./contexts/ThemeContext";
 
 function Main() {
+    /*
+        Theme
+     */
+    const { allFirstThemeColors, currentThemeNumber } = useTheme();
+
     /*
         Server error window
      */
@@ -90,7 +96,8 @@ function Main() {
                 style={{
                     marginTop: isFullscreen ? "0" : "5rem",
                     minHeight: isFullscreen ? "100vh" : "calc(100vh - 5rem - 5rem)",
-                    justifyContent: isFullscreen ? "center" : "start"
+                    justifyContent: isFullscreen ? "center" : "start",
+                    backgroundColor: allFirstThemeColors[currentThemeNumber]
                 }}
             >
                 <ClockGrid rows={rows} cols={cols} setIsServerErrorWindowVisible={setIsServerErrorWindowVisible}/>

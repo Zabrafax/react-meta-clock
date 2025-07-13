@@ -16,6 +16,7 @@ function ServerErrorWindow(onServerErrorCrossClick) {
             <div className="Window__main__wrapper Server__error__window__main__wrapper">
                 <p>Unable to connect to the server</p>
                 <p>Please check your internet connection or try again later :3</p>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a className="Small__a__button" onClick={() => window.location.reload()}>Reload page</a>
             </div>
         </div>

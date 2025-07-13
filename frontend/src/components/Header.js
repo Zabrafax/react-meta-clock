@@ -1,8 +1,14 @@
 import './BaseLayout.css';
+import {useTheme} from "./contexts/ThemeContext";
 
 function Header({ onSettingsClick, onFullScreenClick}) {
+    const { allFirstThemeColors, currentThemeNumber } = useTheme();
+
     return (
-        <header className="Header">
+        <header
+            className="Header"
+            style={{backgroundColor: allFirstThemeColors[currentThemeNumber]}}
+        >
             <div className="Header__logo">
                 <h1>Meta Clock</h1>
             </div>
