@@ -2,14 +2,17 @@ import "./Window.css";
 import "./ServerErrorWindow.css";
 import "../buttons/SmallAButton.css"
 import {useTheme} from "../contexts/ThemeContext";
+import {HEXtoRGBA} from "../utils/colorUtils";
 
 function ServerErrorWindow() {
-    const { allFirstThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
+    const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
     return (
         <div
             className="Server__error__window Window"
-            style={{ backgroundColor: allFirstThemeColors[currentThemeNumber] }}
+            style={{
+                backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], allAlphaThemePercents[currentThemeNumber])
+            }}
         >
             <div className="Window__top__wrapper">
                 <h2>Connection Error</h2>

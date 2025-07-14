@@ -7,7 +7,8 @@ export function ThemeProvider({ children }) {
     const [allSecondThemeColors, setAllSecondThemeColors] = useState(["#162652", "#e3e3e3", "#960e0e"]);
     const [allAccentThemeColors, setAllAccentThemeColors] = useState(["#dcdcdc", "#000000", "#ffd700"]);
     const [allTextThemeColors, setAllTextThemeColors] = useState(["#ffffff", "#000000", "#ffffff"]);
-    const [currentThemeNumber, setCurrentThemeNumber] = useState(2);
+    const [allAlphaThemePercents, setAllAlphaThemePercents] = useState([0.85, 0.85, 0.8]);
+    const [currentThemeNumber, setCurrentThemeNumber] = useState(0);
 
     return (
         <ThemeContext.Provider value={{
@@ -15,6 +16,7 @@ export function ThemeProvider({ children }) {
             allSecondThemeColors, setAllSecondThemeColors,
             allAccentThemeColors, setAllAccentThemeColors,
             allTextThemeColors, setAllTextThemeColors,
+            allAlphaThemePercents, setAllAlphaThemePercents,
             currentThemeNumber, setCurrentThemeNumber
         }}>
             {children}

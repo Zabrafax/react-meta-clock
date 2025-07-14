@@ -13,7 +13,7 @@ function SettingsWindow({
                             setIsSeparatorsEnabled
                         }) {
 
-    const { allFirstThemeColors, allAccentThemeColors, currentThemeNumber } = useTheme();
+    const { allFirstThemeColors, allAccentThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
     const disableSeconds = () => {
         setIsSecondsEnabled(false);
@@ -34,7 +34,9 @@ function SettingsWindow({
     return (
         <div
             className="Settings__window Window"
-            style={{backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], 0.75)}}
+            style={{
+                backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], allAlphaThemePercents[currentThemeNumber])
+            }}
         >
             <div className="Window__top__wrapper">
                 <h2>Settings</h2>
