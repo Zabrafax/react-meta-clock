@@ -53,8 +53,23 @@ public class TimeSocketHandler extends TextWebSocketHandler {
         String type = jsonNode.get("type").asText();
 
         if(type.equals("subscribe")) {
+            if(jsonNode.get("rows") == null || jsonNode.get("cols") == null) {
+                return;
+            }
+
             int rows = jsonNode.get("rows").asInt();
             int cols = jsonNode.get("cols").asInt();
+
+            boolean isSecondsEnabled = false;
+            if(jsonNode.get("isSecondsEnabled") != null) {
+                isSecondsEnabled = jsonNode.get("isSecondsEnabled").asBoolean();
+            }
+
+            boolean isSeparatorsEnabled = false;
+            if(jsonNode.get("isSeparatorsEnabled") != null) {
+                isSeparatorsEnabled = jsonNode.get("isSeparatorsEnabled").asBoolean();
+            }
+
             clients.put(session, new GridSize(rows, cols));
             System.out.println("Client subscribed to " + rows + "x" + cols);
         }

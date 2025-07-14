@@ -21,7 +21,7 @@ function Clock(props) {
                     style={{
                         '--minute-arrow-degrees': `${minuteArrowDegrees}deg`,
                         backgroundColor: allAccentThemeColors[currentThemeNumber],
-                        boxShadow: currentThemeNumber === 1 ? 'none' : '0 0 5px 1px black'
+                        boxShadow: (currentThemeNumber === 1 || currentThemeNumber === 1) ? 'none' : '0 0 5px 1px black'
                     }}
                     className="Clock-minute-arrow"
                 ></div>
@@ -29,7 +29,7 @@ function Clock(props) {
                     style={{
                         '--hour-arrow-degrees': `${hourArrowDegrees}deg`,
                         backgroundColor: allAccentThemeColors[currentThemeNumber],
-                        boxShadow: currentThemeNumber === 1 ? 'none' : '0 0 5px 0px black'
+                        boxShadow: (currentThemeNumber === 1 || currentThemeNumber === 1) ? 'none' : '0 0 5px 0px black'
                     }}
                     className="Clock-hour-arrow"
                 ></div>
