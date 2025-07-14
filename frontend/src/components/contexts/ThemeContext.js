@@ -8,7 +8,7 @@ export function ThemeProvider({ children }) {
     const [allAccentThemeColors, setAllAccentThemeColors] = useState(["#dcdcdc", "#000000", "#ffd700", "#ffffff"]);
     const [allTextThemeColors, setAllTextThemeColors] = useState(["#ffffff", "#000000", "#ffffff", "#ffffff"]);
     const [allAlphaThemePercents, setAllAlphaThemePercents] = useState([0.85, 0.85, 0.8, 0.8]);
-    const [currentThemeNumber, setCurrentThemeNumber] = useState(1);
+    const [currentThemeNumber, setCurrentThemeNumber] = useState(0);
 
     return (
         <ThemeContext.Provider value={{

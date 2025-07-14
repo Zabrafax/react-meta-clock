@@ -21,14 +21,18 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class TimeSocketHandler extends TextWebSocketHandler {
-    private final Map<WebSocketSession, GridSize> clients = new ConcurrentHashMap<>();
+    private final Map<WebSocketSession, Parameters> clients = new ConcurrentHashMap<>();
 
-    private static class GridSize {
+    private static class Parameters {
         int rows;
         int cols;
-        public GridSize(int rows, int cols) {
+        boolean isSecondsEnabled;
+        boolean isSeparatorsEnabled;
+        public Parameters(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled) {
             this.rows = rows;
             this.cols = cols;
+            this.isSecondsEnabled = isSecondsEnabled;
+            this.isSeparatorsEnabled = isSeparatorsEnabled;
         }
     }
 
@@ -70,7 +74,7 @@ public class TimeSocketHandler extends TextWebSocketHandler {
                 isSeparatorsEnabled = jsonNode.get("isSeparatorsEnabled").asBoolean();
             }
 
-            clients.put(session, new GridSize(rows, cols));
+            clients.put(session, new Parameters(rows, cols, isSecondsEnabled, isSeparatorsEnabled));
             System.out.println("Client subscribed to " + rows + "x" + cols);
         }
 
@@ -88,13 +92,18 @@ public class TimeSocketHandler extends TextWebSocketHandler {
     @Scheduled(fixedRate = 1000)
     public void sendClockDataToAllClients() {
         //System.out.println("Sending data to clients, total: " + clients.size());
-        for (Map.Entry<WebSocketSession, GridSize> entry : clients.entrySet()) {
+        for (Map.Entry<WebSocketSession, Parameters> entry : clients.entrySet()) {
             WebSocketSession session = entry.getKey();
 
             if(session.isOpen()) {
                 //System.out.println("Sending message to client...");
                 try {
-                    ClockCoordinates[] clockCoordinates = metaClock.getClockCoordinatesArray(entry.getValue().rows, entry.getValue().cols);
+                    ClockCoordinates[] clockCoordinates = metaClock.getClockCoordinatesArray(
+                            entry.getValue().rows,
+                            entry.getValue().cols,
+                            entry.getValue().isSecondsEnabled,
+                            entry.getValue().isSeparatorsEnabled
+                    );
 
                     String json = mapper.writeValueAsString(clockCoordinates);
                     session.sendMessage(new TextMessage(json));

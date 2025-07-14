@@ -13,12 +13,7 @@ import java.util.TimerTask;
 
 @Component
 public class MetaClock {
-    private int number1;
-    private int number2;
-    private int number3;
-    private int number4;
-    private int number5;
-    private int number6;
+    private int[] numbers = new int[6];
 
     @Autowired
     private NumbersMapping3X2 numbersMapping3X2;
@@ -43,47 +38,40 @@ public class MetaClock {
         }, 0, 1000);
     }
 
-    public ClockCoordinates[] getClockCoordinatesArray(int rows, int cols) {
+    public ClockCoordinates[] getClockCoordinatesArray(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled) {
+        System.out.println("Earned parameters: " + rows + ", " + cols + ", " + isSecondsEnabled + ", " + isSeparatorsEnabled);
+
+        int totalRows = rows;
+        int totalCols;
+
+        if(isSecondsEnabled) {
+            totalCols = cols * 6;
+        }
+        else {
+            totalCols = cols * 4;
+        }
+
+        if(isSeparatorsEnabled) {
+            if(isSecondsEnabled) {
+                totalCols += 2;
+            } else {
+                totalCols += 1;
+            }
+        }
+
         updateNumbers();
 
-        ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[rows * cols];
+        ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[totalRows * totalCols];
 
-        for(int row = 0; row < rows; row++) {
-            for(int col = 0; col < 2; col++) {
-                ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number1, row, col);
-                clockCoordinatesArray[row * cols + col] = clockCoordinates;
-            }
-            for(int col = 2; col < 4; col++) {
-                ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number2, row, col - 2);
-                clockCoordinatesArray[row * cols + col] = clockCoordinates;
-            }
-            for(int col = 4; col < 6; col++) {
-                ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number3, row, col - 4);
-                clockCoordinatesArray[row * cols + col] = clockCoordinates;
-            }
-            for(int col = 6; col < 8; col++) {
-                ClockCoordinates clockCoordinates =
-                        numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number4, row, col - 6);
-                clockCoordinatesArray[row * cols + col] = clockCoordinates;
-            }
-
-            /*
-                In case of 3x12 grid
-             */
-            if(cols == 12) {
-                for(int col = 8; col < 10; col++) {
+        for(int row = 0; row < totalRows; row++) {
+            int currentNumber = 0;
+            for(int col = 0; col < totalCols; col += 2) {
+                for(int digitCol = 0; digitCol < 2; digitCol++) {
                     ClockCoordinates clockCoordinates =
-                            numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number5, row, col - 8);
-                    clockCoordinatesArray[row * cols + col] = clockCoordinates;
+                            numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.numbers[currentNumber], row, digitCol);
+                    clockCoordinatesArray[row * totalCols + (col + digitCol)] = clockCoordinates;
                 }
-                for(int col = 10; col < 12; col++) {
-                    ClockCoordinates clockCoordinates =
-                            numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.number6, row, col - 10);
-                    clockCoordinatesArray[row * cols + col] = clockCoordinates;
-                }
+                currentNumber++;
             }
         }
 
@@ -91,12 +79,12 @@ public class MetaClock {
     }
 
     private void updateNumbers() {
-        this.number1 = clock.getHours() / 10;
-        this.number2 = clock.getHours() % 10;
-        this.number3 = clock.getMinutes() / 10;
-        this.number4 = clock.getMinutes() % 10;
-        this.number5 = clock.getSeconds() / 10;
-        this.number6 = clock.getSeconds() % 10;
+        this.numbers[0] = clock.getHours() / 10;
+        this.numbers[1] = clock.getHours() % 10;
+        this.numbers[2] = clock.getMinutes() / 10;
+        this.numbers[3] = clock.getMinutes() % 10;
+        this.numbers[4] = clock.getSeconds() / 10;
+        this.numbers[5] = clock.getSeconds() % 10;
     }
 
     private void displayCurrentClockTime() {

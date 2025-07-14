@@ -71,22 +71,6 @@ function Main() {
     const [isSecondsEnabled, setIsSecondsEnabled] = useState(true);
     const [isSeparatorsEnabled, setIsSeparatorsEnabled] = useState(false);
 
-    /*
-        Grid size change
-     */
-    const [cols, setCols] = useState(12);
-    const [rows, setRows] = useState(3);
-
-    useEffect(() => {
-        if(!!isSecondsEnabled) {
-            setRows(3);
-            setCols(12);
-        } else {
-            setRows(3);
-            setCols(8);
-        }
-    }, [isSecondsEnabled, setRows, setCols]);
-
     return (
         <div
             className="Page__back__wrapper"
@@ -106,7 +90,13 @@ function Main() {
                     backgroundColor: allFirstThemeColors[currentThemeNumber]
                 }}
             >
-                <ClockGrid rows={rows} cols={cols} setIsServerErrorWindowVisible={setIsServerErrorWindowVisible}/>
+                <ClockGrid
+                    rows={3}
+                    cols={2}
+                    isSecondsEnabled={isSecondsEnabled}
+                    isSeparatorsEnabled={isSeparatorsEnabled}
+                    setIsServerErrorWindowVisible={setIsServerErrorWindowVisible}
+                />
             </main>
 
             {isServerErrorWindowVisible &&
