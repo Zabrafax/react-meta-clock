@@ -46,7 +46,7 @@
     height: 1.5rem;
     width: 1.5px;
 
-    background-color: black;
+    background-color: var(--after-color, black);
 
     transition: transform 0.1s;
 }

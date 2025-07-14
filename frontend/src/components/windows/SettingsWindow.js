@@ -13,7 +13,7 @@ function SettingsWindow({
                             setIsSeparatorsEnabled
                         }) {
 
-    const { allFirstThemeColors, allAccentThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
+    const { allFirstThemeColors, allAccentThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
     const disableSeconds = () => {
         setIsSecondsEnabled(false);
@@ -41,7 +41,11 @@ function SettingsWindow({
             <div className="Window__top__wrapper">
                 <h2>Settings</h2>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="Closing__cross" onClick={onSettingsCrossClick}>
+                <a
+                    className="Closing__cross"
+                    onClick={onSettingsCrossClick}
+                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                >
                     <div className="Closing_cross__first"></div>
                     <div className="Closing_cross__second"></div>
                 </a>

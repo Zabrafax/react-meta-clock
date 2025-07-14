@@ -1,5 +1,5 @@
 .Clock-wrapper {
-    padding: 2px;
+    padding: 4px;
 
     display: flex;
     flex-direction: column;
@@ -16,8 +16,13 @@
     /*border: 2px solid #c5c5c5;*/
     /*box-shadow: -3px 0 10px #000000 inset;*/
     /*box-shadow: 0 0 8px black inset, 0 0 40px #565656;*/
-    box-shadow: inset -25px 0px 15px -5px rgba(0, 0, 0, 0.5), -2px 0px 1px -1px rgba(255, 255, 255, 1);
+    box-shadow:
+            inset -25px 0px 20px -5px rgba(0, 0, 0, 0.4),
+            -2px 0px 2px -1px rgba(255, 255, 255, 1),
+            inset 5px 0px 20px -5px rgba(255, 255, 255, 0.1);
 
+
+    overflow: hidden;
 
     position: relative;
 }
