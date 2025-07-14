@@ -20,14 +20,16 @@ function Clock(props) {
                 <div
                     style={{
                         '--minute-arrow-degrees': `${minuteArrowDegrees}deg`,
-                        backgroundColor: allAccentThemeColors[currentThemeNumber]
+                        backgroundColor: allAccentThemeColors[currentThemeNumber],
+                        boxShadow: currentThemeNumber === 1 ? 'none' : '0 0 5px 1px black'
                     }}
                     className="Clock-minute-arrow"
                 ></div>
                 <div
                     style={{
                         '--hour-arrow-degrees': `${hourArrowDegrees}deg`,
-                        backgroundColor: allAccentThemeColors[currentThemeNumber]
+                        backgroundColor: allAccentThemeColors[currentThemeNumber],
+                        boxShadow: currentThemeNumber === 1 ? 'none' : '0 0 5px 0px black'
                     }}
                     className="Clock-hour-arrow"
                 ></div>
