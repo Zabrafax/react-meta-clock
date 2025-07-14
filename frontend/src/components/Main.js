@@ -11,7 +11,7 @@ function Main() {
     /*
         Theme
      */
-    const { allFirstThemeColors, allSecondThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
+    const { allFirstThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
 
     /*
         Server error window

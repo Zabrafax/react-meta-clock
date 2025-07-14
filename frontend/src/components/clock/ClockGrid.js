@@ -26,17 +26,17 @@ function ClockGrid(props) {
         setTotalRows(rows);
 
         if(isSecondsEnabled) {
-            setTotalCols(cols * 6);
+            if(isSeparatorsEnabled) {
+                setTotalCols(cols * 6 + 2);
+            } else {
+                setTotalCols(cols * 6);
+            }
         }
         else {
-            setTotalCols(cols * 4);
-        }
-
-        if(isSeparatorsEnabled) {
-            if(isSecondsEnabled) {
-                setTotalCols(totalCols + 2);
+            if(isSeparatorsEnabled) {
+                setTotalCols(cols * 4 + 2);
             } else {
-                setTotalCols(totalCols + 1);
+                setTotalCols(cols * 4);
             }
         }
     }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled]);

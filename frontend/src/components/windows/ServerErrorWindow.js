@@ -17,15 +17,11 @@ function ServerErrorWindow() {
             <div className="Window__top__wrapper">
                 <h2>Connection Error</h2>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="Closing__cross"  onClick={() => window.location.reload()}>
-                    <div
-                        className="Closing_cross__first"
-                        style={{ backgroundColor: allTextThemeColors[currentThemeNumber] }}
-                    ></div>
-                    <div
-                        className="Closing_cross__second"
-                    ></div>
-                </a>
+                <a
+                    className="Closing__cross"
+                    onClick={() => window.location.reload()}
+                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                ></a>
             </div>
             <div className="Window__main__wrapper Server__error__window__main__wrapper">
                 <p>Unable to connect to the server</p>
@@ -34,7 +30,6 @@ function ServerErrorWindow() {
                 <a
                     className="Small__a__button"
                     onClick={() => window.location.reload()}
-                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                 >Reload page</a>
             </div>
         </div>

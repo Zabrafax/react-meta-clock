@@ -45,10 +45,7 @@ function SettingsWindow({
                     className="Closing__cross"
                     onClick={onSettingsCrossClick}
                     style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
-                >
-                    <div className="Closing_cross__first"></div>
-                    <div className="Closing_cross__second"></div>
-                </a>
+                ></a>
             </div>
             <div className="Window__main__wrapper">
                 <div className="Setting__switch__wrapper">
