@@ -2,12 +2,11 @@ package com.metaclock.backend.core;
 
 import com.metaclock.backend.core.numbers.ClockCoordinates;
 import com.metaclock.backend.core.numbers.NumbersMapping3X2;
-import com.metaclock.backend.socket.ClockGridResponse;
+import com.metaclock.backend.core.numbers.SeparatorsMapping3X2;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,6 +14,9 @@ import java.util.TimerTask;
 @Component
 public class MetaClock {
     private int[] numbers = new int[6];
+
+    @Autowired
+    private SeparatorsMapping3X2 separatorsMapping3X2;
 
     @Autowired
     private NumbersMapping3X2 numbersMapping3X2;
@@ -66,13 +68,25 @@ public class MetaClock {
 
         for(int row = 0; row < totalRows; row++) {
             int currentNumber = 0;
-            for(int col = 0; col < totalCols; col += 2) {
-                for(int digitCol = 0; digitCol < 2; digitCol++) {
+            for(int col = 0; col < totalCols;) {
+                if(isSeparatorsEnabled && (col == 4 || col == 9)) {
+                    boolean isToTheCenter = this.numbers[5] % 2 == 0;
+
                     ClockCoordinates clockCoordinates =
-                            numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.numbers[currentNumber], row, digitCol);
-                    clockCoordinatesArray[row * totalCols + (col + digitCol)] = clockCoordinates;
+                            separatorsMapping3X2.getClockCoordinatesForSeparatorAndClock(isToTheCenter, row);
+                    clockCoordinatesArray[row * totalCols + col] = clockCoordinates;
+
+                    col++;
+                } else {
+                    for(int digitCol = 0; digitCol < 2; digitCol++) {
+                        ClockCoordinates clockCoordinates =
+                                numbersMapping3X2.getClockCoordinatesForNumberAndClock(this.numbers[currentNumber], row, digitCol);
+                        clockCoordinatesArray[row * totalCols + (col + digitCol)] = clockCoordinates;
+                    }
+
+                    currentNumber++;
+                    col += 2;
                 }
-                currentNumber++;
             }
         }
 

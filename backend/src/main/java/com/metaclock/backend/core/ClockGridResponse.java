@@ -1,4 +1,4 @@
-package com.metaclock.backend.socket;
+package com.metaclock.backend.core;
 
 import com.metaclock.backend.core.numbers.ClockCoordinates;
 import lombok.AllArgsConstructor;

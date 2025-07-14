@@ -2,6 +2,7 @@ package com.metaclock.backend;
 
 import com.metaclock.backend.core.MetaClock;
 import com.metaclock.backend.core.numbers.NumbersMapping3X2;
+import com.metaclock.backend.core.numbers.SeparatorsMapping3X2;
 import com.metaclock.backend.socket.TimeSocketHandler;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,4 +24,9 @@ public class MetaClockApplication {
 	public NumbersMapping3X2 numbersMapping3X2() {
 		return new NumbersMapping3X2();
 	}
+
+    @Bean
+    public SeparatorsMapping3X2 separatorsMapping3X2() {
+        return new SeparatorsMapping3X2();
+    }
 }
