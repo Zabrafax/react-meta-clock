@@ -98,14 +98,14 @@ public class TimeSocketHandler extends TextWebSocketHandler {
             if(session.isOpen()) {
                 //System.out.println("Sending message to client...");
                 try {
-                    ClockCoordinates[] clockCoordinates = metaClock.getClockCoordinatesArray(
+                    ClockGridResponse clockGridResponse = metaClock.getClockGridResponse(
                             entry.getValue().rows,
                             entry.getValue().cols,
                             entry.getValue().isSecondsEnabled,
                             entry.getValue().isSeparatorsEnabled
                     );
 
-                    String json = mapper.writeValueAsString(clockCoordinates);
+                    String json = mapper.writeValueAsString(clockGridResponse);
                     session.sendMessage(new TextMessage(json));
 
                     //System.out.println("Sent clock data to " + session.getId());

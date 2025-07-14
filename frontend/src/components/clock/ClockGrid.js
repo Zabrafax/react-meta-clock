@@ -8,9 +8,6 @@ function ClockGrid(props) {
     const isSecondsEnabled = props.isSecondsEnabled;
     const isSeparatorsEnabled = props.isSeparatorsEnabled;
 
-    const [totalRows, setTotalRows] = useState(0);
-    const [totalCols, setTotalCols] = useState(0);
-
 
     const setIsServerErrorWindowVisible = props.setIsServerErrorWindowVisible;
 
@@ -21,25 +18,6 @@ function ClockGrid(props) {
 
     const previousMinuteArrowDegreesArray = useRef("");
     const previousHourArrowDegreesArray = useRef("");
-
-    useEffect(() => {
-        setTotalRows(rows);
-
-        if(isSecondsEnabled) {
-            if(isSeparatorsEnabled) {
-                setTotalCols(cols * 6 + 2);
-            } else {
-                setTotalCols(cols * 6);
-            }
-        }
-        else {
-            if(isSeparatorsEnabled) {
-                setTotalCols(cols * 4 + 2);
-            } else {
-                setTotalCols(cols * 4);
-            }
-        }
-    }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled]);
 
     useEffect(() => {
         const socket = new WebSocket("ws://localhost:8080/clock/coordinates");
@@ -93,7 +71,7 @@ function ClockGrid(props) {
                 socket.close();
             }
         };
-    }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled, totalRows, totalCols]);
+    }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled]);
 
     return (
         <div

@@ -2,6 +2,7 @@ package com.metaclock.backend.core;
 
 import com.metaclock.backend.core.numbers.ClockCoordinates;
 import com.metaclock.backend.core.numbers.NumbersMapping3X2;
+import com.metaclock.backend.socket.ClockGridResponse;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class MetaClock {
         }, 0, 1000);
     }
 
-    public ClockCoordinates[] getClockCoordinatesArray(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled) {
+    public ClockGridResponse getClockGridResponse(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled) {
         System.out.println("Earned parameters: " + rows + ", " + cols + ", " + isSecondsEnabled + ", " + isSeparatorsEnabled);
 
         int totalRows = rows;
@@ -75,7 +76,7 @@ public class MetaClock {
             }
         }
 
-        return clockCoordinatesArray;
+        return new ClockGridResponse(totalRows, totalCols, clockCoordinatesArray);
     }
 
     private void updateNumbers() {
