@@ -8,13 +8,13 @@ function ClockGrid(props) {
     const isSecondsEnabled = props.isSecondsEnabled;
     const isSeparatorsEnabled = props.isSeparatorsEnabled;
 
+    const [gridRows, setGridRows] = useState(rows);
+    const [gridCols, setGridCols] = useState(cols * 6);
 
     const setIsServerErrorWindowVisible = props.setIsServerErrorWindowVisible;
 
-    const [minuteArrowDegreesArray, setMinuteArrowDegreesArray] =
-        useState(() => Array.from({length: totalRows * totalCols}));
-    const [hourArrowDegreesArray, setHourArrowDegreesArray] =
-        useState(() => Array.from({length: totalRows * totalCols}));
+    const [minuteArrowDegreesArray, setMinuteArrowDegreesArray] = useState([]);
+    const [hourArrowDegreesArray, setHourArrowDegreesArray] = useState([]);
 
     const previousMinuteArrowDegreesArray = useRef("");
     const previousHourArrowDegreesArray = useRef("");
@@ -32,13 +32,22 @@ function ClockGrid(props) {
             try {
                 const data = JSON.parse(event.data);
 
+                const {
+                    gridRows,
+                    gridCols,
+                    clockCoordinates
+                } = data;
+
                 //console.log("Data received:", data);
 
-                const dataMinuteArray = data.map(clockCoordinates =>
-                    clockCoordinates ? clockCoordinates.minuteArrowDegrees : null
+                setGridRows(gridRows);
+                setGridCols(gridCols);
+
+                const dataMinuteArray = clockCoordinates.map(clock =>
+                    clock ? clock.minuteArrowDegrees : null
                 );
-                const dataHourArray = data.map(clockCoordinates =>
-                    clockCoordinates ? clockCoordinates.hourArrowDegrees : null
+                const dataHourArray = clockCoordinates.map(clock =>
+                    clock ? clock.hourArrowDegrees : null
                 );
 
                 previousMinuteArrowDegreesArray.current = minuteArrowDegreesArray;
@@ -46,6 +55,8 @@ function ClockGrid(props) {
 
                 setMinuteArrowDegreesArray(dataMinuteArray);
                 setHourArrowDegreesArray(dataHourArray);
+
+                console.log("Received grid size: " + gridRows + ", " + gridCols);
             } catch (e) {
                 console.error("WebSocket parsing error:", e);
             }
@@ -76,9 +87,9 @@ function ClockGrid(props) {
     return (
         <div
             className="Clock-grid-container"
-            style={{gridTemplateColumns: `repeat(${totalCols}, 1fr)`,
+            style={{gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
         }}>
-            {Array.from({length: totalRows * totalCols}).map((_, i) => (
+            {Array.from({length: gridRows * gridCols}).map((_, i) => (
                 <Clock
                     key={i}
                     minuteArrowDegrees={minuteArrowDegreesArray[i] != null ? minuteArrowDegreesArray[i] : 0}
