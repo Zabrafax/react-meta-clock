@@ -4,6 +4,7 @@ import SimpleSwitch from "../SimpleSwitch";
 import ThemeSwitch from "../buttons/ThemeSwitch";
 import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
+import TimeZonePicker from "../buttons/TimeZonePicker";
 
 function SettingsWindow({
                             onSettingsCrossClick,
@@ -53,6 +54,7 @@ function SettingsWindow({
                     <SimpleSwitch name="Separators" initialState={isSeparatorsEnabled} onEnable={enableSeparators} onDisable={disableSeparators}/>
                 </div>
                 <ThemeSwitch name="Theme Colors" choiceColors={allFirstThemeColors} lineColors={allAccentThemeColors} />
+                <TimeZonePicker />
                 {/*<ColorPicker name="Theme Color" />*/}
             </div>
         </div>
