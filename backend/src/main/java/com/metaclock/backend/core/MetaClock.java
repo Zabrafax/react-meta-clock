@@ -42,8 +42,6 @@ public class MetaClock {
     }
 
     public ClockGridResponse getClockGridResponse(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled) {
-        System.out.println("Earned parameters: " + rows + ", " + cols + ", " + isSecondsEnabled + ", " + isSeparatorsEnabled);
-
         int totalRows = rows;
         int totalCols;
 

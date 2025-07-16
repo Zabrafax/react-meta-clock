@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,15 +23,22 @@ public class MetaClockController {
                 .map(zone -> {
                     ZoneId zoneId = ZoneId.of(zone);
                     ZonedDateTime now = ZonedDateTime.now(zoneId);
-                    String offset = now.getOffset().getId();
+                    ZoneOffset zoneOffset = now.getOffset();
+                    String offset = zoneOffset.getId();
+                    int offsetSeconds = zoneOffset.getTotalSeconds();
+
                     if ("Z".equals(offset)) offset = "+00:00";
-                    String displayName = "(UTC" + offset + ") " + zone;
+                    String zoneString = zone.replace('_', ' ');
+                    String displayName = "(UTC" + offset + ") " + zoneString;
 
                     Map<String, String> entry = new HashMap<>();
                     entry.put("id", zone);
                     entry.put("label", displayName);
+                    entry.put("offset", offset);
+                    entry.put("offsetSeconds", String.valueOf(offsetSeconds));
                     return entry;
                 })
+                .sorted(Comparator.comparingInt(e -> Integer.parseInt(e.get("offsetSeconds"))))
                 .collect(Collectors.toList());
     }
 }

@@ -1,28 +1,8 @@
 import styles from './TimeZonePicker.module.css';
-import {useEffect, useState} from "react";
+import {useTimeZones} from "../contexts/TimeZoneContext";
 
 function TimeZonePicker() {
-    const [timeZones, setTimeZones] = useState([]);
-    const [currentTimeZone, setCurrentTimeZone] = useState("");
-
-    useEffect(() => {
-        fetch('http://localhost:8080/api/clock/timezones')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data);
-                const userZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                // const sortedTimeZones = data.sort((a, b) => a.label.localeCompare(b.label));
-                const sortedTimeZones = data;
-
-                console.log(userZone);
-
-                setTimeZones(sortedTimeZones);
-
-                let isTrue = sortedTimeZones.some(tz => tz.id === userZone);
-                console.log(isTrue);
-                setCurrentTimeZone(sortedTimeZones.some(tz => tz.id === userZone) ? userZone : sortedTimeZones[0].id);
-            });
-    }, []);
+    const { timeZones, currentTimeZone, setCurrentTimeZone } = useTimeZones();
 
     function handleTimeZoneChange(event) {
         setCurrentTimeZone(event.target.value);
