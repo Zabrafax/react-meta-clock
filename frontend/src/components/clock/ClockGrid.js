@@ -1,12 +1,15 @@
 import './ClockGrid.css';
 import React, {useEffect, useState, useRef} from 'react';
 import Clock from "./Clock";
+import {useTimeZones} from "../contexts/TimeZoneContext";
 
 function ClockGrid(props) {
     const rows = props.rows;
     const cols = props.cols;
     const isSecondsEnabled = props.isSecondsEnabled;
     const isSeparatorsEnabled = props.isSeparatorsEnabled;
+
+    const { currentTimeZoneId } = useTimeZones();
 
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);
@@ -20,10 +23,22 @@ function ClockGrid(props) {
     const previousHourArrowDegreesArray = useRef("");
 
     useEffect(() => {
+        if (!currentTimeZoneId) {
+            console.warn("Timezone is not defined");
+            return;
+        }
+
         const socket = new WebSocket("ws://localhost:8080/clock/coordinates");
 
         socket.onopen = () => {
-            socket.send(JSON.stringify({ type: "subscribe", rows, cols, isSecondsEnabled, isSeparatorsEnabled }));
+            socket.send(JSON.stringify({
+                type: "subscribe",
+                rows,
+                cols,
+                isSecondsEnabled,
+                isSeparatorsEnabled,
+                timeZoneId: currentTimeZoneId
+            }));
             //setIsServerErrorWindowVisible(false);
             console.log("Websocket connected, subscribe message sent");
         };
@@ -82,7 +97,7 @@ function ClockGrid(props) {
                 socket.close();
             }
         };
-    }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled]);
+    }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled, currentTimeZoneId]);
 
     return (
         <div

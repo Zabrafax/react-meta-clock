@@ -2,16 +2,16 @@ import styles from './TimeZonePicker.module.css';
 import {useTimeZones} from "../contexts/TimeZoneContext";
 
 function TimeZonePicker() {
-    const { timeZones, currentTimeZone, setCurrentTimeZone } = useTimeZones();
+    const { timeZones, currentTimeZoneId, setCurrentTimeZoneId } = useTimeZones();
 
     function handleTimeZoneChange(event) {
-        setCurrentTimeZone(event.target.value);
+        setCurrentTimeZoneId(event.target.value);
     }
 
     return (
         <div className={styles.TimeZonePicker}>
-            <label htmlFor="timezone">Time zone:</label>
-            <select id="timezone" value={currentTimeZone} onChange={handleTimeZoneChange}>
+            <label htmlFor="timezone">Time zone: </label>
+            <select id="timezone" value={currentTimeZoneId} onChange={handleTimeZoneChange}>
                 {timeZones.map((timezone) => (
                     <option
                         key={timezone.id}

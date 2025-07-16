@@ -2,6 +2,7 @@ package com.metaclock.backend.socket;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.metaclock.backend.core.Clock;
 import com.metaclock.backend.core.ClockGridResponse;
 import com.metaclock.backend.core.MetaClock;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,11 +25,13 @@ public class TimeSocketHandler extends TextWebSocketHandler {
         int cols;
         boolean isSecondsEnabled;
         boolean isSeparatorsEnabled;
-        public Parameters(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled) {
+        String timeZoneId;
+        public Parameters(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled, String timeZoneId) {
             this.rows = rows;
             this.cols = cols;
             this.isSecondsEnabled = isSecondsEnabled;
             this.isSeparatorsEnabled = isSeparatorsEnabled;
+            this.timeZoneId = timeZoneId;
         }
     }
 
@@ -53,7 +56,7 @@ public class TimeSocketHandler extends TextWebSocketHandler {
         String type = jsonNode.get("type").asText();
 
         if(type.equals("subscribe")) {
-            if(jsonNode.get("rows") == null || jsonNode.get("cols") == null) {
+            if(jsonNode.get("rows") == null || jsonNode.get("cols") == null || jsonNode.get("timeZoneId") == null) {
                 return;
             }
 
@@ -70,7 +73,9 @@ public class TimeSocketHandler extends TextWebSocketHandler {
                 isSeparatorsEnabled = jsonNode.get("isSeparatorsEnabled").asBoolean();
             }
 
-            clients.put(session, new Parameters(rows, cols, isSecondsEnabled, isSeparatorsEnabled));
+            String timeZoneId = jsonNode.get("timeZoneId").asText();
+
+            clients.put(session, new Parameters(rows, cols, isSecondsEnabled, isSeparatorsEnabled, timeZoneId));
             System.out.println("Client subscribed to " + rows + "x" + cols);
         }
 
@@ -94,7 +99,10 @@ public class TimeSocketHandler extends TextWebSocketHandler {
             if(session.isOpen()) {
                 //System.out.println("Sending message to client...");
                 try {
+                    Clock clock = new Clock(entry.getValue().timeZoneId);
+
                     ClockGridResponse clockGridResponse = metaClock.getClockGridResponse(
+                            clock,
                             entry.getValue().rows,
                             entry.getValue().cols,
                             entry.getValue().isSecondsEnabled,

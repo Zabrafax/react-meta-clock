@@ -3,7 +3,7 @@ import {createContext, useContext, useEffect, useState} from "react";
 const TimeZoneContext = createContext();
 
 export function TimeZoneProvider({ children }) {
-    const [currentTimeZone, setCurrentTimeZone] = useState("");
+    const [currentTimeZoneId, setCurrentTimeZoneId] = useState("");
     const [timeZones, setTimeZones] = useState([]);
 
     useEffect(() => {
@@ -18,19 +18,19 @@ export function TimeZoneProvider({ children }) {
                 if(data.some(tz => tz.id === userZone)) {
                     selectedTimeZone = userZone;
                 } else {
-                    selectedTimeZone = data.find(tz => tz.offsetSeconds === userOffsetSeconds) ?? fallbackTimeZone;
+                    selectedTimeZone = data.find(tz => parseInt(tz.offsetSeconds, 10) === userOffsetSeconds).id ?? fallbackTimeZone;
                 }
 
                 setTimeZones(data);
                 console.log(userZone);
                 console.log(selectedTimeZone);
-                setCurrentTimeZone(selectedTimeZone);
+                setCurrentTimeZoneId(selectedTimeZone);
             });
     }, [])
 
     return (
         <TimeZoneContext.Provider value={{
-            currentTimeZone, setCurrentTimeZone, timeZones
+            currentTimeZoneId, setCurrentTimeZoneId, timeZones
         }}>
             {children}
         </TimeZoneContext.Provider>

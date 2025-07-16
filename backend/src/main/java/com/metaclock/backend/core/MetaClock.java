@@ -3,13 +3,8 @@ package com.metaclock.backend.core;
 import com.metaclock.backend.core.numbers.ClockCoordinates;
 import com.metaclock.backend.core.numbers.NumbersMapping3X2;
 import com.metaclock.backend.core.numbers.SeparatorsMapping3X2;
-import jakarta.annotation.PostConstruct;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 @Component
 public class MetaClock {
@@ -21,27 +16,15 @@ public class MetaClock {
     @Autowired
     private NumbersMapping3X2 numbersMapping3X2;
 
-    @Getter
-    private Clock clock;
+    public MetaClock() {}
 
-    public MetaClock() {
-        this.clock = new Clock();
-    }
-
-    @PostConstruct
-    public void getTimeEverySecond() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //System.out.println("Current time:");
-                displayCurrentClockTime();
-                displayCurrentAngleInRadians();
-            }
-        }, 0, 1000);
-    }
-
-    public ClockGridResponse getClockGridResponse(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled) {
+    public ClockGridResponse getClockGridResponse(
+            Clock clock,
+            int rows,
+            int cols,
+            boolean isSecondsEnabled,
+            boolean isSeparatorsEnabled
+    ) {
         int totalRows = rows;
         int totalCols;
 
@@ -60,7 +43,7 @@ public class MetaClock {
             }
         }
 
-        updateNumbers();
+        updateNumbers(clock);
 
         ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[totalRows * totalCols];
 
@@ -91,7 +74,7 @@ public class MetaClock {
         return new ClockGridResponse(totalRows, totalCols, clockCoordinatesArray);
     }
 
-    private void updateNumbers() {
+    private void updateNumbers(Clock clock) {
         this.numbers[0] = clock.getHours() / 10;
         this.numbers[1] = clock.getHours() % 10;
         this.numbers[2] = clock.getMinutes() / 10;
@@ -100,17 +83,11 @@ public class MetaClock {
         this.numbers[5] = clock.getSeconds() % 10;
     }
 
-    private void displayCurrentClockTime() {
+    private void displayCurrentClockTime(Clock clock) {
         String hours = String.format("%02d", clock.getHours());
         String minutes = String.format("%02d", clock.getMinutes());
         String seconds = String.format("%02d", clock.getSeconds());
 
         //System.out.println(hours + ":" + minutes + ":" + seconds);
-    }
-
-    private void displayCurrentAngleInRadians() {
-        //System.out.println("Hours in degrees: " + clock.getHourArrowDegrees());
-        //System.out.println("Minutes in degrees: " + clock.getMinuteArrowDegrees());
-        //System.out.println("Seconds in degrees: " + clock.getSecondArrowDegrees());
     }
 }
