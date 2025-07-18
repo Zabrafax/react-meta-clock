@@ -6,11 +6,8 @@
     flex-wrap: nowrap;
 
     white-space: pre;
-
-    font-size: 1.5rem;
 }
 
-select {
-    font-size: 1.3rem;
-    font-weight: inherit;
+.TimeZonePicker p {
+    font-size: 1.5rem;
 }

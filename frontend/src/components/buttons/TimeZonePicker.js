@@ -10,18 +10,22 @@ function TimeZonePicker() {
 
     return (
         <div className={styles.TimeZonePicker}>
-            <label htmlFor="timezone">Time zone: </label>
-            <select id="timezone" value={currentTimeZoneId} onChange={handleTimeZoneChange}>
-                {timeZones.map((timezone) => (
-                    <option
-                        key={timezone.id}
-                        value={timezone.id}
-                    >
-                        {timezone.label}
-                    </option>
-                ))}
-            </select>
+            <p>{currentTimeZoneId ? timeZones.find(tz => tz.id === currentTimeZoneId)?.label : 'Choose timezone'}</p>
         </div>
+
+        // <div className={styles.TimeZonePicker}>
+        //     <label htmlFor="timezone">Time zone: </label>
+        //     <select id="timezone" value={currentTimeZoneId} onChange={handleTimeZoneChange}>
+        //         {timeZones.map((timezone) => (
+        //             <option
+        //                 key={timezone.id}
+        //                 value={timezone.id}
+        //             >
+        //                 {timezone.label}
+        //             </option>
+        //         ))}
+        //     </select>
+        // </div>
     );
 }
 
