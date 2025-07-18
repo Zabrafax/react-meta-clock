@@ -41,8 +41,10 @@ function TimeZonePicker() {
         }
     }
 
-    function handleTimeZoneChange(event) {
-        setCurrentTimeZoneId(event.target.value);
+    function handleTimeZoneChange(timeZoneId) {
+        setCurrentTimeZoneId(timeZoneId);
+        setIsOpen(false);
+        setLineWidth(0);
     }
 
     return (
@@ -78,7 +80,7 @@ function TimeZonePicker() {
                         <div
                             className={styles.Choice__option}
                             key={timezone.id}
-                            value={timezone.id}
+                            onClick={() => handleTimeZoneChange(timezone.id)}
                         >
                             {timezone.label}
                         </div>
