@@ -22,8 +22,8 @@ export function TimeZoneProvider({ children }) {
                 }
 
                 setTimeZones(data);
-                console.log(userZone);
-                console.log(selectedTimeZone);
+                // console.log(userZone);
+                // console.log(selectedTimeZone);
                 setCurrentTimeZoneId(selectedTimeZone);
             });
     }, [])

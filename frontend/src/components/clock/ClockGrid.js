@@ -24,7 +24,7 @@ function ClockGrid(props) {
 
     useEffect(() => {
         if (!currentTimeZoneId) {
-            console.warn("Timezone is not defined");
+            console.warn("Timezone is not defined, waiting...");
             return;
         }
 
