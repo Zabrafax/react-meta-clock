@@ -28,6 +28,7 @@ function ServerErrorWindow() {
                 <p>Please check your internet connection or try again later :3</p>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
+                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                     className="Small__a__button"
                     onClick={() => window.location.reload()}
                 >Reload page</a>

@@ -78,7 +78,8 @@ function TimeZonePicker() {
                 >
                     {timeZones.map((timezone) => (
                         <a
-                            className={styles.Choice__option}
+                            className={styles.Choice__option + ' Small__a__button'}
+                            style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                             key={timezone.id}
                             onClick={() => handleTimeZoneChange(timezone.id)}
                         >
