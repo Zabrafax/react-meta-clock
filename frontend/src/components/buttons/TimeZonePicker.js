@@ -1,8 +1,11 @@
 import styles from './TimeZonePicker.module.css';
 import {useTimeZones} from "../contexts/TimeZoneContext";
+import {useState} from "react";
 
 function TimeZonePicker() {
     const { timeZones, currentTimeZoneId, setCurrentTimeZoneId } = useTimeZones();
+
+    const [isOpen, setIsOpen] = useState(false);
 
     function handleTimeZoneChange(event) {
         setCurrentTimeZoneId(event.target.value);
@@ -10,7 +13,10 @@ function TimeZonePicker() {
 
     return (
         <div className={styles.TimeZonePicker}>
-            <p>{currentTimeZoneId ? timeZones.find(tz => tz.id === currentTimeZoneId)?.label : 'Choose timezone'}</p>
+            <div className={styles.Text__wrapper}>
+                <p>{currentTimeZoneId ? timeZones.find(tz => tz.id === currentTimeZoneId)?.label : 'Choose timezone'}</p>
+                <span className={styles.Arrow}>{isOpen ? '▲' : '▼'}</span>
+            </div>
         </div>
 
         // <div className={styles.TimeZonePicker}>

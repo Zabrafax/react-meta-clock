@@ -1,6 +1,6 @@
 .TimeZonePicker {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
@@ -10,4 +10,20 @@
 
 .TimeZonePicker p {
     font-size: 1.5rem;
+}
+
+.Text__wrapper {
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+
+.Arrow {
+
 }
