@@ -13,7 +13,7 @@
 }
 
 .Text__wrapper {
-    width: 100%;
+    width: fit-content;
     height: fit-content;
 
     display: flex;
@@ -22,6 +22,14 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: 1rem;
+
+    cursor: pointer;
+}
+
+.Bottom__line {
+    height: 2px;
+
+    transition: width 0.3s;
 }
 
 .Arrow {
