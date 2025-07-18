@@ -82,6 +82,6 @@
     margin-bottom: 0.5rem;
 }
 
-.Choice__option a {
-    font-size: 0.5rem;
+.Choice__option {
+    font-size: 1rem;
 }
