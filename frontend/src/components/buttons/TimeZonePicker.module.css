@@ -81,3 +81,7 @@
 .Choice__option:last-child {
     margin-bottom: 0.5rem;
 }
+
+.Choice__option a {
+    font-size: 0.5rem;
+}

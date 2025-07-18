@@ -77,13 +77,20 @@ function TimeZonePicker() {
                     }}
                 >
                     {timeZones.map((timezone) => (
-                        <div
+                        <a
                             className={styles.Choice__option}
                             key={timezone.id}
                             onClick={() => handleTimeZoneChange(timezone.id)}
                         >
                             {timezone.label}
-                        </div>
+                        </a>
+                        // <div
+                        //     className={styles.Choice__option}
+                        //     key={timezone.id}
+                        //     onClick={() => handleTimeZoneChange(timezone.id)}
+                        // >
+                        //     {timezone.label}
+                        // </div>
                     ))}
                 </div>}
             </div>
