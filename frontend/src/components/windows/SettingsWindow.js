@@ -19,10 +19,21 @@ function SettingsWindow({
 
     const themeSwitchRef = useRef();
     const [themeSwitchWidth, setThemeSwitchWidth] = useState(0);
+    const settingsWindowRef = useRef();
+    const [settingsWindowWidth, setSettingsWindowWidth] = useState(0);
 
     useEffect(() => {
-        setThemeSwitchWidth(themeSwitchRef.current.getBoundingClientRect().width);
-    }, [themeSwitchRef]);
+        if (themeSwitchRef.current) {
+            const resizeObserver = new ResizeObserver(() => {
+                const newWidth = themeSwitchRef.current.offsetWidth;
+                setThemeSwitchWidth(newWidth);
+            });
+
+            resizeObserver.observe(themeSwitchRef.current);
+
+            return () => resizeObserver.disconnect();
+        }
+    }, []);
 
     const disableSeconds = () => {
         setIsSecondsEnabled(false);
