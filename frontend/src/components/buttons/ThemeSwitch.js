@@ -1,8 +1,9 @@
 import styles from './ThemeSwitch.module.css'
-import {useEffect, useRef, useState} from "react";
+import {forwardRef, useEffect, useRef, useState} from "react";
 import {useTheme} from "../contexts/ThemeContext";
 
-function ThemeSwitch({ name, choiceColors, lineColors }) {
+const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
+// function ThemeSwitch({ name, choiceColors, lineColors }) {
     const { currentThemeNumber, setCurrentThemeNumber } = useTheme();
 
     const [lineColor, setLineColor] = useState(0);
@@ -29,7 +30,7 @@ function ThemeSwitch({ name, choiceColors, lineColors }) {
     }, [choiceColors, colorRefs]);
 
     return (
-        <div className={styles.ThemeSwitch}>
+        <div ref={ref} className={styles.ThemeSwitch}>
             <p>{name + ": "}</p>
             <div className={styles.Choices__wrapper}>
                 <div className={styles.Choice__options}>
@@ -57,6 +58,6 @@ function ThemeSwitch({ name, choiceColors, lineColors }) {
             </div>
         </div>
     );
-}
+});
 
 export default ThemeSwitch;

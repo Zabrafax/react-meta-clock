@@ -19,8 +19,21 @@ function SettingsWindow({
 
     const themeSwitchRef = useRef();
     const [themeSwitchWidth, setThemeSwitchWidth] = useState(0);
-    const settingsWindowRef = useRef();
-    const [settingsWindowWidth, setSettingsWindowWidth] = useState(0);
+    const allSettingsWrapperRef = useRef();
+    const [allSettingsWrapperWidth, setAllSettingsWrapperWidth] = useState(0);
+
+    useEffect(() => {
+        if (allSettingsWrapperRef.current) {
+            const resizeObserver = new ResizeObserver(() => {
+                const newWidth = allSettingsWrapperRef.current.offsetWidth;
+                setAllSettingsWrapperWidth(newWidth);
+            });
+
+            resizeObserver.observe(allSettingsWrapperRef.current);
+
+            return () => resizeObserver.disconnect();
+        }
+    }, []);
 
     useEffect(() => {
         if (themeSwitchRef.current) {
@@ -67,10 +80,11 @@ function SettingsWindow({
                     style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                 ></a>
             </div>
-            <div className="Window__main__wrapper">
+            <div className="Window__main__wrapper" ref={allSettingsWrapperRef}>
                 <div
                     className="All__settings__wrapper"
                     style={{
+                        "--all-setting-wrapper-width": allSettingsWrapperWidth + 'px',
                         "--theme-switch-width": themeSwitchWidth + 'px'
                     }}
                 >
