@@ -1,8 +1,5 @@
 package com.metaclock.backend.core.numbers;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 public class NumbersMapping3X2 {
     private ClockCoordinates[][] map = {
             /*

@@ -5,6 +5,7 @@ import ThemeSwitch from "../buttons/ThemeSwitch";
 import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
 import TimeZonePicker from "../buttons/TimeZonePicker";
+import {useEffect, useRef, useState} from "react";
 
 function SettingsWindow({
                             onSettingsCrossClick,
@@ -15,6 +16,13 @@ function SettingsWindow({
                         }) {
 
     const { allFirstThemeColors, allAccentThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
+
+    const themeSwitchRef = useRef();
+    const [themeSwitchWidth, setThemeSwitchWidth] = useState(0);
+
+    useEffect(() => {
+        setThemeSwitchWidth(themeSwitchRef.current.getBoundingClientRect().width);
+    }, [themeSwitchRef]);
 
     const disableSeconds = () => {
         setIsSecondsEnabled(false);
@@ -49,13 +57,25 @@ function SettingsWindow({
                 ></a>
             </div>
             <div className="Window__main__wrapper">
-                <div className="Setting__switch__wrapper">
-                    <SimpleSwitch name="Seconds" initialState={isSecondsEnabled} onEnable={enableSeconds} onDisable={disableSeconds}/>
-                    <SimpleSwitch name="Separators" initialState={isSeparatorsEnabled} onEnable={enableSeparators} onDisable={disableSeparators}/>
+                <div
+                    className="All__settings__wrapper"
+                    style={{
+                        "--theme-switch-width": themeSwitchWidth + 'px'
+                    }}
+                >
+                    <div className="Setting__switch__wrapper">
+                        <SimpleSwitch name="Seconds" initialState={isSecondsEnabled} onEnable={enableSeconds} onDisable={disableSeconds}/>
+                        <SimpleSwitch name="Separators" initialState={isSeparatorsEnabled} onEnable={enableSeparators} onDisable={disableSeparators}/>
+                    </div>
+                    <ThemeSwitch
+                        name="Theme Colors"
+                        choiceColors={allFirstThemeColors}
+                        lineColors={allAccentThemeColors}
+                        ref={themeSwitchRef}
+                    />
+                    <TimeZonePicker />
+                    {/*<ColorPicker name="Theme Color" />*/}
                 </div>
-                <ThemeSwitch name="Theme Colors" choiceColors={allFirstThemeColors} lineColors={allAccentThemeColors} />
-                <TimeZonePicker />
-                {/*<ColorPicker name="Theme Color" />*/}
             </div>
         </div>
     );
