@@ -11,7 +11,7 @@
     font-weight: 200 !important;
 }
 
-.Account__window__login__wrapper {
+.Login__wrapper {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -19,12 +19,12 @@
     flex-wrap: nowrap;
 }
 
-.Account__window__login__wrapper h1 {
+.Login__wrapper h1 {
     font-size: 1.5rem;
     font-weight: 500;
 }
 
-.Account__window__login__form__wrapper {
+.Login__form__wrapper {
     width: 100%;
     height: fit-content;
 
@@ -35,8 +35,22 @@
     flex-wrap: nowrap;
 }
 
-.Account__window__login__form {
+.Login__form {
     width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+}
+
+.Login__form__input__wrapper {
+    position: relative;
+
+    width: fit-content;
     height: fit-content;
 
     display: flex;
@@ -46,6 +60,21 @@
     flex-wrap: nowrap;
 }
 
-.Account__window__login__form__input {
+.Login__form__input {
+    font-size: 1.2rem;
+    font-weight: 200;
 
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    border: none;
+}
+
+.Input__line {
+    width: 100%;
+    height: 2px;
+
+    transform: translateZ(0);
+
+    background-color: white;
 }

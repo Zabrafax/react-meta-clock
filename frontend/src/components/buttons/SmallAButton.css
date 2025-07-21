@@ -16,7 +16,9 @@
     content: "";
 
     width: 100%;
-    height: var(--after-height, 2.3px);;
+    height: var(--after-height, 2px);
+
+    transform: translateZ(0);
 
     bottom: 0;
     left: 0;

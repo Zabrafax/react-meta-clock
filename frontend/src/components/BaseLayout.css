@@ -77,7 +77,7 @@
 
     background-color: var(--after-color, black);
 
-    transform: scaleX(0);
+    transform: scaleX(0) translateZ(0);
     transition: transform 0.2s;
 }
 

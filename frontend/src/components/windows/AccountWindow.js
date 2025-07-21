@@ -1,6 +1,7 @@
 import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
-import './AccountWindow.css';
+import './Window.css';
+import styles from './AccountWindow.module.css';
 import {useState} from "react";
 
 function AccountWindow({ onAccountCrossClick }) {
@@ -10,7 +11,7 @@ function AccountWindow({ onAccountCrossClick }) {
 
     return (
         <div
-            className="Account__window Window"
+            className={styles.Account__window + ' Window'}
             style={{
                 backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], allAlphaThemePercents[currentThemeNumber])
             }}
@@ -25,12 +26,18 @@ function AccountWindow({ onAccountCrossClick }) {
                 ></a>
             </div>
             {!isLoggedIn &&
-                <div className="Window__main__wrapper Account__window__login__wrapper">
+                <div className={styles.Login__wrapper + ' Window__main__wrapper'}>
                     <h1>Login</h1>
-                    <div className="Account__window__login__form__wrapper">
-                        <form className="Account__window__login__form">
-                            <input type="text" className="Account__window__login__form__input" placeholder="Username" />
-                            <input type="password" className="Account__window__login__form__input" placeholder="Password" />
+                    <div className={styles.Login__form__wrapper}>
+                        <form className={styles.Login__form}>
+                            <div className={styles.Login__form__input__wrapper}>
+                                <input type="text" className={styles.Login__form__input} placeholder="Username" />
+                                <div className={styles.Input__line}></div>
+                            </div>
+                            <div className={styles.Login__form__input__wrapper}>
+                                <input type="password" className={styles.Login__form__input} placeholder="Password" />
+                                <div className={styles.Input__line}></div>
+                            </div>
                         </form>
                     </div>
                 </div>
