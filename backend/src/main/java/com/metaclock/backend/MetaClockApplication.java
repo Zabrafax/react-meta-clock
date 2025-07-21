@@ -11,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 
 @EnableScheduling
@@ -29,5 +31,10 @@ public class MetaClockApplication {
     @Bean
     public SeparatorsMapping3X2 separatorsMapping3X2() {
         return new SeparatorsMapping3X2();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
