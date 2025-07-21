@@ -39,6 +39,8 @@
     width: 100%;
     height: fit-content;
 
+    margin-top: 1rem;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,6 +86,6 @@
     transition: 0.2s;
 }
 
-.Login__form .a {
-    margin-top: 1rem !important;
+.Login__form a {
+    margin-top: 0.5rem !important;
 }
