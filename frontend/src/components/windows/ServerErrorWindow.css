@@ -7,6 +7,12 @@
     width: 400px;
     height: fit-content;
     max-height: 300px;
+
+    font-weight: 200;
+}
+
+.Server__error__window .Small__a__button {
+    font-weight: initial;
 }
 
 .Server__error__window__main__wrapper {

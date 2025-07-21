@@ -1,5 +1,6 @@
 import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
+import './AccountWindow.css';
 
 function AccountWindow({ onAccountCrossClick }) {
     const { allFirstThemeColors, allAccentThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
@@ -19,6 +20,9 @@ function AccountWindow({ onAccountCrossClick }) {
                     onClick={onAccountCrossClick}
                     style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                 ></a>
+            </div>
+            <div className="Window__main__wrapper Account__window__main__wrapper">
+
             </div>
         </div>
     );
