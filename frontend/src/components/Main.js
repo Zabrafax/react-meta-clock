@@ -6,6 +6,7 @@ import ServerErrorWindow from "./windows/ServerErrorWindow";
 import SettingsWindow from "./windows/SettingsWindow";
 import Footer from "./Footer";
 import { useTheme } from "./contexts/ThemeContext";
+import AccountWindow from "./windows/AccountWindow";
 
 function Main() {
     /*
@@ -14,21 +15,52 @@ function Main() {
     const { allFirstThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
 
     /*
+        Account window
+     */
+    const [isAccountWindowVisible, setIsAccountWindowVisible] = useState(false);
+
+    const onAccountClick = () => {
+        if (!isAccountWindowVisible) {
+            closeAllWindows();
+            setIsAccountWindowVisible(true);
+        } else {
+            setIsAccountWindowVisible(false);
+        }
+    }
+
+    const onAccountCrossClick = () => {
+        setIsAccountWindowVisible(false);
+    }
+
+    /*
         Server error window
      */
     const [isServerErrorWindowVisible, setIsServerErrorWindowVisible] = useState(false);
 
     /*
-        Settings window button
+        Settings window
      */
     const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
     const onSettingsClick = () => {
-        setIsSettingsVisible(!isSettingsVisible);
+        if (!isSettingsVisible) {
+            closeAllWindows();
+            setIsSettingsVisible(true);
+        } else {
+            setIsSettingsVisible(false);
+        }
     }
 
     const onSettingsCrossClick = () => {
         setIsSettingsVisible(false);
+    }
+
+    /*
+        Close all windows
+     */
+    const closeAllWindows = () => {
+        setIsSettingsVisible(false);
+        setIsAccountWindowVisible(false);
     }
 
     /*
@@ -79,7 +111,13 @@ function Main() {
                 backgroundColor: allFirstThemeColors[currentThemeNumber]
             }}
         >
-            {!isFullscreen && <Header onSettingsClick={onSettingsClick} onFullScreenClick={toggleFullscreen} />}
+            {!isFullscreen &&
+                <Header
+                    onAccountClick={onAccountClick}
+                    onSettingsClick={onSettingsClick}
+                    onFullScreenClick={toggleFullscreen}
+                />
+            }
 
             <main
                 className="Main"
@@ -99,8 +137,10 @@ function Main() {
                 />
             </main>
 
-            {isServerErrorWindowVisible &&
-                <ServerErrorWindow />
+            {isAccountWindowVisible &&
+                <AccountWindow
+                    onAccountCrossClick={onAccountCrossClick}
+                />
             }
 
             {isSettingsVisible &&
@@ -111,6 +151,10 @@ function Main() {
                     isSeparatorsEnabled={isSeparatorsEnabled}
                     setIsSeparatorsEnabled={setIsSeparatorsEnabled}
                 />
+            }
+
+            {isServerErrorWindowVisible &&
+                <ServerErrorWindow />
             }
 
             {!isFullscreen && <Footer />}

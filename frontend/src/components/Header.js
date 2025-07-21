@@ -1,7 +1,7 @@
 import './BaseLayout.css';
 import {useTheme} from "./contexts/ThemeContext";
 
-function Header({ onSettingsClick, onFullScreenClick}) {
+function Header({ onAccountClick, onSettingsClick, onFullScreenClick}) {
     const { allFirstThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
 
     return (
@@ -15,6 +15,7 @@ function Header({ onSettingsClick, onFullScreenClick}) {
             <div className="Header__buttons">
                 <a
                     className="Header__a__button"
+                    onClick={onAccountClick}
                     style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                 >ACCOUNT</a>
                 <a
