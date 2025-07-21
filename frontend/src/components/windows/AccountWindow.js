@@ -9,6 +9,9 @@ function AccountWindow({ onAccountCrossClick }) {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const [isFocusedUsername, setIsFocusedUsername] = useState(false);
+    const [isFocusedPassword, setIsFocusedPassword] = useState(false);
+
     return (
         <div
             className={styles.Account__window + ' Window'}
@@ -31,12 +34,30 @@ function AccountWindow({ onAccountCrossClick }) {
                     <div className={styles.Login__form__wrapper}>
                         <form className={styles.Login__form}>
                             <div className={styles.Login__form__input__wrapper}>
-                                <input type="text" className={styles.Login__form__input} placeholder="Username" />
-                                <div className={styles.Input__line}></div>
+                                <input
+                                    type="text"
+                                    className={styles.Login__form__input}
+                                    placeholder="Username"
+                                    onFocus={() => setIsFocusedUsername(true)}
+                                    onBlur={() => setIsFocusedUsername(false)}
+                                />
+                                <div
+                                    className={styles.Input__line}
+                                    style={{width: isFocusedUsername ? '105%' : '100%'}}
+                                ></div>
                             </div>
                             <div className={styles.Login__form__input__wrapper}>
-                                <input type="password" className={styles.Login__form__input} placeholder="Password" />
-                                <div className={styles.Input__line}></div>
+                                <input
+                                    type="password"
+                                    className={styles.Login__form__input}
+                                    placeholder="Password"
+                                    onFocus={() => setIsFocusedPassword(true)}
+                                    onBlur={() => setIsFocusedPassword(false)}
+                                />
+                                <div
+                                    className={styles.Input__line}
+                                    style={{width: isFocusedPassword ? '105%' : '100%'}}
+                                ></div>
                             </div>
                         </form>
                     </div>

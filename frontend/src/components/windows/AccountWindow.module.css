@@ -77,4 +77,6 @@
     transform: translateZ(0);
 
     background-color: white;
+
+    transition: 0.2s;
 }
