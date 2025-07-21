@@ -69,6 +69,8 @@ function Main() {
     const [isFullscreen, setIsFullscreen] = useState(false);
 
     const toggleFullscreen = async () => {
+        closeAllWindows();
+
         if (!document.fullscreenElement) {
             await document.documentElement.requestFullscreen();
             setIsFullscreen(true);
