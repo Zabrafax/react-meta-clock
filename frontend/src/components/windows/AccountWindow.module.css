@@ -61,8 +61,8 @@
 }
 
 .Login__form__input {
-    font-size: 1.2rem;
     font-weight: 200;
+    font-size: 1.2rem;
 
     background-color: transparent;
     color: inherit;

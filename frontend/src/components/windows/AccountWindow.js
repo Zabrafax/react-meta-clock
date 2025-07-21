@@ -36,6 +36,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             <div className={styles.Login__form__input__wrapper}>
                                 <input
                                     type="text"
+                                    maxLength="16"
                                     className={styles.Login__form__input}
                                     placeholder="Username"
                                     onFocus={() => setIsFocusedUsername(true)}
@@ -43,12 +44,16 @@ function AccountWindow({ onAccountCrossClick }) {
                                 />
                                 <div
                                     className={styles.Input__line}
-                                    style={{width: isFocusedUsername ? '105%' : '100%'}}
+                                    style={{
+                                        width: isFocusedUsername ? '105%' : '100%',
+                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                    }}
                                 ></div>
                             </div>
                             <div className={styles.Login__form__input__wrapper}>
                                 <input
                                     type="password"
+                                    maxLength="16"
                                     className={styles.Login__form__input}
                                     placeholder="Password"
                                     onFocus={() => setIsFocusedPassword(true)}
@@ -56,7 +61,10 @@ function AccountWindow({ onAccountCrossClick }) {
                                 />
                                 <div
                                     className={styles.Input__line}
-                                    style={{width: isFocusedPassword ? '105%' : '100%'}}
+                                    style={{
+                                        width: isFocusedPassword ? '105%' : '100%',
+                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                    }}
                                 ></div>
                             </div>
                         </form>
