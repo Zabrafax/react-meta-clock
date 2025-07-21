@@ -44,7 +44,6 @@
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    gap: 1.5rem;
 }
 
 .Login__form__input__wrapper {
@@ -58,6 +57,10 @@
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
+}
+
+.Login__form__input__wrapper:not(:first-child) {
+    margin-top: 1.5rem;
 }
 
 .Login__form__input {
@@ -79,4 +82,8 @@
     background-color: white;
 
     transition: 0.2s;
+}
+
+.Login__form .a {
+    margin-top: 1rem !important;
 }

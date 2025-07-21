@@ -1,6 +1,7 @@
 import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
 import './Window.css';
+import '../buttons/SmallAButton.css'
 import styles from './AccountWindow.module.css';
 import {useState} from "react";
 
@@ -67,6 +68,11 @@ function AccountWindow({ onAccountCrossClick }) {
                                     }}
                                 ></div>
                             </div>
+
+                            <a
+                                className="Small__a__button"
+                                style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                            >Login</a>
                         </form>
                     </div>
                 </div>
