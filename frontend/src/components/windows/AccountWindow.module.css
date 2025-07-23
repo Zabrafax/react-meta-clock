@@ -86,9 +86,17 @@
     transition: 0.2s;
 }
 
-.Login__form a {
-    margin-top: 0.5rem !important;
+.Submit__button {
+    margin-top: 0.5rem;
+
     font-size: 1.5rem;
+    font-weight: 200;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .Login__bottom__text {
@@ -104,8 +112,4 @@
 
     white-space: pre;
     font-size: 1rem;
-}
-
-.Login__bottom__text {
-
 }

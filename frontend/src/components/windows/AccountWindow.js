@@ -14,6 +14,16 @@ function AccountWindow({ onAccountCrossClick }) {
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
+    function handleRegister(event) {
+        event.preventDefault();
+
+        fetch("http://localhost:8080/api/users/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({})
+        });
+    }
+
     return (
         <div
             className={styles.Account__window + ' Window'}
@@ -137,10 +147,11 @@ function AccountWindow({ onAccountCrossClick }) {
                                 ></div>
                             </div>
 
-                            <a
-                                className="Small__a__button"
+                            <button
+                                type="submit"
+                                className={styles.Submit__button}
                                 style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
-                            >Register</a>
+                            >Register</button>
                         </form>
                     </div>
                     <div className={styles.Login__bottom__text}>
