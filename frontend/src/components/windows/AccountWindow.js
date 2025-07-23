@@ -6,9 +6,9 @@ import styles from './AccountWindow.module.css';
 import {useState} from "react";
 
 function AccountWindow({ onAccountCrossClick }) {
-    const { allFirstThemeColors, allAccentThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
+    const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn/*, setIsLoggedIn*/] = useState(false);
     const [isRegisterWindow, setIsRegisterWindow] = useState(false);
 
     const minInputLength = 4;
@@ -51,7 +51,7 @@ function AccountWindow({ onAccountCrossClick }) {
         >
             <div className="Window__top__wrapper">
                 <h2>Account</h2>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/anchor-has-content */}
                 <a
                     className="Closing__cross"
                     onClick={onAccountCrossClick}
@@ -115,6 +115,7 @@ function AccountWindow({ onAccountCrossClick }) {
                     </div>
                     <div className={styles.Login__bottom__text}>
                         <p>Don't have an account? </p>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a
                             onClick={() => {setIsRegisterWindow(true)}}
                             className="Small__a__button"
@@ -183,6 +184,7 @@ function AccountWindow({ onAccountCrossClick }) {
                     </div>
                     <div className={styles.Login__bottom__text}>
                         <p>Have an account? </p>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a
                             onClick={() => {setIsRegisterWindow(false)}}
                             className="Small__a__button"
