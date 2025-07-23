@@ -75,6 +75,16 @@ function AccountWindow({ onAccountCrossClick }) {
                             >Login</a>
                         </form>
                     </div>
+                    <div className={styles.Login__bottom__text}>
+                        <p>Don't have an account? </p>
+                        <a
+                            className="Small__a__button"
+                            style={{
+                                "--after-color": allTextThemeColors[currentThemeNumber],
+                                "--after-height": "1px"
+                        }}
+                        >Register</a>
+                    </div>
                 </div>
             }
         </div>
