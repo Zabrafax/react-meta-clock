@@ -24,10 +24,13 @@ function AccountWindow({ onAccountCrossClick }) {
         const username = form.username.value;
         const password = form.password.value;
 
+        const today = new Date();
+        const localDate = today.toISOString().slice(0, 10);
+
         fetch("http://localhost:8080/api/users/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({username, password, registrationDate: localDate})
         })
             .then(response => response.json())
             .then(apiResponse => {
