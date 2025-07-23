@@ -84,10 +84,11 @@ function AccountWindow({ onAccountCrossClick }) {
                                 ></div>
                             </div>
 
-                            <a
-                                className="Small__a__button"
+                            <button
+                                type="submit"
+                                className={styles.Submit__button}
                                 style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
-                            >Login</a>
+                            >Login</button>
                         </form>
                     </div>
                     <div className={styles.Login__bottom__text}>
