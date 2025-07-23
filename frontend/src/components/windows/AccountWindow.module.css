@@ -105,13 +105,15 @@
     position: absolute;
     content: "";
 
+    width: 100%;
+    height: var(--after-height, 1px);
+
     bottom: 0;
     left: 0;
     right: 0;
 
     background-color: var(--after-color, black);
-    width: 100%;
-    height: var(--after-height, 1px);
+    user-select: none;
 
     transform: scaleX(0);
     transition: 0.2s;
@@ -134,4 +136,8 @@
 
     white-space: pre;
     font-size: 1rem;
+}
+
+.Login__bottom__text a {
+    user-select: none;
 }
