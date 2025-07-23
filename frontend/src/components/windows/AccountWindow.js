@@ -11,6 +11,9 @@ function AccountWindow({ onAccountCrossClick }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isRegisterWindow, setIsRegisterWindow] = useState(false);
 
+    const minInputLength = 4;
+    const maxInputLength = 16;
+
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
@@ -27,11 +30,15 @@ function AccountWindow({ onAccountCrossClick }) {
             body: JSON.stringify({username, password})
         })
             .then(response => response.json())
-            .then(data => {
-                console.log("Register answer: " + data);
+            .then(apiResponse => {
+                if (apiResponse.success) {
+                    console.log('Register success:', apiResponse.data.username);
+                } else {
+                    console.error('Register error:', apiResponse.message);
+                }
             })
             .catch(error => {
-                console.log("Register error: " + error);
+                console.error("Register network or parsing error: " + error);
             })
     }
 
@@ -64,7 +71,8 @@ function AccountWindow({ onAccountCrossClick }) {
                                 <input
                                     type="text"
                                     name="username"
-                                    maxLength="16"
+                                    minLength={minInputLength}
+                                    maxLength={maxInputLength}
                                     className={styles.Login__form__input}
                                     placeholder="Username"
                                     onFocus={() => setIsFocusedUsername(true)}
@@ -82,7 +90,8 @@ function AccountWindow({ onAccountCrossClick }) {
                                 <input
                                     type="password"
                                     name="password"
-                                    maxLength="16"
+                                    minLength={minInputLength}
+                                    maxLength={maxInputLength}
                                     className={styles.Login__form__input}
                                     placeholder="Password"
                                     onFocus={() => setIsFocusedPassword(true)}
@@ -130,7 +139,8 @@ function AccountWindow({ onAccountCrossClick }) {
                                 <input
                                     type="text"
                                     name="username"
-                                    maxLength="16"
+                                    minLength={minInputLength}
+                                    maxLength={maxInputLength}
                                     className={styles.Login__form__input}
                                     placeholder="Username"
                                     onFocus={() => setIsFocusedUsername(true)}
@@ -148,7 +158,8 @@ function AccountWindow({ onAccountCrossClick }) {
                                 <input
                                     type="password"
                                     name="password"
-                                    maxLength="16"
+                                    minLength={minInputLength}
+                                    maxLength={maxInputLength}
                                     className={styles.Login__form__input}
                                     placeholder="Password"
                                     onFocus={() => setIsFocusedPassword(true)}

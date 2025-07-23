@@ -1,4 +1,4 @@
-package com.metaclock.backend.service;
+package com.metaclock.backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,9 +1,8 @@
 package com.metaclock.backend.controller;
 
-import com.metaclock.backend.model.User;
-import com.metaclock.backend.service.UserResponse;
+import com.metaclock.backend.dto.ApiResponse;
+import com.metaclock.backend.dto.UserResponse;
 import com.metaclock.backend.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,14 +28,34 @@ public class UserController {
         String password = body.get("password");
 
         if (username == null || password == null) {
-            return ResponseEntity.badRequest().body("Username and password required");
+            return ResponseEntity.ok(new ApiResponse<>(
+                    false,
+                    "Username and password are required",
+                    null
+            ));
+        }
+
+        if (username.length() < 4 || password.length() < 4) {
+            return ResponseEntity.ok(new ApiResponse<>(
+                    false,
+                    "Username and password must be equal or longer than 4 symbols",
+                    null
+            ));
+        }
+
+        if (username.length() > 16 || password.length() > 16) {
+            return ResponseEntity.ok(new ApiResponse<>(
+                    false,
+                    "Username and password must be equal or less than 16 symbols",
+                    null
+            ));
         }
 
         try {
             UserResponse response = userService.registerUser(username, password);
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Successful user registration", response));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));
         }
     }
 }

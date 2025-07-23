@@ -1,5 +1,6 @@
 package com.metaclock.backend.service;
 
+import com.metaclock.backend.dto.UserResponse;
 import com.metaclock.backend.model.User;
 import com.metaclock.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

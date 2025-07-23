@@ -8,3 +8,4 @@ drop table users;
 
 select * from users;
 
+delete from users;
