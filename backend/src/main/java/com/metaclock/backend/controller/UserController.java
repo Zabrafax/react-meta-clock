@@ -1,6 +1,7 @@
 package com.metaclock.backend.controller;
 
 import com.metaclock.backend.model.User;
+import com.metaclock.backend.service.UserResponse;
 import com.metaclock.backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +33,8 @@ public class UserController {
         }
 
         try {
-            User user = userService.registerUser(username, password);
-            return ResponseEntity.ok(user);
+            UserResponse response = userService.registerUser(username, password);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

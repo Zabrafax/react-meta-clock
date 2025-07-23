@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public User registerUser(String username, String rawPassword) {
+    public UserResponse registerUser(String username, String rawPassword) {
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username already exists");
         }
@@ -26,7 +26,8 @@ public class UserService {
         user.setPassword(hashedPassword);
 
         try {
-            return userRepository.save(user);
+            userRepository.save(user);
+            return new UserResponse(username);
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Username already taken");
         }

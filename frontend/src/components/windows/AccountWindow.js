@@ -17,11 +17,22 @@ function AccountWindow({ onAccountCrossClick }) {
     function handleRegister(event) {
         event.preventDefault();
 
+        const form = event.currentTarget;
+        const username = form.username.value;
+        const password = form.password.value;
+
         fetch("http://localhost:8080/api/users/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({})
-        });
+            body: JSON.stringify({username, password})
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Register answer: " + data);
+            })
+            .catch(error => {
+                console.log("Register error: " + error);
+            })
     }
 
     return (
@@ -52,6 +63,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             <div className={styles.Login__form__input__wrapper}>
                                 <input
                                     type="text"
+                                    name="username"
                                     maxLength="16"
                                     className={styles.Login__form__input}
                                     placeholder="Username"
@@ -69,6 +81,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             <div className={styles.Login__form__input__wrapper}>
                                 <input
                                     type="password"
+                                    name="password"
                                     maxLength="16"
                                     className={styles.Login__form__input}
                                     placeholder="Password"
@@ -112,10 +125,11 @@ function AccountWindow({ onAccountCrossClick }) {
                 <div className={styles.Login__wrapper + ' Window__main__wrapper'}>
                     <h1>Register</h1>
                     <div className={styles.Login__form__wrapper}>
-                        <form className={styles.Login__form}>
+                        <form className={styles.Login__form} onSubmit={handleRegister}>
                             <div className={styles.Login__form__input__wrapper}>
                                 <input
                                     type="text"
+                                    name="username"
                                     maxLength="16"
                                     className={styles.Login__form__input}
                                     placeholder="Username"
@@ -133,6 +147,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             <div className={styles.Login__form__input__wrapper}>
                                 <input
                                     type="password"
+                                    name="password"
                                     maxLength="16"
                                     className={styles.Login__form__input}
                                     placeholder="Password"
