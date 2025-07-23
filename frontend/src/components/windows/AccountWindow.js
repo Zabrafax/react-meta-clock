@@ -9,6 +9,7 @@ function AccountWindow({ onAccountCrossClick }) {
     const { allFirstThemeColors, allAccentThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isRegisterWindow, setIsRegisterWindow] = useState(false);
 
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
@@ -29,7 +30,11 @@ function AccountWindow({ onAccountCrossClick }) {
                     style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                 ></a>
             </div>
-            {!isLoggedIn &&
+
+            {/*
+                Login form
+            */}
+            {!isLoggedIn && !isRegisterWindow &&
                 <div className={styles.Login__wrapper + ' Window__main__wrapper'}>
                     <h1>Login</h1>
                     <div className={styles.Login__form__wrapper}>
@@ -78,12 +83,76 @@ function AccountWindow({ onAccountCrossClick }) {
                     <div className={styles.Login__bottom__text}>
                         <p>Don't have an account? </p>
                         <a
+                            onClick={() => {setIsRegisterWindow(true)}}
                             className="Small__a__button"
                             style={{
                                 "--after-color": allTextThemeColors[currentThemeNumber],
                                 "--after-height": "1px"
                         }}
                         >Register</a>
+                    </div>
+                </div>
+            }
+
+            {/*
+                Register form
+            */}
+            {!isLoggedIn && isRegisterWindow &&
+                <div className={styles.Login__wrapper + ' Window__main__wrapper'}>
+                    <h1>Register</h1>
+                    <div className={styles.Login__form__wrapper}>
+                        <form className={styles.Login__form}>
+                            <div className={styles.Login__form__input__wrapper}>
+                                <input
+                                    type="text"
+                                    maxLength="16"
+                                    className={styles.Login__form__input}
+                                    placeholder="Username"
+                                    onFocus={() => setIsFocusedUsername(true)}
+                                    onBlur={() => setIsFocusedUsername(false)}
+                                />
+                                <div
+                                    className={styles.Input__line}
+                                    style={{
+                                        width: isFocusedUsername ? '105%' : '100%',
+                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                    }}
+                                ></div>
+                            </div>
+                            <div className={styles.Login__form__input__wrapper}>
+                                <input
+                                    type="password"
+                                    maxLength="16"
+                                    className={styles.Login__form__input}
+                                    placeholder="Password"
+                                    onFocus={() => setIsFocusedPassword(true)}
+                                    onBlur={() => setIsFocusedPassword(false)}
+                                />
+                                <div
+                                    className={styles.Input__line}
+                                    style={{
+                                        width: isFocusedPassword ? '105%' : '100%',
+                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                    }}
+                                ></div>
+                            </div>
+
+                            <a
+                                className="Small__a__button"
+                                style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                            >Register</a>
+                        </form>
+                    </div>
+                    <div className={styles.Login__bottom__text}>
+                        <p>Have an account? </p>
+                        <a
+                            onClick={() => {setIsRegisterWindow(false)}}
+                            className="Small__a__button"
+                            style={{
+                                "--after-color": allTextThemeColors[currentThemeNumber],
+                                "--after-height": "1px"
+                            }}
+                        >Login</a>
                     </div>
                 </div>
             }
