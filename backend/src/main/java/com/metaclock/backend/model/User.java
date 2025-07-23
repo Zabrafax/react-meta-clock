@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -19,4 +21,6 @@ public class User {
     private String username;
 
     private String password;
+
+    private LocalDate registrationDate;
 }

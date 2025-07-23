@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @Controller
@@ -26,6 +27,10 @@ public class UserController {
     public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
         String username = body.get("username");
         String password = body.get("password");
+        String dateStr = body.get("registrationDate");
+
+        LocalDate registrationDate = LocalDate.parse(dateStr);
+
 
         if (username == null || password == null) {
             return ResponseEntity.ok(new ApiResponse<>(
@@ -52,7 +57,7 @@ public class UserController {
         }
 
         try {
-            UserResponse response = userService.registerUser(username, password);
+            UserResponse response = userService.registerUser(username, password, registrationDate);
             return ResponseEntity.ok(new ApiResponse<>(true, "Successful user registration", response));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));

@@ -8,6 +8,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class UserService {
     @Autowired
@@ -16,7 +18,7 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public UserResponse registerUser(String username, String rawPassword) {
+    public UserResponse registerUser(String username, String rawPassword, LocalDate registrationDate) {
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username already exists");
         }
@@ -25,10 +27,11 @@ public class UserService {
         User user = new User();
         user.setUsername(username);
         user.setPassword(hashedPassword);
+        user.setRegistrationDate(registrationDate);
 
         try {
             userRepository.save(user);
-            return new UserResponse(username);
+            return new UserResponse(username, registrationDate);
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Username already taken");
         }
