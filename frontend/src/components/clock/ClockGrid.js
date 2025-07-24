@@ -71,7 +71,7 @@ function ClockGrid(props) {
                 setMinuteArrowDegreesArray(dataMinuteArray);
                 setHourArrowDegreesArray(dataHourArray);
 
-                console.log("Received grid size: " + gridRows + ", " + gridCols);
+                //console.log("Received grid size: " + gridRows + ", " + gridCols);
             } catch (e) {
                 console.error("WebSocket parsing error:", e);
             }

@@ -19,6 +19,17 @@ function AccountWindow({ onAccountCrossClick }) {
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
+    function formatDate(date) {
+        console.log(date);
+
+        const dateStr = date.toString();
+        const year = dateStr.slice(0, 4);
+        const month = dateStr.slice(5, 7);
+        const day = dateStr.slice(8, 10);
+
+        return `${day}.${month}.${year}`;
+    }
+
     function handleLogin(event) {
         event.preventDefault();
 
@@ -83,7 +94,7 @@ function AccountWindow({ onAccountCrossClick }) {
                     <div className={styles.Right__account__wrapper}>
                         <h1>{username}</h1>
                         <p>Registration date: </p>
-                        <p>{registrationDate}</p>
+                        <p>{formatDate(registrationDate)}</p>
                     </div>
                 </div>
             }
