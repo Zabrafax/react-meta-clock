@@ -70,6 +70,10 @@ function AccountWindow({ onAccountCrossClick }) {
                             </g>
                         </svg>
                     </div>
+                    <div className={styles.Left__account__wrapper}>
+                        <h1>{username}</h1>
+                        <p>Registration date: <p>{registrationDate}</p></p>
+                    </div>
                 </div>
             }
 

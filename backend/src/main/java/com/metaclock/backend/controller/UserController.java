@@ -23,6 +23,27 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        String password = body.get("password");
+
+        if (username == null || password == null) {
+            return ResponseEntity.ok(new ApiResponse<>(
+                    false,
+                    "Username and password are required",
+                    null
+            ));
+        }
+
+        try {
+            UserResponse response = userService.loginUser(username, password);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Successful user login", response));
+        } catch (RuntimeException e) {
+            return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));
+        }
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
         String username = body.get("username");

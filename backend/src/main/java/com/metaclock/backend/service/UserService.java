@@ -37,7 +37,7 @@ public class UserService {
         }
     }
 
-    public User loginUser(String username, String rawPassword) {
+    public UserResponse loginUser(String username, String rawPassword) {
         User user = userRepository.findByUsername(username);
 
         if (user == null) {
@@ -48,6 +48,6 @@ public class UserService {
             throw new RuntimeException("Invalid password");
         }
 
-        return user;
+        return new UserResponse(user.getUsername(), user.getRegistrationDate());
     }
 }
