@@ -54,7 +54,8 @@ function AccountWindow({ onAccountCrossClick }) {
                     <div className={styles.Left__account__wrapper}>
                         <img
                             className={styles.Account__icon}
-                            src="https://icons.iconarchive.com/icons/praveen/minimal-outline/128/profile-icon.png"
+                            src="/icons/profile-icon.svg"
+                            alt="Profile Icon"
                         />
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import {createContext, useContext, useState} from "react";
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-    const [username, setUsername] = useState(null);
+    const [username, setUsername] = useState("Zabrafax");
     const [registrationDate, setRegistrationDate] = useState(null);
     const isLoggedIn = !!username;
 
