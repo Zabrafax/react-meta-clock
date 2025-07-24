@@ -9,7 +9,7 @@ import {useUserContext} from "../contexts/UserContext";
 function AccountWindow({ onAccountCrossClick }) {
     const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
-    const { isLoggedIn, username, registrationDate, registerUser } = useUserContext();
+    const { isLoggedIn, username, registrationDate, registerUser, loginUser } = useUserContext();
 
     const [isRegisterWindow, setIsRegisterWindow] = useState(false);
 
@@ -18,6 +18,16 @@ function AccountWindow({ onAccountCrossClick }) {
 
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
+
+    function handleLogin(event) {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        const username = form.username.value;
+        const password = form.password.value;
+
+        loginUser(username, password);
+    }
 
     function handleRegister(event) {
         event.preventDefault();
@@ -70,7 +80,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             </g>
                         </svg>
                     </div>
-                    <div className={styles.Left__account__wrapper}>
+                    <div className={styles.Right__account__wrapper}>
                         <h1>{username}</h1>
                         <p>Registration date: <p>{registrationDate}</p></p>
                     </div>
@@ -84,7 +94,7 @@ function AccountWindow({ onAccountCrossClick }) {
                 <div className={styles.Login__wrapper + ' Window__main__wrapper'}>
                     <h1>Login</h1>
                     <div className={styles.Login__form__wrapper}>
-                        <form className={styles.Login__form}>
+                        <form className={styles.Login__form} onSubmit={handleLogin}>
                             <div className={styles.Login__form__input__wrapper}>
                                 <input
                                     type="text"

@@ -12,6 +12,8 @@
 }
 
 .Account__wrapper {
+    height: 150px;
+
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -20,7 +22,7 @@
 }
 
 .Left__account__wrapper {
-    height: 120px;
+    height: 100%;
     aspect-ratio: 1 / 1;
 
     display: flex;
@@ -31,10 +33,23 @@
 }
 
 .Account__icon {
-    height: 80%;
-    width: 80%;
+    height: 100%;
+    width: 100%;
 
     color: inherit;
+}
+
+.Right__account__wrapper {
+    height: 100%;
+    width: 100%;
+
+    padding-left: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: nowrap;
 }
 
 .Login__wrapper {
