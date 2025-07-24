@@ -82,7 +82,8 @@ function AccountWindow({ onAccountCrossClick }) {
                     </div>
                     <div className={styles.Right__account__wrapper}>
                         <h1>{username}</h1>
-                        <p>Registration date: <p>{registrationDate}</p></p>
+                        <p>Registration date: </p>
+                        <p>{registrationDate}</p>
                     </div>
                 </div>
             }
