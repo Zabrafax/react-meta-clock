@@ -4,11 +4,13 @@ import './Window.css';
 import '../buttons/SmallAButton.css'
 import styles from './AccountWindow.module.css';
 import {useState} from "react";
+import {useUserContext} from "../contexts/UserContext";
 
 function AccountWindow({ onAccountCrossClick }) {
     const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
-    const [isLoggedIn/*, setIsLoggedIn*/] = useState(false);
+    const { isLoggedIn, username, registrationDate, registerUser } = useUserContext();
+
     const [isRegisterWindow, setIsRegisterWindow] = useState(false);
 
     const minInputLength = 4;
@@ -24,25 +26,7 @@ function AccountWindow({ onAccountCrossClick }) {
         const username = form.username.value;
         const password = form.password.value;
 
-        const today = new Date();
-        const localDate = today.toISOString().slice(0, 10);
-
-        fetch("http://localhost:8080/api/users/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({username, password, registrationDate: localDate})
-        })
-            .then(response => response.json())
-            .then(apiResponse => {
-                if (apiResponse.success) {
-                    console.log('Register success:', apiResponse.data.username);
-                } else {
-                    console.error('Register error:', apiResponse.message);
-                }
-            })
-            .catch(error => {
-                console.error("Register network or parsing error: " + error);
-            })
+        registerUser(username, password);
     }
 
     return (
@@ -61,6 +45,20 @@ function AccountWindow({ onAccountCrossClick }) {
                     style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
                 ></a>
             </div>
+
+            {/*
+                Account block
+            */}
+            {isLoggedIn &&
+                <div className={styles.Account__wrapper + ' Window__main__wrapper'}>
+                    <div className={styles.Left__account__wrapper}>
+                        <img
+                            className={styles.Account__icon}
+                            src="https://icons.iconarchive.com/icons/praveen/minimal-outline/128/profile-icon.png"
+                        />
+                    </div>
+                </div>
+            }
 
             {/*
                 Login form

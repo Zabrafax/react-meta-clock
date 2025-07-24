@@ -5,15 +5,18 @@ import reportWebVitals from './reportWebVitals';
 import Main from "./components/Main";
 import {ThemeProvider} from "./components/contexts/ThemeContext";
 import {TimeZoneProvider} from "./components/contexts/TimeZoneContext";
+import {UserProvider} from "./components/contexts/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <ThemeProvider>
-        <TimeZoneProvider>
-            <Main />
-        </TimeZoneProvider>
-    </ThemeProvider>
+    <UserProvider>
+        <ThemeProvider>
+            <TimeZoneProvider>
+                <Main />
+            </TimeZoneProvider>
+        </ThemeProvider>
+    </UserProvider>
   // </React.StrictMode>
 );
 
