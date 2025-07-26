@@ -3,6 +3,8 @@ package com.metaclock.backend.controller;
 import com.metaclock.backend.dto.ApiResponse;
 import com.metaclock.backend.dto.UserResponse;
 import com.metaclock.backend.service.UserService;
+import com.metaclock.backend.util.JwtUtil;
+import io.jsonwebtoken.Jwts;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,9 +20,11 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     private final UserService userService;
+    private final JwtUtil jwtUtil;
 
     public UserController(UserService userService) {
         this.userService = userService;
+        this.jwtUtil = new JwtUtil();
     }
 
     @PostMapping("/login")
@@ -38,7 +42,13 @@ public class UserController {
 
         try {
             UserResponse response = userService.loginUser(username, password);
-            return ResponseEntity.ok(new ApiResponse<>(true, "Successful user login", response));
+            String token = jwtUtil.generateToken(username);
+
+            return ResponseEntity.ok(new ApiResponse<>(true, "Successful user login", Map.of(
+                    "token", token,
+                    "username", response.getUsername(),
+                    "registrationDate", response.getRegistrationDate()
+            )));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));
         }
@@ -79,7 +89,13 @@ public class UserController {
 
         try {
             UserResponse response = userService.registerUser(username, password, registrationDate);
-            return ResponseEntity.ok(new ApiResponse<>(true, "Successful user registration", response));
+            String token = jwtUtil.generateToken(username);
+
+            return ResponseEntity.ok(new ApiResponse<>(true, "Successful user registration", Map.of(
+                    "token", token,
+                    "username", response.getUsername(),
+                    "registrationDate", response.getRegistrationDate()
+            )));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));
         }
