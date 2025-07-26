@@ -27,8 +27,10 @@ export function UserProvider({ children }) {
             const apiResponse = await response.json();
 
             if (apiResponse.success) {
+                localStorage.setItem("token", apiResponse.data.token);
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
+
                 console.log('Login success:', apiResponse.data.username);
                 return {success: true};
             } else {
@@ -58,8 +60,10 @@ export function UserProvider({ children }) {
             const apiResponse = await response.json();
 
             if (apiResponse.success) {
+                localStorage.setItem("token", apiResponse.data.token);
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
+
                 console.log('Register success:', apiResponse.data.username);
                 return {success: true};
             } else {
