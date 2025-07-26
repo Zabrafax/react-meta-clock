@@ -61,6 +61,14 @@
     font-weight: 200;
 }
 
+.Right__account__wrapper a {
+    margin-right: 1rem;
+
+    align-self: end;
+
+    font-size: 1.2rem;
+}
+
 .Login__wrapper {
     display: flex;
     flex-direction: column;

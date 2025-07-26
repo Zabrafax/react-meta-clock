@@ -19,6 +19,10 @@ function AccountWindow({ onAccountCrossClick }) {
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
+    function handleLogout() {
+
+    }
+
     function formatDate(date) {
         console.log(date);
 
@@ -95,6 +99,14 @@ function AccountWindow({ onAccountCrossClick }) {
                         <h1>{username}</h1>
                         <p>Registration date: </p>
                         <p>{formatDate(registrationDate)}</p>
+                        <a
+                            className="Small__a__button"
+                            onClick={handleLogout}
+                            style={{
+                                "--after-color": allTextThemeColors[currentThemeNumber],
+                                "--after-height": "1px"
+                            }}
+                        >Logout</a>
                     </div>
                 </div>
             }
