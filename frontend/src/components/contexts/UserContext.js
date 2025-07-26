@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 
 const UserContext = createContext();
 
@@ -7,9 +7,48 @@ export function UserProvider({ children }) {
     const [registrationDate, setRegistrationDate] = useState(null);
     const isLoggedIn = !!username;
 
+    useEffect(() => {
+        (async () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:8080/api/users/verify-token", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+
+                const apiResponse = await response.json();
+
+                if (apiResponse.success) {
+                    localStorage.setItem("token", apiResponse.data.token);
+                    setUsername(apiResponse.data.username);
+                    setRegistrationDate(apiResponse.data.registrationDate);
+
+                    //console.log('Token login success:', apiResponse.data.username);
+                    return {success: true};
+                } else {
+                    //console.error('Token login error:', apiResponse.message);
+                    return {success: false, message: apiResponse.message};
+                }
+            } catch (error) {
+                return {success: false, message: error.message};
+            }
+        })()
+    }, []);
+
     const logout = () => {
         setUsername(null);
         setRegistrationDate(null);
+
+        if(localStorage.getItem("token")) {
+            localStorage.removeItem("token");
+        }
     }
 
     const loginUser = async (username, password) => {
@@ -31,10 +70,10 @@ export function UserProvider({ children }) {
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
 
-                console.log('Login success:', apiResponse.data.username);
+                //console.log('Login success:', apiResponse.data.username);
                 return {success: true};
             } else {
-                console.error('Login error:', apiResponse.message);
+                //console.error('Login error:', apiResponse.message);
                 return {success: false, message: apiResponse.message};
             }
         } catch (error) {
@@ -64,10 +103,10 @@ export function UserProvider({ children }) {
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
 
-                console.log('Register success:', apiResponse.data.username);
+                //console.log('Register success:', apiResponse.data.username);
                 return {success: true};
             } else {
-                console.error('Register error:', apiResponse.message);
+                //console.error('Register error:', apiResponse.message);
                 return {success: false, message: apiResponse.message};
             }
         } catch (error) {

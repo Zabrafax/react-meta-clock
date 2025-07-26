@@ -24,8 +24,6 @@ function AccountWindow({ onAccountCrossClick }) {
     }
 
     function formatDate(date) {
-        console.log(date);
-
         const dateStr = date.toString();
         const year = dateStr.slice(0, 4);
         const month = dateStr.slice(5, 7);

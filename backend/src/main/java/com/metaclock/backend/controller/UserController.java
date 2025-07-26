@@ -4,13 +4,10 @@ import com.metaclock.backend.dto.ApiResponse;
 import com.metaclock.backend.dto.UserResponse;
 import com.metaclock.backend.service.UserService;
 import com.metaclock.backend.util.JwtUtil;
-import io.jsonwebtoken.Jwts;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -25,6 +22,31 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
         this.jwtUtil = new JwtUtil();
+    }
+
+    @PostMapping("/verify-token")
+    public ResponseEntity<?> verifyToken(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new ApiResponse<>(false, "Missing or invalid Authorization header", null)
+            );
+        }
+
+        try {
+            String token = authHeader.replace("Bearer ", "");
+            String username = jwtUtil.extractUsername(token);
+
+            String newToken = jwtUtil.generateToken(username);
+            UserResponse userResponse = userService.loginByUserName(username);
+
+            return ResponseEntity.ok(new ApiResponse<>(true, "Successful token login", Map.of(
+                    "token", newToken,
+                    "username", userResponse.getUsername(),
+                    "registrationDate", userResponse.getRegistrationDate()
+            )));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse<>(false, e.getMessage(), null));
+        }
     }
 
     @PostMapping("/login")

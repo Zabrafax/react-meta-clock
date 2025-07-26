@@ -37,6 +37,16 @@ public class UserService {
         }
     }
 
+    public UserResponse loginByUserName(String username) {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+        
+        return new UserResponse(user.getUsername(), user.getRegistrationDate());
+    }
+
     public UserResponse loginUser(String username, String rawPassword) {
         User user = userRepository.findByUsername(username);
 
