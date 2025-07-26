@@ -1,7 +1,7 @@
 import './SettingsWindow.css';
 import './Window.css';
 import SimpleSwitch from "../SimpleSwitch";
-import ThemeSwitch from "../buttons/ThemeSwitch";
+import ThemeSwitch from "../buttons/themeSwitch/ThemeSwitch";
 import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
 import TimeZonePicker from "../buttons/TimeZonePicker";

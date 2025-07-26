@@ -1,0 +1,16 @@
+.Color__picker__wrapper {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    white-space: pre;
+}
+
+.Color__picker__wrapper p {
+    font-size: 1.5rem;
+}

@@ -1,10 +1,14 @@
 import styles from './ThemeSwitch.module.css'
 import {forwardRef, useEffect, useRef, useState} from "react";
-import {useTheme} from "../contexts/ThemeContext";
+import {useTheme} from "../../contexts/ThemeContext";
+import CustomColorPicker from "./CustomColorPicker";
 
 const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
-// function ThemeSwitch({ name, choiceColors, lineColors }) {
-    const { currentThemeNumber, setCurrentThemeNumber } = useTheme();
+// function themeSwitch({ name, choiceColors, lineColors }) {
+    const {
+        currentThemeNumber, setCurrentThemeNumber,
+        allFirstThemeColors, allAccentThemeColors, allTextThemeColors
+    } = useTheme();
 
     const [lineColor, setLineColor] = useState(0);
 
@@ -72,9 +76,20 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                     className={styles.Custom__color__extension}
                     // style={{ transform: `scaleY(${isCustomColor ? 1 : 0})` }}
                 >
-                    <h2>Custom:</h2>
+                    {/*<h2>Custom:</h2>*/}
                     <div className={styles.Custom__color__switches__wrapper}>
-
+                        <CustomColorPicker
+                            name={"Main color: "}
+                            currentColor={allFirstThemeColors[currentThemeNumber]}
+                        />
+                        <CustomColorPicker
+                            name={"Accent color: "}
+                            currentColor={allAccentThemeColors[currentThemeNumber]}
+                        />
+                        <CustomColorPicker
+                            name={"Text color: "}
+                            currentColor={allTextThemeColors[currentThemeNumber]}
+                        />
                     </div>
                 </div>
             }
