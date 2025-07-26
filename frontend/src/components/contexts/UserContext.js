@@ -7,6 +7,11 @@ export function UserProvider({ children }) {
     const [registrationDate, setRegistrationDate] = useState(null);
     const isLoggedIn = !!username;
 
+    const logout = () => {
+        setUsername(null);
+        setRegistrationDate(null);
+    }
+
     const loginUser = async (username, password) => {
         if(!!isLoggedIn) {
             return {success: false, message: "You are already logged in"};
@@ -73,7 +78,8 @@ export function UserProvider({ children }) {
             username,
             registrationDate,
             registerUser,
-            loginUser
+            loginUser,
+            logout
         }}>
             {children}
         </UserContext.Provider>

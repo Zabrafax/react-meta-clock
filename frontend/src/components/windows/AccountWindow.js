@@ -9,7 +9,7 @@ import {useUserContext} from "../contexts/UserContext";
 function AccountWindow({ onAccountCrossClick }) {
     const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
 
-    const { isLoggedIn, username, registrationDate, registerUser, loginUser } = useUserContext();
+    const { isLoggedIn, username, registrationDate, registerUser, loginUser, logout } = useUserContext();
 
     const [isRegisterWindow, setIsRegisterWindow] = useState(false);
 
@@ -20,7 +20,7 @@ function AccountWindow({ onAccountCrossClick }) {
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
     function handleLogout() {
-
+        logout();
     }
 
     function formatDate(date) {
@@ -52,6 +52,8 @@ function AccountWindow({ onAccountCrossClick }) {
         const password = form.password.value;
 
         registerUser(username, password);
+
+        setIsRegisterWindow(false);
     }
 
     return (
@@ -99,6 +101,7 @@ function AccountWindow({ onAccountCrossClick }) {
                         <h1>{username}</h1>
                         <p>Registration date: </p>
                         <p>{formatDate(registrationDate)}</p>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a
                             className="Small__a__button"
                             onClick={handleLogout}
