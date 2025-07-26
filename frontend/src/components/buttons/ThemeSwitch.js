@@ -72,7 +72,10 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                     className={styles.Custom__color__extension}
                     // style={{ transform: `scaleY(${isCustomColor ? 1 : 0})` }}
                 >
+                    <h2>Custom:</h2>
+                    <div className={styles.Custom__color__switches__wrapper}>
 
+                    </div>
                 </div>
             }
         </div>

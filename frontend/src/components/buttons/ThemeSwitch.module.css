@@ -59,7 +59,35 @@
     width: 100%;
     height: 250px;
 
-    background-color: red;
+    padding-left: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    background-color: transparent;
+}
+
+.Custom__color__extension h2 {
+    align-self: start;
+
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.Custom__color__switches__wrapper {
+    width: 100%;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: nowrap;
+
+    background: red;
 }
 
 .Choices__line__wrapper {
