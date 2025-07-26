@@ -37,6 +37,14 @@
     aspect-ratio: 3/1;
 }
 
+.Choice__option__custom {
+    height: 100%;
+    aspect-ratio: 3/1;
+
+    background: #ff00fc;
+    background: linear-gradient(130deg,rgba(29, 45, 101, 1) 0%, rgba(234, 234, 234, 1) 33%, rgba(98, 213, 159, 1) 67%, rgba(175, 14, 14, 1) 100%);
+}
+
 .Choices__line__wrapper {
     position: relative;
 

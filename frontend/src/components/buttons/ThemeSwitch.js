@@ -4,7 +4,8 @@ import {useTheme} from "../contexts/ThemeContext";
 
 const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
 // function ThemeSwitch({ name, choiceColors, lineColors }) {
-    const { currentThemeNumber, setCurrentThemeNumber } = useTheme();
+    const { currentThemeNumber, setCurrentThemeNumber, customAccentThemeColor } = useTheme();
+    const customThemeNumber = choiceColors.length;
 
     const [lineColor, setLineColor] = useState(0);
 
@@ -12,6 +13,7 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
     const [lineWidth, setLineWidth] = useState(0);
 
     const colorRefs = useRef([]);
+    const customColors = useRef(null);
 
     useEffect(() => {
         if(colorRefs.current[0]) {
@@ -21,7 +23,11 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
             setLineWidth(basicLineWidth);
         }
 
-        setLineColor(lineColors[currentThemeNumber]);
+        if(currentThemeNumber === customThemeNumber) {
+            setLineColor(customAccentThemeColor);
+        } else {
+            setLineColor(lineColors[currentThemeNumber]);
+        }
 
     }, [currentThemeNumber, choiceColors, colorRefs, lineColors, setCurrentThemeNumber]);
 
@@ -44,6 +50,12 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                             onClick={() => setCurrentThemeNumber(index)}
                         ></a>
                     ))}
+                    <a
+                        key={"custom"}
+                        ref={el => (colorRefs.current[choiceColors.length] = el)}
+                        className={styles.Choice__option__custom}
+                        onClick={() => setCurrentThemeNumber(choiceColors.length)}
+                    ></a>
                 </div>
                 <div className={styles.Choices__line__wrapper}>
                     <div
