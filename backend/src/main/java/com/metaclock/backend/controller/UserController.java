@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.TimeZone;
 
 @Controller
 @RequestMapping("/api/users")
@@ -79,6 +78,7 @@ public class UserController {
                     "timeZone", response.getTimeZone()
             )));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
                     new ApiResponse<>(false, e.getMessage(), null)
             );

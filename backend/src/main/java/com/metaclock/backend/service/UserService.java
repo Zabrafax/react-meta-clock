@@ -56,7 +56,7 @@ public class UserService {
             throw new RuntimeException("User not found");
         }
         
-        return new UserResponse(user.getUsername(), user.getRegistrationDate());
+        return new UserResponse(user.getUsername(), user.getRegistrationDate(), user.getTimeZone());
     }
 
     public UserResponse loginUser(String username, String rawPassword) {

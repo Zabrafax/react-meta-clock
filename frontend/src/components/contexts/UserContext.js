@@ -30,6 +30,7 @@ export function UserProvider({ children }) {
                     localStorage.setItem("token", apiResponse.data.token);
                     setUsername(apiResponse.data.username);
                     setRegistrationDate(apiResponse.data.registrationDate);
+                    setUserTimeZone(apiResponse.data.timeZone);
 
                     //console.log('Token login success:', apiResponse.data.username);
                     return {success: true};
@@ -80,6 +81,7 @@ export function UserProvider({ children }) {
     const logout = () => {
         setUsername(null);
         setRegistrationDate(null);
+        setUserTimeZone(null);
 
         if(localStorage.getItem("token")) {
             localStorage.removeItem("token");
