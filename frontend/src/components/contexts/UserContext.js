@@ -5,6 +5,7 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
     const [username, setUsername] = useState(null);
     const [registrationDate, setRegistrationDate] = useState(null);
+    const [userTimeZone, setUserTimeZone] = useState(null);
     const isLoggedIn = !!username;
 
     useEffect(() => {
@@ -101,6 +102,7 @@ export function UserProvider({ children }) {
                 localStorage.setItem("token", apiResponse.data.token);
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
+                setUserTimeZone(apiResponse.data.timeZone);
 
                 //console.log('Login success:', apiResponse.data.username);
                 return {success: true};
@@ -155,7 +157,8 @@ export function UserProvider({ children }) {
             registerUser,
             loginUser,
             logout,
-            saveTimeZone
+            saveTimeZone,
+            userTimeZone
         }}>
             {children}
         </UserContext.Provider>
