@@ -6,6 +6,8 @@ const TimeZoneContext = createContext();
 export function TimeZoneProvider({ children }) {
     const [currentTimeZoneId, setCurrentTimeZoneId] = useState("");
     const [timeZones, setTimeZones] = useState([]);
+    
+    const { isLoggedIn, userTimeZone } = useUserContext();
 
     const { saveTimeZone } = useUserContext();
 
@@ -23,7 +25,9 @@ export function TimeZoneProvider({ children }) {
 
                 const fallbackTimeZone = data[0]?.id || "";
                 let selectedTimeZone;
-                if(data.some(tz => tz.id === userZone)) {
+                if(!!isLoggedIn && userTimeZone !== null) {
+                    selectedTimeZone = userTimeZone;
+                } else if (data.some(tz => tz.id === userZone)) {
                     selectedTimeZone = userZone;
                 } else {
                     selectedTimeZone = data.find(tz => parseInt(tz.offsetSeconds, 10) === userOffsetSeconds).id ?? fallbackTimeZone;
@@ -34,7 +38,7 @@ export function TimeZoneProvider({ children }) {
                 // console.log(selectedTimeZone);
                 setCurrentTimeZoneId(selectedTimeZone);
             });
-    }, [])
+    }, [isLoggedIn, userTimeZone]);
 
     return (
         <TimeZoneContext.Provider value={{

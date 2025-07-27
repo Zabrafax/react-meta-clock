@@ -45,6 +45,8 @@ export function UserProvider({ children }) {
 
     const saveTimeZone = async (timeZone) => {
         if(isLoggedIn) {
+            setUserTimeZone(timeZone);
+
             const token = localStorage.getItem("token");
             if (!token) {
                 return;
@@ -115,7 +117,7 @@ export function UserProvider({ children }) {
         }
     }
 
-    const registerUser = async (username, password) => {
+    const registerUser = async (username, password, timeZone) => {
         if(!!isLoggedIn) {
             return {success: false, message: "You are already logged in"};
         }
@@ -127,7 +129,7 @@ export function UserProvider({ children }) {
             const response = await fetch("http://localhost:8080/api/users/register", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({username, password, registrationDate: localDate})
+                body: JSON.stringify({username, password, registrationDate: localDate, timeZone} )
             });
 
             const apiResponse = await response.json();
@@ -136,6 +138,7 @@ export function UserProvider({ children }) {
                 localStorage.setItem("token", apiResponse.data.token);
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
+                setUserTimeZone(apiResponse.data.timeZone);
 
                 //console.log('Register success:', apiResponse.data.username);
                 return {success: true};

@@ -5,9 +5,11 @@ import '../buttons/SmallAButton.css'
 import styles from './AccountWindow.module.css';
 import {useState} from "react";
 import {useUserContext} from "../contexts/UserContext";
+import {useTimeZones} from "../contexts/TimeZoneContext";
 
 function AccountWindow({ onAccountCrossClick }) {
     const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
+    const { currentTimeZoneId } = useTimeZones();
 
     const { isLoggedIn, username, registrationDate, registerUser, loginUser, logout } = useUserContext();
 
@@ -49,7 +51,7 @@ function AccountWindow({ onAccountCrossClick }) {
         const username = form.username.value;
         const password = form.password.value;
 
-        registerUser(username, password);
+        registerUser(username, password, currentTimeZoneId);
 
         setIsRegisterWindow(false);
     }
