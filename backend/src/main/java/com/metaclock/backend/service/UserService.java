@@ -29,7 +29,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public UserResponse registerUser(String username, String rawPassword, LocalDate registrationDate) {
+    public UserResponse registerUser(String username, String rawPassword, LocalDate registrationDate, String timeZone) {
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username already exists");
         }
@@ -39,10 +39,11 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(hashedPassword);
         user.setRegistrationDate(registrationDate);
+        user.setTimeZone(timeZone);
 
         try {
             userRepository.save(user);
-            return new UserResponse(username, registrationDate);
+            return new UserResponse(username, registrationDate, timeZone);
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Username already taken");
         }
@@ -69,6 +70,6 @@ public class UserService {
             throw new RuntimeException("Invalid password");
         }
 
-        return new UserResponse(user.getUsername(), user.getRegistrationDate());
+        return new UserResponse(user.getUsername(), user.getRegistrationDate(), user.getTimeZone());
     }
 }

@@ -70,12 +70,13 @@ public class UserController {
             String username = jwtUtil.extractUsername(token);
 
             String newToken = jwtUtil.generateToken(username);
-            UserResponse userResponse = userService.loginByUserName(username);
+            UserResponse response = userService.loginByUserName(username);
 
             return ResponseEntity.ok(new ApiResponse<>(true, "Successful token login", Map.of(
                     "token", newToken,
-                    "username", userResponse.getUsername(),
-                    "registrationDate", userResponse.getRegistrationDate()
+                    "username", response.getUsername(),
+                    "registrationDate", response.getRegistrationDate(),
+                    "timeZone", response.getTimeZone()
             )));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
@@ -104,7 +105,8 @@ public class UserController {
             return ResponseEntity.ok(new ApiResponse<>(true, "Successful user login", Map.of(
                     "token", token,
                     "username", response.getUsername(),
-                    "registrationDate", response.getRegistrationDate()
+                    "registrationDate", response.getRegistrationDate(),
+                    "timeZone", response.getTimeZone()
             )));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));
@@ -151,7 +153,8 @@ public class UserController {
             return ResponseEntity.ok(new ApiResponse<>(true, "Successful user registration", Map.of(
                     "token", token,
                     "username", response.getUsername(),
-                    "registrationDate", response.getRegistrationDate()
+                    "registrationDate", response.getRegistrationDate(),
+                    "timeZone", response.getTimeZone()
             )));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));
