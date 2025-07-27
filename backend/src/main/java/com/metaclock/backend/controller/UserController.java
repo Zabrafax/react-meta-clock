@@ -118,6 +118,7 @@ public class UserController {
         String username = body.get("username");
         String password = body.get("password");
         String dateStr = body.get("registrationDate");
+        String userTimeZone = body.get("timeZone");
 
         LocalDate registrationDate = LocalDate.parse(dateStr);
 
@@ -147,7 +148,7 @@ public class UserController {
         }
 
         try {
-            UserResponse response = userService.registerUser(username, password, registrationDate);
+            UserResponse response = userService.registerUser(username, password, registrationDate, userTimeZone);
             String token = jwtUtil.generateToken(username);
 
             return ResponseEntity.ok(new ApiResponse<>(true, "Successful user registration", Map.of(

@@ -12,7 +12,6 @@ export function TimeZoneProvider({ children }) {
     const { saveTimeZone } = useUserContext();
 
     useEffect(() => {
-        console.log(currentTimeZoneId);
         saveTimeZone(currentTimeZoneId);
     }, [currentTimeZoneId]);
 
@@ -38,7 +37,7 @@ export function TimeZoneProvider({ children }) {
                 // console.log(selectedTimeZone);
                 setCurrentTimeZoneId(selectedTimeZone);
             });
-    }, [isLoggedIn, userTimeZone]);
+    }, [isLoggedIn]);
 
     return (
         <TimeZoneContext.Provider value={{
