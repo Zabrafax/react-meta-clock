@@ -18,6 +18,17 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    public void saveTimeZone(String username, String timeZone) {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
+        user.setTimeZone(timeZone);
+        userRepository.save(user);
+    }
+
     public UserResponse registerUser(String username, String rawPassword, LocalDate registrationDate) {
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username already exists");

@@ -42,6 +42,38 @@ export function UserProvider({ children }) {
         })()
     }, []);
 
+    const saveTimeZone = async (timeZone) => {
+        if(isLoggedIn) {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:8080/api/users/save-timezone", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify( {timeZone} )
+                })
+
+                const apiResponse = await response.json();
+
+                if (apiResponse.success) {
+                    console.log('TimeZone saving success');
+                    return {success: true};
+                } else {
+                    console.error('TimeZone saving error:', apiResponse.message);
+                    return {success: false, message: apiResponse.message};
+                }
+            } catch (error) {
+                return {success: false, message: error.message};
+            }
+        }
+    }
+
     const logout = () => {
         setUsername(null);
         setRegistrationDate(null);
@@ -122,7 +154,8 @@ export function UserProvider({ children }) {
             registrationDate,
             registerUser,
             loginUser,
-            logout
+            logout,
+            saveTimeZone
         }}>
             {children}
         </UserContext.Provider>

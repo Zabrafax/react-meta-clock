@@ -12,4 +12,11 @@ import java.time.LocalDate;
 public class UserResponse {
     private String username;
     private LocalDate registrationDate;
+    private String TimeZone;
+
+    public UserResponse(String username, LocalDate registrationDate) {
+        this.username = username;
+        this.registrationDate = registrationDate;
+        this.TimeZone = null;
+    }
 }

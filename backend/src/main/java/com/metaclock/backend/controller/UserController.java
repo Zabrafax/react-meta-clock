@@ -1,5 +1,6 @@
 package com.metaclock.backend.controller;
 
+import com.metaclock.backend.core.timezones.PopularTimeZones;
 import com.metaclock.backend.dto.ApiResponse;
 import com.metaclock.backend.dto.UserResponse;
 import com.metaclock.backend.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.TimeZone;
 
 @Controller
 @RequestMapping("/api/users")
@@ -22,6 +24,37 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
         this.jwtUtil = new JwtUtil();
+    }
+
+    @PostMapping("/save-timezone")
+    public ResponseEntity<ApiResponse> setTimeZone(
+            @RequestHeader("Authorization") String authHeader,
+            @RequestBody Map<String, String> body
+    ) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new ApiResponse<>(false, "Missing or invalid Authorization header", null)
+            );
+        }
+
+        String timeZone = body.get("timeZone");
+        System.out.println("Received timeZone = [" + timeZone + "]");
+
+        if (timeZone == null || !PopularTimeZones.getTIMEZONES().contains(timeZone)) {
+            return ResponseEntity.ok(new ApiResponse<>(false, "Invalid timezone", null));
+        }
+
+        try {
+            String token = authHeader.replace("Bearer ", "");
+            String username = jwtUtil.extractUsername(token);
+
+            userService.saveTimeZone(username, timeZone);
+            return ResponseEntity.ok(new ApiResponse<>(true, "TimeZone saved", null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new ApiResponse<>(false, e.getMessage(), null)
+            );
+        }
     }
 
     @PostMapping("/verify-token")
@@ -45,7 +78,9 @@ public class UserController {
                     "registrationDate", userResponse.getRegistrationDate()
             )));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse<>(false, e.getMessage(), null));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new ApiResponse<>(false, e.getMessage(), null)
+            );
         }
     }
 

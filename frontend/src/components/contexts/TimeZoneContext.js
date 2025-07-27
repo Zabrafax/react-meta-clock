@@ -1,10 +1,18 @@
 import {createContext, useContext, useEffect, useState} from "react";
+import {useUserContext} from "./UserContext";
 
 const TimeZoneContext = createContext();
 
 export function TimeZoneProvider({ children }) {
     const [currentTimeZoneId, setCurrentTimeZoneId] = useState("");
     const [timeZones, setTimeZones] = useState([]);
+
+    const { saveTimeZone } = useUserContext();
+
+    useEffect(() => {
+        console.log(currentTimeZoneId);
+        saveTimeZone(currentTimeZoneId);
+    }, [currentTimeZoneId]);
 
     useEffect(() => {
         fetch('http://localhost:8080/api/clock/timezones')
