@@ -17,8 +17,8 @@ export function TimeZoneProvider({ children }) {
     }, [currentTimeZoneId]);
 
     useEffect(() => {
-        console.log("Is logged: " + isLoggedIn);
-        console.log("UserTimeZone: " + userTimeZone);
+        // console.log("Is logged: " + isLoggedIn);
+        // console.log("UserTimeZone: " + userTimeZone);
 
         fetch('http://localhost:8080/api/clock/timezones')
             .then(res => res.json())

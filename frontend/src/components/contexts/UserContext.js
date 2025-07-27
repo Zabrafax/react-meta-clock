@@ -66,10 +66,10 @@ export function UserProvider({ children }) {
                 const apiResponse = await response.json();
 
                 if (apiResponse.success) {
-                    console.log('TimeZone saving success');
+                    //console.log('TimeZone saving success');
                     return {success: true};
                 } else {
-                    console.error('TimeZone saving error:', apiResponse.message);
+                    //console.error('TimeZone saving error:', apiResponse.message);
                     return {success: false, message: apiResponse.message};
                 }
             } catch (error) {

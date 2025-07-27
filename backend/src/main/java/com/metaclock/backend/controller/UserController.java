@@ -37,7 +37,6 @@ public class UserController {
         }
 
         String timeZone = body.get("timeZone");
-        System.out.println("Received timeZone = [" + timeZone + "]");
 
         if (timeZone == null || !PopularTimeZones.getTIMEZONES().contains(timeZone)) {
             return ResponseEntity.ok(new ApiResponse<>(false, "Invalid timezone", null));
