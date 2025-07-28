@@ -3,6 +3,7 @@ import {forwardRef, useEffect, useRef, useState} from "react";
 import {useTheme} from "../../contexts/ThemeContext";
 import CustomColorPicker from "./CustomColorPicker";
 import {darkenColor} from "../../utils/colorUtils";
+import SimpleSwitch from "../../SimpleSwitch";
 
 const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
 // function themeSwitch({ name, choiceColors, lineColors }) {
@@ -11,7 +12,8 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
         allFirstThemeColors, setAllFirstThemeColors,
         setAllSecondThemeColors,
         allAccentThemeColors, setAllAccentThemeColors,
-        allTextThemeColors, setAllTextThemeColors
+        allTextThemeColors, setAllTextThemeColors,
+        allArrowShadows, setAllArrowShadows
     } = useTheme();
 
     const [lineColor, setLineColor] = useState(0);
@@ -51,6 +53,22 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
             const updatedColors = [...prevColors];
             updatedColors[updatedColors.length - 1] = color;
             return updatedColors;
+        })
+    }
+
+    function enableArrowShadow() {
+        setAllArrowShadows(prevShadows => {
+            const updatedShadows = [...prevShadows];
+            updatedShadows[updatedShadows.length - 1] = true;
+            return updatedShadows;
+        })
+    }
+
+    function disableArrowShadow() {
+        setAllArrowShadows(prevShadows => {
+            const updatedShadows = [...prevShadows];
+            updatedShadows[updatedShadows.length - 1] = false;
+            return updatedShadows;
         })
     }
 
@@ -130,6 +148,12 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                             currentColor={allTextThemeColors[currentThemeNumber]}
                             onChange={handleTextCustomColorChange}
                             lineColor={allFirstThemeColors[currentThemeNumber]}
+                        />
+                        <SimpleSwitch
+                            name="Arrow shadow"
+                            initialState={allArrowShadows[currentThemeNumber]}
+                            onEnable={enableArrowShadow}
+                            onDisable={disableArrowShadow}
                         />
                     </div>
                 </div>

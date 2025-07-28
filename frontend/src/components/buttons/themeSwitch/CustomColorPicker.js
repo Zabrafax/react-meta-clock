@@ -1,11 +1,8 @@
 import styles from './ThemeSwitchColorPicker.module.css'
 import { useState, useEffect, useRef } from 'react'
-import {ChromePicker, CirclePicker, SketchPicker} from 'react-color';
-import {useTheme} from "../../contexts/ThemeContext";
+import { ChromePicker } from 'react-color';
 
 function CustomColorPicker( {name, currentColor, onChange, lineColor} ) {
-    const { currentThemeNumber, allAccentThemeColors } = useTheme();
-
     const [isPickerOpened, setIsPickerOpened] = useState(false);
     const pickerRef = useRef(null);
 
