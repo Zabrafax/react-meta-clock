@@ -7,7 +7,8 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
 // function themeSwitch({ name, choiceColors, lineColors }) {
     const {
         currentThemeNumber, setCurrentThemeNumber,
-        allFirstThemeColors, allAccentThemeColors, allTextThemeColors
+        allFirstThemeColors, setAllFirstThemeColors,
+        allAccentThemeColors, allTextThemeColors
     } = useTheme();
 
     const [lineColor, setLineColor] = useState(0);
@@ -18,6 +19,16 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
     const isCustomColor = currentThemeNumber === choiceColors.length - 1;
 
     const colorRefs = useRef([]);
+
+    function handleMainCustomColorsChange(color) {
+        setAllFirstThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = color;
+            return updatedColors;
+        });
+
+        const secondColor =
+    }
 
     useEffect(() => {
         if(colorRefs.current[0]) {
@@ -81,6 +92,7 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                         <CustomColorPicker
                             name={"Main color: "}
                             currentColor={allFirstThemeColors[currentThemeNumber]}
+                            onChange={handleMainCustomColorsChange}
                         />
                         <CustomColorPicker
                             name={"Accent color: "}

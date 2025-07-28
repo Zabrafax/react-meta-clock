@@ -14,3 +14,8 @@
 .Color__picker__wrapper p {
     font-size: 1.5rem;
 }
+
+.Color__pick__tile {
+    height: 1.3rem;
+    aspect-ratio: 3/1;
+}
