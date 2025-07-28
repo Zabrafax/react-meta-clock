@@ -1,9 +1,10 @@
 import styles from './ThemeSwitchColorPicker.module.css'
 import { useState, useEffect, useRef } from 'react'
-import { SketchPicker } from 'react-color';
+import {ChromePicker, CirclePicker, SketchPicker} from 'react-color';
 
 function CustomColorPicker( {name, currentColor, onChange} ) {
     const [isPickerOpened, setIsPickerOpened] = useState(false);
+    const pickerRef = useRef(null);
 
     function handleTileClick() {
         setIsPickerOpened(prev => !prev);
@@ -12,6 +13,24 @@ function CustomColorPicker( {name, currentColor, onChange} ) {
     const handleColorChange = (color) => {
         onChange(color.hex);
     };
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if(pickerRef.current && !pickerRef.current.contains(event.target)) {
+                setIsPickerOpened(false);
+            }
+        }
+
+        if(isPickerOpened) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isPickerOpened]);
 
     return (
         <div className={styles.Color__picker__wrapper}>
@@ -22,11 +41,16 @@ function CustomColorPicker( {name, currentColor, onChange} ) {
                 onClick={handleTileClick}
             ></div>
             {isPickerOpened &&
-                <SketchPicker
+                <div
                     className={styles.React__color__picker}
-                    color={ currentColor }
-                    onChange={handleColorChange}
-                />
+                    ref={pickerRef}
+                >
+                    <ChromePicker
+                        style={{fontFamily: 'inherit'}}
+                        color={ currentColor }
+                        onChange={handleColorChange}
+                    />
+                </div>
             }
         </div>
     );
