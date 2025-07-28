@@ -23,6 +23,7 @@ function CustomColorPicker( {name, currentColor, onChange} ) {
             ></div>
             {isPickerOpened &&
                 <SketchPicker
+                    className={styles.React__color__picker}
                     color={ currentColor }
                     onChange={handleColorChange}
                 />

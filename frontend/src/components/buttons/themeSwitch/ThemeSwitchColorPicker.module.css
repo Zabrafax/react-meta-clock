@@ -1,4 +1,6 @@
 .Color__picker__wrapper {
+    position: relative;
+
     width: fit-content;
     height: fit-content;
 
@@ -18,4 +20,10 @@
 .Color__pick__tile {
     height: 1.3rem;
     aspect-ratio: 3/1;
+}
+
+.React__color__picker {
+    position: absolute;
+    transform-origin: 0 0;
+    right: calc(100% + 1rem);
 }

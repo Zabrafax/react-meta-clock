@@ -2,13 +2,16 @@ import styles from './ThemeSwitch.module.css'
 import {forwardRef, useEffect, useRef, useState} from "react";
 import {useTheme} from "../../contexts/ThemeContext";
 import CustomColorPicker from "./CustomColorPicker";
+import {darkenColor} from "../../utils/colorUtils";
 
 const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
 // function themeSwitch({ name, choiceColors, lineColors }) {
     const {
         currentThemeNumber, setCurrentThemeNumber,
         allFirstThemeColors, setAllFirstThemeColors,
-        allAccentThemeColors, allTextThemeColors
+        setAllSecondThemeColors,
+        allAccentThemeColors, setAllAccentThemeColors,
+        allTextThemeColors, setAllTextThemeColors
     } = useTheme();
 
     const [lineColor, setLineColor] = useState(0);
@@ -27,7 +30,28 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
             return updatedColors;
         });
 
-        const secondColor =
+        const secondColor = darkenColor(color, 10);
+        setAllSecondThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = secondColor;
+            return updatedColors;
+        });
+    }
+
+    function handleAccentCustomColorChange(color) {
+        setAllAccentThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = color;
+            return updatedColors;
+        });
+    }
+
+    function handleTextCustomColorChange(color) {
+        setAllTextThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = color;
+            return updatedColors;
+        })
     }
 
     useEffect(() => {
@@ -97,10 +121,12 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                         <CustomColorPicker
                             name={"Accent color: "}
                             currentColor={allAccentThemeColors[currentThemeNumber]}
+                            onChange={handleAccentCustomColorChange}
                         />
                         <CustomColorPicker
                             name={"Text color: "}
                             currentColor={allTextThemeColors[currentThemeNumber]}
+                            onChange={handleTextCustomColorChange}
                         />
                     </div>
                 </div>
