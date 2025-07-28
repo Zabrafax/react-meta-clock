@@ -22,6 +22,8 @@
 
     height: 21px;
     aspect-ratio: 3/1;
+
+    cursor: pointer;
 }
 
 .Color__pick__tile::after {
@@ -44,6 +46,10 @@
 
 .Color__pick__tile:hover::after {
     transform: translateZ(0) scaleX(1);
+}
+
+.Color__pick__tile:active::after {
+    transform: translateZ(0) scaleX(0.8);
 }
 
 .React__color__picker {
