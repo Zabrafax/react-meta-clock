@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import {useTheme} from "../contexts/ThemeContext";
 
 function Clock(props) {
-    const { allSecondThemeColors, allAccentThemeColors, currentThemeNumber } = useTheme();
+    const { allSecondThemeColors, allAccentThemeColors, currentThemeNumber, allArrowShadows } = useTheme();
 
     let secondArrowDegrees = props.secondArrowDegrees;
     let minuteArrowDegrees = props.minuteArrowDegrees;
@@ -21,7 +21,7 @@ function Clock(props) {
                     style={{
                         '--minute-arrow-degrees': `${minuteArrowDegrees}deg`,
                         backgroundColor: allAccentThemeColors[currentThemeNumber],
-                        boxShadow: (currentThemeNumber === 1 || currentThemeNumber === 1) ? 'none' : '0 0 5px 1px black'
+                        boxShadow: (allArrowShadows[currentThemeNumber]) ? '0 0 5px 0px black' : 'none'
                     }}
                     className="Clock-minute-arrow"
                 ></div>
@@ -29,7 +29,7 @@ function Clock(props) {
                     style={{
                         '--hour-arrow-degrees': `${hourArrowDegrees}deg`,
                         backgroundColor: allAccentThemeColors[currentThemeNumber],
-                        boxShadow: (currentThemeNumber === 1 || currentThemeNumber === 1) ? 'none' : '0 0 5px 0px black'
+                        boxShadow: (allArrowShadows[currentThemeNumber]) ? '0 0 5px 0px black' : 'none'
                     }}
                     className="Clock-hour-arrow"
                 ></div>

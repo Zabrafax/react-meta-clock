@@ -18,8 +18,32 @@
 }
 
 .Color__pick__tile {
-    height: 1.3rem;
+    position: relative;
+
+    height: 21px;
     aspect-ratio: 3/1;
+}
+
+.Color__pick__tile::after {
+    display: block;
+    content: "";
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -3px;
+
+    width: inherit;
+    height: 3px;
+
+    background-color: var(--after-color, black);
+
+    transform: translateZ(0) scaleX(0);
+    transition: transform 0.2s;
+}
+
+.Color__pick__tile:hover::after {
+    transform: translateZ(0) scaleX(1);
 }
 
 .React__color__picker {

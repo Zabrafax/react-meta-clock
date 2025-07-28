@@ -117,16 +117,19 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                             name={"Main color: "}
                             currentColor={allFirstThemeColors[currentThemeNumber]}
                             onChange={handleMainCustomColorsChange}
+                            lineColor={allAccentThemeColors[currentThemeNumber]}
                         />
                         <CustomColorPicker
                             name={"Accent color: "}
                             currentColor={allAccentThemeColors[currentThemeNumber]}
                             onChange={handleAccentCustomColorChange}
+                            lineColor={allFirstThemeColors[currentThemeNumber]}
                         />
                         <CustomColorPicker
                             name={"Text color: "}
                             currentColor={allTextThemeColors[currentThemeNumber]}
                             onChange={handleTextCustomColorChange}
+                            lineColor={allFirstThemeColors[currentThemeNumber]}
                         />
                     </div>
                 </div>

@@ -9,6 +9,8 @@
     height: calc(100vh - 5rem - 1rem - 1rem - 5rem);
 
     font-weight: 200 !important;
+
+    user-select: none;
 }
 
 .All__settings__wrapper {

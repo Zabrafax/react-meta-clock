@@ -1,8 +1,11 @@
 import styles from './ThemeSwitchColorPicker.module.css'
 import { useState, useEffect, useRef } from 'react'
 import {ChromePicker, CirclePicker, SketchPicker} from 'react-color';
+import {useTheme} from "../../contexts/ThemeContext";
 
-function CustomColorPicker( {name, currentColor, onChange} ) {
+function CustomColorPicker( {name, currentColor, onChange, lineColor} ) {
+    const { currentThemeNumber, allAccentThemeColors } = useTheme();
+
     const [isPickerOpened, setIsPickerOpened] = useState(false);
     const pickerRef = useRef(null);
 
@@ -37,7 +40,10 @@ function CustomColorPicker( {name, currentColor, onChange} ) {
             <p>{name}</p>
             <div
                 className={styles.Color__pick__tile}
-                style={{backgroundColor: currentColor}}
+                style={{
+                    backgroundColor: currentColor,
+                    "--after-color": lineColor
+                }}
                 onClick={handleTileClick}
             ></div>
             {isPickerOpened &&
