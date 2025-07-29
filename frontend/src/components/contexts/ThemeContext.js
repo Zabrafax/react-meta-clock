@@ -1,4 +1,5 @@
 import {createContext, useContext, useEffect, useState} from "react";
+import {darkenColor} from "../utils/colorUtils";
 
 const ThemeContext = createContext();
 
@@ -35,10 +36,29 @@ export function ThemeProvider({ children }) {
         allAlphaThemePercents
     ]);
 
+    function setCustomFirstThemeColor(color) {
+        setAllFirstThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = color;
+            return updatedColors;
+        });
+    }
+
+    function setCustomDarkenSecondThemeColor(color) {
+        const secondColor = darkenColor(color, 10);
+        setAllSecondThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = secondColor;
+            return updatedColors;
+        });
+    }
+
     return (
         <ThemeContext.Provider value={{
-            allFirstThemeColors, setAllFirstThemeColors,
-            allSecondThemeColors, setAllSecondThemeColors,
+            allFirstThemeColors,
+            setCustomFirstThemeColor,
+            allSecondThemeColors,
+            setCustomDarkenSecondThemeColor,
             allAccentThemeColors, setAllAccentThemeColors,
             allArrowShadows, setAllArrowShadows,
             allTextThemeColors, setAllTextThemeColors,

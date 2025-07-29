@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import {useTheme} from "../contexts/ThemeContext";
 
 function Clock(props) {
-    const { allSecondThemeColors, allAccentThemeColors, currentThemeNumber, allArrowShadows } = useTheme();
+    const { secondThemeColor, accentThemeColor, arrowShadow } = useTheme();
 
     let secondArrowDegrees = props.secondArrowDegrees;
     let minuteArrowDegrees = props.minuteArrowDegrees;
@@ -14,22 +14,22 @@ function Clock(props) {
         <div className="Clock-wrapper">
             <div
                 className="Clock-background"
-                style={{backgroundColor: allSecondThemeColors[currentThemeNumber]}}
+                style={{ backgroundColor: secondThemeColor }}
             >
                 {/*<div style={{'--second-arrow-degrees': `${secondArrowDegrees}deg` }} className="Clock-second-arrow"></div>*/}
                 <div
                     style={{
                         '--minute-arrow-degrees': `${minuteArrowDegrees}deg`,
-                        backgroundColor: allAccentThemeColors[currentThemeNumber],
-                        boxShadow: (allArrowShadows[currentThemeNumber]) ? '0 0 5px 0px black' : 'none'
+                        backgroundColor: accentThemeColor,
+                        boxShadow: (arrowShadow) ? '0 0 5px 0px black' : 'none'
                     }}
                     className="Clock-minute-arrow"
                 ></div>
                 <div
                     style={{
                         '--hour-arrow-degrees': `${hourArrowDegrees}deg`,
-                        backgroundColor: allAccentThemeColors[currentThemeNumber],
-                        boxShadow: (allArrowShadows[currentThemeNumber]) ? '0 0 5px 0px black' : 'none'
+                        backgroundColor: accentThemeColor,
+                        boxShadow: (arrowShadow) ? '0 0 5px 0px black' : 'none'
                     }}
                     className="Clock-hour-arrow"
                 ></div>

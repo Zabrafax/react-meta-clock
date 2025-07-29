@@ -8,8 +8,9 @@ import SimpleSwitch from "../../SimpleSwitch";
 const ThemeSwitch = forwardRef(({ name }, ref) => {
     const {
         currentThemeNumber, setCurrentThemeNumber,
-        allFirstThemeColors, setAllFirstThemeColors,
-        setAllSecondThemeColors,
+        allFirstThemeColors,
+        setCustomFirstThemeColor,
+        setCustomDarkenSecondThemeColor,
         allAccentThemeColors, setAllAccentThemeColors,
         allTextThemeColors, setAllTextThemeColors,
         allArrowShadows, setAllArrowShadows,
@@ -24,18 +25,8 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
     const colorRefs = useRef([]);
 
     function handleMainCustomColorsChange(color) {
-        setAllFirstThemeColors(prevColors => {
-            const updatedColors = [...prevColors];
-            updatedColors[updatedColors.length - 1] = color;
-            return updatedColors;
-        });
-
-        const secondColor = darkenColor(color, 10);
-        setAllSecondThemeColors(prevColors => {
-            const updatedColors = [...prevColors];
-            updatedColors[updatedColors.length - 1] = secondColor;
-            return updatedColors;
-        });
+        setCustomFirstThemeColor(color);
+        setCustomDarkenSecondThemeColor(color);
     }
 
     function handleAccentCustomColorChange(color) {
