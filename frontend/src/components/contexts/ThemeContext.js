@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 
 const ThemeContext = createContext();
 
@@ -11,6 +11,30 @@ export function ThemeProvider({ children }) {
     const [allAlphaThemePercents, setAllAlphaThemePercents] = useState([0.85, 0.85, 0.8, 0.8, 0.85]);
     const [currentThemeNumber, setCurrentThemeNumber] = useState(0);
 
+    const [firstThemeColor, setFirstThemeColor] = useState(allFirstThemeColors[currentThemeNumber]);
+    const [secondThemeColor, setSecondThemeColor] = useState(allSecondThemeColors[currentThemeNumber]);
+    const [accentThemeColor, setAccentThemeColor] = useState(allAccentThemeColors[currentThemeNumber]);
+    const [arrowShadows, setArrowShadows] = useState(allArrowShadows[currentThemeNumber]);
+    const [textThemeColor, setTextThemeColor] = useState(allTextThemeColors[currentThemeNumber]);
+    const [alphaThemePercent, setAlphaThemePercent] = useState(allAlphaThemePercents[currentThemeNumber]);
+
+    useEffect(() => {
+        setFirstThemeColor(allFirstThemeColors[currentThemeNumber]);
+        setSecondThemeColor(allSecondThemeColors[currentThemeNumber]);
+        setAccentThemeColor(allAccentThemeColors[currentThemeNumber]);
+        setArrowShadows(allArrowShadows[currentThemeNumber]);
+        setTextThemeColor(allTextThemeColors[currentThemeNumber]);
+        setAlphaThemePercent(allAlphaThemePercents[currentThemeNumber]);
+    }, [
+        currentThemeNumber,
+        allFirstThemeColors,
+        allSecondThemeColors,
+        allAccentThemeColors,
+        allArrowShadows,
+        allTextThemeColors,
+        allAlphaThemePercents
+    ]);
+
     return (
         <ThemeContext.Provider value={{
             allFirstThemeColors, setAllFirstThemeColors,
@@ -19,7 +43,14 @@ export function ThemeProvider({ children }) {
             allArrowShadows, setAllArrowShadows,
             allTextThemeColors, setAllTextThemeColors,
             allAlphaThemePercents, setAllAlphaThemePercents,
-            currentThemeNumber, setCurrentThemeNumber
+            currentThemeNumber, setCurrentThemeNumber,
+
+            firstThemeColor,
+            secondThemeColor,
+            accentThemeColor,
+            arrowShadows,
+            textThemeColor,
+            alphaThemePercent
         }}>
             {children}
         </ThemeContext.Provider>

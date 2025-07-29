@@ -5,8 +5,7 @@ import CustomColorPicker from "./CustomColorPicker";
 import {darkenColor} from "../../utils/colorUtils";
 import SimpleSwitch from "../../SimpleSwitch";
 
-const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
-// function themeSwitch({ name, choiceColors, lineColors }) {
+const ThemeSwitch = forwardRef(({ name }, ref) => {
     const {
         currentThemeNumber, setCurrentThemeNumber,
         allFirstThemeColors, setAllFirstThemeColors,
@@ -15,6 +14,13 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
         allTextThemeColors, setAllTextThemeColors,
         allArrowShadows, setAllArrowShadows
     } = useTheme();
+
+    let choiceColors = allFirstThemeColors;
+    let lineColors = allAccentThemeColors;
+    // useEffect(() => {
+    //     choiceColors = allFirstThemeColors;
+    //     lineColors = allAccentThemeColors;
+    // }, [allFirstThemeColors, allAccentThemeColors]);
 
     const [lineColor, setLineColor] = useState(0);
 
@@ -150,7 +156,7 @@ const ThemeSwitch = forwardRef(({ name, choiceColors, lineColors }, ref) => {
                             lineColor={allFirstThemeColors[currentThemeNumber]}
                         />
                         <SimpleSwitch
-                            name="Arrow shadow"
+                            name="Arrows shadow"
                             initialState={allArrowShadows[currentThemeNumber]}
                             onEnable={enableArrowShadow}
                             onDisable={disableArrowShadow}

@@ -15,7 +15,7 @@ function SettingsWindow({
                             setIsSeparatorsEnabled
                         }) {
 
-    const { allFirstThemeColors, allAccentThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
+    const { firstThemeColor, textThemeColor, alphaThemePercent } = useTheme();
 
     const themeSwitchRef = useRef();
     const [themeSwitchWidth, setThemeSwitchWidth] = useState(0);
@@ -68,7 +68,7 @@ function SettingsWindow({
         <div
             className="Settings__window Window"
             style={{
-                backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], allAlphaThemePercents[currentThemeNumber])
+                backgroundColor: HEXtoRGBA(firstThemeColor, alphaThemePercent)
             }}
         >
             <div className="Window__top__wrapper">
@@ -77,7 +77,7 @@ function SettingsWindow({
                 <a
                     className="Closing__cross"
                     onClick={onSettingsCrossClick}
-                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                    style={{ "--after-color": textThemeColor }}
                 ></a>
             </div>
             <div className="Window__main__wrapper" ref={allSettingsWrapperRef}>
@@ -94,8 +94,6 @@ function SettingsWindow({
                     </div>
                     <ThemeSwitch
                         name="Theme Colors"
-                        choiceColors={allFirstThemeColors}
-                        lineColors={allAccentThemeColors}
                         ref={themeSwitchRef}
                     />
                     <TimeZonePicker />
