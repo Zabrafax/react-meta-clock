@@ -8,7 +8,7 @@ import {useUserContext} from "../contexts/UserContext";
 import {useTimeZones} from "../contexts/TimeZoneContext";
 
 function AccountWindow({ onAccountCrossClick }) {
-    const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
+    const { firstThemeColor, textThemeColor, alphaThemePercent } = useTheme();
     const { currentTimeZoneId } = useTimeZones();
 
     const { isLoggedIn, username, registrationDate, registerUser, loginUser, logout } = useUserContext();
@@ -60,7 +60,7 @@ function AccountWindow({ onAccountCrossClick }) {
         <div
             className={styles.Account__window + ' Window'}
             style={{
-                backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], allAlphaThemePercents[currentThemeNumber])
+                backgroundColor: HEXtoRGBA(firstThemeColor, alphaThemePercent)
             }}
         >
             <div className="Window__top__wrapper">
@@ -69,7 +69,7 @@ function AccountWindow({ onAccountCrossClick }) {
                 <a
                     className="Closing__cross"
                     onClick={onAccountCrossClick}
-                    style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                    style={{ "--after-color": textThemeColor }}
                 ></a>
             </div>
 
@@ -106,7 +106,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             className="Small__a__button"
                             onClick={handleLogout}
                             style={{
-                                "--after-color": allTextThemeColors[currentThemeNumber],
+                                "--after-color": textThemeColor,
                                 "--after-height": "1px"
                             }}
                         >Logout</a>
@@ -137,7 +137,7 @@ function AccountWindow({ onAccountCrossClick }) {
                                     className={styles.Input__line}
                                     style={{
                                         width: isFocusedUsername ? '105%' : '100%',
-                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                        backgroundColor: textThemeColor
                                     }}
                                 ></div>
                             </div>
@@ -156,7 +156,7 @@ function AccountWindow({ onAccountCrossClick }) {
                                     className={styles.Input__line}
                                     style={{
                                         width: isFocusedPassword ? '105%' : '100%',
-                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                        backgroundColor: textThemeColor
                                     }}
                                 ></div>
                             </div>
@@ -164,7 +164,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             <button
                                 type="submit"
                                 className={styles.Submit__button}
-                                style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                                style={{ "--after-color": textThemeColor }}
                             >Login</button>
                         </form>
                     </div>
@@ -175,7 +175,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             onClick={() => {setIsRegisterWindow(true)}}
                             className="Small__a__button"
                             style={{
-                                "--after-color": allTextThemeColors[currentThemeNumber],
+                                "--after-color": textThemeColor,
                                 "--after-height": "1px"
                         }}
                         >Register</a>
@@ -206,7 +206,7 @@ function AccountWindow({ onAccountCrossClick }) {
                                     className={styles.Input__line}
                                     style={{
                                         width: isFocusedUsername ? '105%' : '100%',
-                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                        backgroundColor: textThemeColor
                                     }}
                                 ></div>
                             </div>
@@ -225,7 +225,7 @@ function AccountWindow({ onAccountCrossClick }) {
                                     className={styles.Input__line}
                                     style={{
                                         width: isFocusedPassword ? '105%' : '100%',
-                                        backgroundColor: allTextThemeColors[currentThemeNumber]
+                                        backgroundColor: textThemeColor
                                     }}
                                 ></div>
                             </div>
@@ -233,7 +233,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             <button
                                 type="submit"
                                 className={styles.Submit__button}
-                                style={{ "--after-color": allTextThemeColors[currentThemeNumber] }}
+                                style={{ "--after-color": textThemeColor }}
                             >Register</button>
                         </form>
                     </div>
@@ -244,7 +244,7 @@ function AccountWindow({ onAccountCrossClick }) {
                             onClick={() => {setIsRegisterWindow(false)}}
                             className="Small__a__button"
                             style={{
-                                "--after-color": allTextThemeColors[currentThemeNumber],
+                                "--after-color": textThemeColor,
                                 "--after-height": "1px"
                             }}
                         >Login</a>
