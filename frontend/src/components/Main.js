@@ -12,7 +12,7 @@ function Main() {
     /*
         Theme
      */
-    const { allFirstThemeColors, allTextThemeColors, currentThemeNumber } = useTheme();
+    const { firstThemeColor, textThemeColor } = useTheme();
 
     /*
         Account window
@@ -109,8 +109,8 @@ function Main() {
         <div
             className="Page__back__wrapper"
             style={{
-                color: allTextThemeColors[currentThemeNumber],
-                backgroundColor: allFirstThemeColors[currentThemeNumber]
+                color: textThemeColor,
+                backgroundColor: firstThemeColor
             }}
         >
             {!isFullscreen &&
@@ -127,7 +127,7 @@ function Main() {
                     marginTop: isFullscreen ? "0" : "5rem",
                     minHeight: isFullscreen ? "100vh" : "calc(100vh - 5rem - 5rem)",
                     justifyContent: isFullscreen ? "center" : "start",
-                    backgroundColor: allFirstThemeColors[currentThemeNumber]
+                    backgroundColor: firstThemeColor
                 }}
             >
                 <ClockGrid
