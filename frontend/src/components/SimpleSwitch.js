@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import {useTheme} from "./contexts/ThemeContext";
 
 function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
-    const { allTextThemeColors, currentThemeNumber } = useTheme();
+    const { textThemeColor } = useTheme();
 
     const [leftLineOffset, setLeftLineOffset] = useState(0);
     const [lineWidth, setLineWidth] = useState(0);
@@ -67,7 +67,7 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
                         style={{
                             width: lineWidth + "px",
                             left: leftLineOffset + "px",
-                            backgroundColor: allTextThemeColors[currentThemeNumber]
+                            backgroundColor: textThemeColor
                         }}
                     />
                 </div>

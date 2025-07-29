@@ -15,7 +15,7 @@ export function ThemeProvider({ children }) {
     const [firstThemeColor, setFirstThemeColor] = useState(allFirstThemeColors[currentThemeNumber]);
     const [secondThemeColor, setSecondThemeColor] = useState(allSecondThemeColors[currentThemeNumber]);
     const [accentThemeColor, setAccentThemeColor] = useState(allAccentThemeColors[currentThemeNumber]);
-    const [arrowShadows, setArrowShadows] = useState(allArrowShadows[currentThemeNumber]);
+    const [arrowShadow, setArrowShadow] = useState(allArrowShadows[currentThemeNumber]);
     const [textThemeColor, setTextThemeColor] = useState(allTextThemeColors[currentThemeNumber]);
     const [alphaThemePercent, setAlphaThemePercent] = useState(allAlphaThemePercents[currentThemeNumber]);
 
@@ -23,7 +23,7 @@ export function ThemeProvider({ children }) {
         setFirstThemeColor(allFirstThemeColors[currentThemeNumber]);
         setSecondThemeColor(allSecondThemeColors[currentThemeNumber]);
         setAccentThemeColor(allAccentThemeColors[currentThemeNumber]);
-        setArrowShadows(allArrowShadows[currentThemeNumber]);
+        setArrowShadow(allArrowShadows[currentThemeNumber]);
         setTextThemeColor(allTextThemeColors[currentThemeNumber]);
         setAlphaThemePercent(allAlphaThemePercents[currentThemeNumber]);
     }, [
@@ -53,24 +53,41 @@ export function ThemeProvider({ children }) {
         });
     }
 
+    function setCustomAccentThemeColor(color) {
+        setAllAccentThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = color;
+            return updatedColors;
+        });
+    }
+
+    function setCustomArrowShadows(state) {
+        setAllArrowShadows(prevShadows => {
+            const updatedShadows = [...prevShadows];
+            console.log(state);
+            updatedShadows[updatedShadows.length - 1] = state;
+            return updatedShadows;
+        })
+    }
+
+    function setCustomTextThemeColor(color) {
+        setAllTextThemeColors(prevColors => {
+            const updatedColors = [...prevColors];
+            updatedColors[updatedColors.length - 1] = color;
+            return updatedColors;
+        })
+    }
+
     return (
         <ThemeContext.Provider value={{
-            allFirstThemeColors,
-            setCustomFirstThemeColor,
-            allSecondThemeColors,
-            setCustomDarkenSecondThemeColor,
-            allAccentThemeColors, setAllAccentThemeColors,
-            allArrowShadows, setAllArrowShadows,
-            allTextThemeColors, setAllTextThemeColors,
-            allAlphaThemePercents, setAllAlphaThemePercents,
-            currentThemeNumber, setCurrentThemeNumber,
+            allFirstThemeColors, setCustomFirstThemeColor, firstThemeColor,
+            allSecondThemeColors, setCustomDarkenSecondThemeColor, secondThemeColor,
+            allAccentThemeColors, setCustomAccentThemeColor, accentThemeColor,
+            allArrowShadows, setCustomArrowShadows, arrowShadow,
+            allTextThemeColors, setCustomTextThemeColor, textThemeColor,
+            allAlphaThemePercents, alphaThemePercent,
 
-            firstThemeColor,
-            secondThemeColor,
-            accentThemeColor,
-            arrowShadows,
-            textThemeColor,
-            alphaThemePercent
+            currentThemeNumber, setCurrentThemeNumber
         }}>
             {children}
         </ThemeContext.Provider>

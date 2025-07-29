@@ -2,19 +2,17 @@ import styles from './ThemeSwitch.module.css'
 import {forwardRef, useEffect, useRef, useState} from "react";
 import {useTheme} from "../../contexts/ThemeContext";
 import CustomColorPicker from "./CustomColorPicker";
-import {darkenColor} from "../../utils/colorUtils";
 import SimpleSwitch from "../../SimpleSwitch";
 
 const ThemeSwitch = forwardRef(({ name }, ref) => {
     const {
-        currentThemeNumber, setCurrentThemeNumber,
-        allFirstThemeColors,
-        setCustomFirstThemeColor,
+        allFirstThemeColors, setCustomFirstThemeColor, firstThemeColor,
         setCustomDarkenSecondThemeColor,
-        allAccentThemeColors, setAllAccentThemeColors,
-        allTextThemeColors, setAllTextThemeColors,
-        allArrowShadows, setAllArrowShadows,
-        accentThemeColor
+        allAccentThemeColors, setCustomAccentThemeColor, accentThemeColor,
+        setCustomArrowShadows, arrowShadow,
+        setCustomTextThemeColor, textThemeColor,
+
+        currentThemeNumber, setCurrentThemeNumber
     } = useTheme();
 
     const [leftLineOffset, setLeftLineOffset] = useState(0);
@@ -30,35 +28,19 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
     }
 
     function handleAccentCustomColorChange(color) {
-        setAllAccentThemeColors(prevColors => {
-            const updatedColors = [...prevColors];
-            updatedColors[updatedColors.length - 1] = color;
-            return updatedColors;
-        });
+        setCustomAccentThemeColor(color);
     }
 
     function handleTextCustomColorChange(color) {
-        setAllTextThemeColors(prevColors => {
-            const updatedColors = [...prevColors];
-            updatedColors[updatedColors.length - 1] = color;
-            return updatedColors;
-        })
+        setCustomTextThemeColor(color);
     }
 
     function enableArrowShadow() {
-        setAllArrowShadows(prevShadows => {
-            const updatedShadows = [...prevShadows];
-            updatedShadows[updatedShadows.length - 1] = true;
-            return updatedShadows;
-        })
+        setCustomArrowShadows(true);
     }
 
     function disableArrowShadow() {
-        setAllArrowShadows(prevShadows => {
-            const updatedShadows = [...prevShadows];
-            updatedShadows[updatedShadows.length - 1] = false;
-            return updatedShadows;
-        })
+        setCustomArrowShadows(false);
     }
 
     useEffect(() => {
@@ -119,25 +101,25 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                     <div className={styles.Custom__color__switches__wrapper}>
                         <CustomColorPicker
                             name={"Main color: "}
-                            currentColor={allFirstThemeColors[currentThemeNumber]}
+                            currentColor={firstThemeColor}
                             onChange={handleMainCustomColorsChange}
-                            lineColor={allAccentThemeColors[currentThemeNumber]}
+                            lineColor={accentThemeColor}
                         />
                         <CustomColorPicker
                             name={"Accent color: "}
-                            currentColor={allAccentThemeColors[currentThemeNumber]}
+                            currentColor={accentThemeColor}
                             onChange={handleAccentCustomColorChange}
-                            lineColor={allFirstThemeColors[currentThemeNumber]}
+                            lineColor={firstThemeColor}
                         />
                         <CustomColorPicker
                             name={"Text color: "}
-                            currentColor={allTextThemeColors[currentThemeNumber]}
+                            currentColor={textThemeColor}
                             onChange={handleTextCustomColorChange}
-                            lineColor={allFirstThemeColors[currentThemeNumber]}
+                            lineColor={firstThemeColor}
                         />
                         <SimpleSwitch
                             name="Arrows shadow"
-                            initialState={allArrowShadows[currentThemeNumber]}
+                            initialState={arrowShadow}
                             onEnable={enableArrowShadow}
                             onDisable={disableArrowShadow}
                         />
