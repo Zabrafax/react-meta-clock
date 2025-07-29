@@ -80,7 +80,7 @@
     /*box-shadow: 0 0 10px 2px black;*/
 
     transform-origin: 50% calc(52px - (8px / 2));
-    transform: rotate(var(--minute-arrow-degrees));
+    transform: translateZ(0) rotate(var(--minute-arrow-degrees));
 
     transition: transform 500ms;
 
@@ -92,14 +92,14 @@
     width: 8px;
 
     left: calc(50% - (8px / 2));
-    top: calc(100px / 2 - 45px + (8px / 2));
+    top: calc(100px / 2 - (45px - (8px / 2)));
 
     background-color: black;
     border-radius: 0 0 100px 100px;
     /*box-shadow: 0 0 10px 1px black;*/
 
     transform-origin: 50% calc(45px - (8px / 2));
-    transform: rotate(var(--hour-arrow-degrees));
+    transform: translateZ(0) rotate(var(--hour-arrow-degrees));
 
     transition: transform 500ms;
 

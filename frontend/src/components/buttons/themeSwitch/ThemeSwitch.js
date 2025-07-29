@@ -12,22 +12,14 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
         setAllSecondThemeColors,
         allAccentThemeColors, setAllAccentThemeColors,
         allTextThemeColors, setAllTextThemeColors,
-        allArrowShadows, setAllArrowShadows
+        allArrowShadows, setAllArrowShadows,
+        accentThemeColor
     } = useTheme();
-
-    let choiceColors = allFirstThemeColors;
-    let lineColors = allAccentThemeColors;
-    // useEffect(() => {
-    //     choiceColors = allFirstThemeColors;
-    //     lineColors = allAccentThemeColors;
-    // }, [allFirstThemeColors, allAccentThemeColors]);
-
-    const [lineColor, setLineColor] = useState(0);
 
     const [leftLineOffset, setLeftLineOffset] = useState(0);
     const [lineWidth, setLineWidth] = useState(0);
 
-    const isCustomColor = currentThemeNumber === choiceColors.length - 1;
+    const isCustomColor = currentThemeNumber === allFirstThemeColors.length - 1;
 
     const colorRefs = useRef([]);
 
@@ -85,14 +77,11 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
             setLeftLineOffset(basicLineWidth * currentThemeNumber);
             setLineWidth(basicLineWidth);
         }
-
-        setLineColor(lineColors[currentThemeNumber]);
-
-    }, [currentThemeNumber, choiceColors, colorRefs, lineColors, setCurrentThemeNumber]);
+    }, [currentThemeNumber, colorRefs, allAccentThemeColors]);
 
     useEffect(() => {
-        colorRefs.current = colorRefs.current.slice(0, choiceColors.length);
-    }, [choiceColors, colorRefs]);
+        colorRefs.current = colorRefs.current.slice(0, allFirstThemeColors.length);
+    }, [allFirstThemeColors, colorRefs]);
 
     return (
         <div ref={ref} className={styles.ThemeSwitch}>
@@ -100,7 +89,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                 <p>{name + ": "}</p>
                 <div className={styles.Choices__wrapper}>
                     <div className={styles.Choice__options}>
-                        {choiceColors.slice(0, -1).map((color, index) => (
+                        {allFirstThemeColors.slice(0, -1).map((color, index) => (
                             // eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid
                             <a
                                 key={index}
@@ -112,9 +101,9 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                         ))}
                         <a
                             key={"custom"}
-                            ref={el => (colorRefs.current[choiceColors.length - 1] = el)}
+                            ref={el => (colorRefs.current[allFirstThemeColors.length - 1] = el)}
                             className={styles.Choice__option__custom}
-                            onClick={() => setCurrentThemeNumber(choiceColors.length - 1)}
+                            onClick={() => setCurrentThemeNumber(allFirstThemeColors.length - 1)}
                         ></a>
                     </div>
                     <div className={styles.Choices__line__wrapper}>
@@ -123,7 +112,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                             style={{
                                 width: lineWidth + "px",
                                 left: leftLineOffset + "px",
-                                backgroundColor: lineColor
+                                backgroundColor: accentThemeColor
                             }}
                         />
                     </div>
