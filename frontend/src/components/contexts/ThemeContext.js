@@ -10,6 +10,7 @@ export function ThemeProvider({ children }) {
     const [allArrowShadows, setAllArrowShadows] = useState([true, false, true, true, true]);
     const [allTextThemeColors, setAllTextThemeColors] = useState(["#ffffff", "#000000", "#000000", "#ffffff", "#ffffff"]);
     const [allAlphaThemePercents, setAllAlphaThemePercents] = useState([0.85, 0.85, 0.8, 0.8, 0.85]);
+
     const [currentThemeNumber, setCurrentThemeNumber] = useState(0);
 
     const [firstThemeColor, setFirstThemeColor] = useState(allFirstThemeColors[currentThemeNumber]);

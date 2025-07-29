@@ -79,15 +79,15 @@
 
 .Custom__color__switches__wrapper {
     width: 100%;
-    height: 200px;
+    height: fit-content;
+
+    padding-bottom: 0.25rem;
 
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     flex-wrap: nowrap;
-
-    background: red;
 }
 
 .Choices__line__wrapper {
