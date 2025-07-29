@@ -94,7 +94,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
 
             {isCustomColor &&
                 <div
-                    className={`${styles.Custom__color__extension} ${isCustomColor ? styles.open : ""}`}
+                    className={styles.Custom__color__extension}
                     // style={{ transform: `scaleY(${isCustomColor ? 1 : 0})` }}
                 >
                     {/*<h2>Custom:</h2>*/}
@@ -104,6 +104,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                             currentColor={firstThemeColor}
                             onChange={handleMainCustomColorsChange}
                             lineColor={accentThemeColor}
+                            borderColor={accentThemeColor}
                         />
                         <CustomColorPicker
                             name={"Accent color: "}

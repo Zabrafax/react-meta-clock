@@ -2,7 +2,7 @@ import styles from './ThemeSwitchColorPicker.module.css'
 import { useState, useEffect, useRef } from 'react'
 import { ChromePicker } from 'react-color';
 
-function CustomColorPicker( {name, currentColor, onChange, lineColor} ) {
+function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColor} ) {
     const [isPickerOpened, setIsPickerOpened] = useState(false);
     const pickerRef = useRef(null);
 
@@ -39,7 +39,8 @@ function CustomColorPicker( {name, currentColor, onChange, lineColor} ) {
                 className={styles.Color__pick__tile}
                 style={{
                     backgroundColor: currentColor,
-                    "--after-color": lineColor
+                    "--after-color": lineColor,
+                    border: borderColor ? `2px solid ${borderColor}` : 'none'
                 }}
                 onClick={handleTileClick}
             ></div>
