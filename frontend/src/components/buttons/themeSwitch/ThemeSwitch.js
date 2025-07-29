@@ -94,7 +94,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
 
             {isCustomColor &&
                 <div
-                    className={styles.Custom__color__extension}
+                    className={`${styles.Custom__color__extension} ${isCustomColor ? styles.open : ""}`}
                     // style={{ transform: `scaleY(${isCustomColor ? 1 : 0})` }}
                 >
                     {/*<h2>Custom:</h2>*/}
@@ -109,13 +109,13 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                             name={"Accent color: "}
                             currentColor={accentThemeColor}
                             onChange={handleAccentCustomColorChange}
-                            lineColor={firstThemeColor}
+                            lineColor={textThemeColor}
                         />
                         <CustomColorPicker
                             name={"Text color: "}
                             currentColor={textThemeColor}
                             onChange={handleTextCustomColorChange}
-                            lineColor={firstThemeColor}
+                            lineColor={accentThemeColor}
                         />
                         <SimpleSwitch
                             name="Arrows shadow"
