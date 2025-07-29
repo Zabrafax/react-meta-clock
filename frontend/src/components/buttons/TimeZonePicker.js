@@ -5,7 +5,7 @@ import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
 
 function TimeZonePicker() {
-    const { allFirstThemeColors, allTextThemeColors, allAlphaThemePercents, currentThemeNumber } = useTheme();
+    const { firstThemeColor, textThemeColor, alphaThemePercent } = useTheme();
 
     const { timeZones, currentTimeZoneId, setCurrentTimeZoneId } = useTimeZones();
 
@@ -65,14 +65,14 @@ function TimeZonePicker() {
                     className={styles.Bottom__line}
                     ref={lineRef}
                     style={{
-                        backgroundColor: allTextThemeColors[currentThemeNumber],
+                        backgroundColor: textThemeColor,
                         width: lineWidth + 'px'
                     }}
                 ></div>
                 { isOpen && <div
                     className={styles.Dialog__window}
                     style={{
-                        backgroundColor: HEXtoRGBA(allFirstThemeColors[currentThemeNumber], allAlphaThemePercents[currentThemeNumber]),
+                        backgroundColor: HEXtoRGBA(firstThemeColor, alphaThemePercent),
                         top: topDialogOffset + 'px'
                     }}
                 >
@@ -80,7 +80,7 @@ function TimeZonePicker() {
                         <a
                             className={styles.Choice__option + ' Small__a__button'}
                             style={{
-                                "--after-color": allTextThemeColors[currentThemeNumber],
+                                "--after-color": textThemeColor,
                                 "--after-height": 1.5 + 'px'
                         }}
                             key={timezone.id}
