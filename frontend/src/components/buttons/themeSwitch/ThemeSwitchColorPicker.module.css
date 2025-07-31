@@ -41,6 +41,7 @@
     background-color: var(--after-color, black);
 
     transform: translateZ(0) scaleX(0);
+
     transition: transform 0.2s;
 }
 
