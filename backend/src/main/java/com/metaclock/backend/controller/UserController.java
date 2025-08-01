@@ -3,6 +3,7 @@ package com.metaclock.backend.controller;
 import com.metaclock.backend.core.timezones.PopularTimeZones;
 import com.metaclock.backend.dto.ApiResponse;
 import com.metaclock.backend.dto.ColorThemeRequest;
+import com.metaclock.backend.dto.RegisterRequest;
 import com.metaclock.backend.dto.UserResponse;
 import com.metaclock.backend.model.UserTheme;
 import com.metaclock.backend.service.UserService;
@@ -154,11 +155,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
-        String username = body.get("username");
-        String password = body.get("password");
-        String dateStr = body.get("registrationDate");
-        String userTimeZone = body.get("timeZone");
+    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
+        String username = request.getUsername();
+        String password = request.getPassword();
+        String dateStr = request.getRegistrationDate();
+        String userTimeZone = request.getTimeZone();
+        UserTheme userTheme = request.getUserTheme();
 
         LocalDate registrationDate = LocalDate.parse(dateStr);
 
@@ -188,14 +190,15 @@ public class UserController {
         }
 
         try {
-            UserResponse response = userService.registerUser(username, password, registrationDate, userTimeZone);
+            UserResponse response = userService.registerUser(username, password, registrationDate, userTimeZone, userTheme);
             String token = jwtUtil.generateToken(username);
 
             return ResponseEntity.ok(new ApiResponse<>(true, "Successful user registration", Map.of(
                     "token", token,
                     "username", response.getUsername(),
                     "registrationDate", response.getRegistrationDate(),
-                    "timeZone", response.getTimeZone()
+                    "timeZone", response.getTimeZone(),
+                    "userTheme", response.getUserTheme()
             )));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));

@@ -25,7 +25,7 @@ public class UserService {
         if (user == null) {
             throw new RuntimeException("User not found");
         }
-        
+
         user.setUserTheme(userTheme);
         userRepository.save(user);
     }
@@ -41,7 +41,9 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public UserResponse registerUser(String username, String rawPassword, LocalDate registrationDate, String timeZone) {
+    public UserResponse registerUser(String username, String rawPassword, LocalDate registrationDate,
+                                     String timeZone, UserTheme userTheme
+    ) {
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username already exists");
         }
@@ -52,10 +54,11 @@ public class UserService {
         user.setPassword(hashedPassword);
         user.setRegistrationDate(registrationDate);
         user.setTimeZone(timeZone);
+        user.setUserTheme(userTheme);
 
         try {
             userRepository.save(user);
-            return new UserResponse(username, registrationDate, timeZone);
+            return new UserResponse(username, registrationDate, timeZone, userTheme);
         } catch (DataIntegrityViolationException e) {
             throw new RuntimeException("Username already taken");
         }
@@ -68,7 +71,7 @@ public class UserService {
             throw new RuntimeException("User not found");
         }
         
-        return new UserResponse(user.getUsername(), user.getRegistrationDate(), user.getTimeZone());
+        return new UserResponse(user.getUsername(), user.getRegistrationDate(), user.getTimeZone(), user.getUserTheme());
     }
 
     public UserResponse loginUser(String username, String rawPassword) {
@@ -82,6 +85,6 @@ public class UserService {
             throw new RuntimeException("Invalid password");
         }
 
-        return new UserResponse(user.getUsername(), user.getRegistrationDate(), user.getTimeZone());
+        return new UserResponse(user.getUsername(), user.getRegistrationDate(), user.getTimeZone(), user.getUserTheme());
     }
 }
