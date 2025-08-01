@@ -1,6 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {useUserContext} from "./UserContext";
-import {wait} from "@testing-library/user-event/dist/utils";
+import {useErrorContext} from "./ErrorContext";
 
 const TimeZoneContext = createContext();
 
@@ -8,27 +8,31 @@ export function TimeZoneProvider({ children }) {
     const [currentTimeZoneId, setCurrentTimeZoneId] = useState("");
     const [timeZones, setTimeZones] = useState([]);
     
-    const { isLoggedIn, userTimeZone } = useUserContext();
-
-    const { saveTimeZone } = useUserContext();
+    const { isLoggedIn, userTimeZone, saveTimeZone } = useUserContext();
+    const { handleError } = useErrorContext();
 
     useEffect(() => {
         saveTimeZone(currentTimeZoneId);
     }, [currentTimeZoneId]);
 
     useEffect(() => {
-        // console.log("Is logged: " + isLoggedIn);
-        // console.log("UserTimeZone: " + userTimeZone);
+        async function fetchTimeZones() {
+            try {
+                const response = await fetch('http://localhost:8080/api/clock/timezones');
 
-        fetch('http://localhost:8080/api/clock/timezones')
-            .then(res => res.json())
-            .then(data => {
+                if (!response.ok) {
+                    console.log("Server error while fetching timezones", error);
+                    handleError();
+                }
+
+                const data = await response.json();
+
                 const deviceZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                 const userOffsetSeconds = -new Date().getTimezoneOffset() * 60;
 
                 const fallbackTimeZone = data[0]?.id || "";
                 let selectedTimeZone;
-                if(!!isLoggedIn && !!userTimeZone) {
+                if (!!isLoggedIn && !!userTimeZone) {
                     selectedTimeZone = userTimeZone;
                 } else if (data.some(tz => tz.id === deviceZone)) {
                     selectedTimeZone = deviceZone;
@@ -37,10 +41,14 @@ export function TimeZoneProvider({ children }) {
                 }
 
                 setTimeZones(data);
-                // console.log(userZone);
-                // console.log(selectedTimeZone);
                 setCurrentTimeZoneId(selectedTimeZone);
-            });
+            } catch (error) {
+                console.log("Error while fetching timezones", error);
+                handleError();
+            }
+        }
+
+        fetchTimeZones();
     }, [isLoggedIn, userTimeZone]);
 
     return (

@@ -7,6 +7,7 @@ import SettingsWindow from "./windows/SettingsWindow";
 import Footer from "./Footer";
 import { useTheme } from "./contexts/ThemeContext";
 import AccountWindow from "./windows/AccountWindow";
+import {useErrorContext} from "./contexts/ErrorContext";
 
 function Main() {
     /*
@@ -33,9 +34,9 @@ function Main() {
     }
 
     /*
-        Server error window
+        Error window context
      */
-    const [isServerErrorWindowVisible, setIsServerErrorWindowVisible] = useState(false);
+    const { isErrorWindowActive } = useErrorContext();
 
     /*
         Settings window
@@ -135,7 +136,6 @@ function Main() {
                     cols={2}
                     isSecondsEnabled={isSecondsEnabled}
                     isSeparatorsEnabled={isSeparatorsEnabled}
-                    setIsServerErrorWindowVisible={setIsServerErrorWindowVisible}
                 />
             </main>
 
@@ -155,7 +155,7 @@ function Main() {
                 />
             }
 
-            {isServerErrorWindowVisible &&
+            {isErrorWindowActive &&
                 <ServerErrorWindow />
             }
 

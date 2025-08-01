@@ -6,17 +6,20 @@ import Main from "./components/Main";
 import {ThemeProvider} from "./components/contexts/ThemeContext";
 import {TimeZoneProvider} from "./components/contexts/TimeZoneContext";
 import {UserProvider} from "./components/contexts/UserContext";
+import {ErrorProvider} from "./components/contexts/ErrorContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    <UserProvider>
-        <ThemeProvider>
-            <TimeZoneProvider>
-                <Main />
-            </TimeZoneProvider>
-        </ThemeProvider>
-    </UserProvider>
+    <ErrorProvider>
+        <UserProvider>
+            <ThemeProvider>
+                <TimeZoneProvider>
+                    <Main />
+                </TimeZoneProvider>
+            </ThemeProvider>
+        </UserProvider>
+    </ErrorProvider>
   // </React.StrictMode>
 );
 

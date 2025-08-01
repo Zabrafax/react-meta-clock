@@ -2,6 +2,7 @@ import './ClockGrid.css';
 import React, {useEffect, useState, useRef} from 'react';
 import Clock from "./Clock";
 import {useTimeZones} from "../contexts/TimeZoneContext";
+import {useErrorContext} from "../contexts/ErrorContext";
 
 function ClockGrid(props) {
     const rows = props.rows;
@@ -11,10 +12,14 @@ function ClockGrid(props) {
 
     const { currentTimeZoneId } = useTimeZones();
 
+    const { handleError } = useErrorContext();
+    const handleErrorRef = useRef(handleError);
+    useEffect(() => {
+        handleErrorRef.current = handleError;
+    }, [handleError]);
+
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);
-
-    const setIsServerErrorWindowVisible = props.setIsServerErrorWindowVisible;
 
     const [minuteArrowDegreesArray, setMinuteArrowDegreesArray] = useState([]);
     const [hourArrowDegreesArray, setHourArrowDegreesArray] = useState([]);
@@ -78,14 +83,14 @@ function ClockGrid(props) {
         };
 
         socket.onerror = (error) => {
-            setIsServerErrorWindowVisible(true);
+            handleError();
             console.error("WebSocket error:", error);
         };
 
         socket.onclose = (event) => {
             const errorCodes = [1002, 1006, 1008, 1009, 1011, 1015];
             if(errorCodes.includes(event.code)) {
-                setIsServerErrorWindowVisible(true);
+                handleError();
                 console.log("WebSocket closed with error: " + event.code);
             }
             console.log("WebSocket closed: " + event.code);
