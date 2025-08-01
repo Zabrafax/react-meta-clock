@@ -2,7 +2,9 @@ package com.metaclock.backend.controller;
 
 import com.metaclock.backend.core.timezones.PopularTimeZones;
 import com.metaclock.backend.dto.ApiResponse;
+import com.metaclock.backend.dto.ColorThemeRequest;
 import com.metaclock.backend.dto.UserResponse;
+import com.metaclock.backend.model.UserTheme;
 import com.metaclock.backend.service.UserService;
 import com.metaclock.backend.util.JwtUtil;
 import org.springframework.http.HttpStatus;
@@ -25,8 +27,42 @@ public class UserController {
         this.jwtUtil = new JwtUtil();
     }
 
+    @PostMapping("/save-color-theme")
+    public ResponseEntity<?> saveColorTheme(
+            @RequestHeader("Authorization") String authHeader,
+            @RequestBody ColorThemeRequest request
+    ) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new ApiResponse<>(false, "Missing or invalid Authorization header", null)
+            );
+        }
+
+        UserTheme userTheme = request.getUserTheme();
+
+        if (userTheme == null || userTheme.getFirstThemeColor() == null || userTheme.getAccentThemeColor() == null &&
+            userTheme.getTextThemeColor() == null || userTheme.getTextThemeColor() == null
+        ) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new ApiResponse<>(false, "Missing or invalid userTheme", null)
+            );
+        }
+
+        try {
+            String token = authHeader.replace("Bearer ", "");
+            String username = jwtUtil.extractUsername(token);
+
+            userService.saveUserTheme(username, userTheme);
+            return ResponseEntity.ok(new ApiResponse<>(true, "User theme saved", null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                    new ApiResponse<>(false, e.getMessage(), null)
+            );
+        }
+    }
+
     @PostMapping("/save-timezone")
-    public ResponseEntity<ApiResponse> setTimeZone(
+    public ResponseEntity<?> saveTimeZone(
             @RequestHeader("Authorization") String authHeader,
             @RequestBody Map<String, String> body
     ) {
@@ -47,7 +83,7 @@ public class UserController {
             String username = jwtUtil.extractUsername(token);
 
             userService.saveTimeZone(username, timeZone);
-            return ResponseEntity.ok(new ApiResponse<>(true, "TimeZone saved", null));
+            return ResponseEntity.ok(new ApiResponse<>(true, "Time zone saved", null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
                     new ApiResponse<>(false, e.getMessage(), null)

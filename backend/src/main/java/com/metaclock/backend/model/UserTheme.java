@@ -1,10 +1,15 @@
 package com.metaclock.backend.model;
 
-public class UserTheme {
-    private int themeNumber;
+import jakarta.persistence.Embeddable;
+import lombok.Getter;
 
-    private String mainColorHEX;
-    private String accentColorHEX;
-    private String textColorHEX;
-    private boolean isArrowShadowsEnabled;
+@Embeddable
+@Getter
+public class UserTheme {
+    private int currentThemeNumber;
+
+    private String firstThemeColor;
+    private String accentThemeColor;
+    private String textThemeColor;
+    private boolean arrowShadow;
 }

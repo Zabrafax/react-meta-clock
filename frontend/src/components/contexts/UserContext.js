@@ -61,7 +61,7 @@ export function UserProvider({ children }) {
                         "content-type": "application/json",
                         "Authorization": `Bearer ${token}`
                     },
-                    body: JSON.stringify({ colorTheme: colorTheme })
+                    body: JSON.stringify({ userTheme: colorTheme })
                 });
 
                 const apiResponse = await response.json();

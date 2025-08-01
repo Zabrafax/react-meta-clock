@@ -2,6 +2,7 @@ package com.metaclock.backend.service;
 
 import com.metaclock.backend.dto.UserResponse;
 import com.metaclock.backend.model.User;
+import com.metaclock.backend.model.UserTheme;
 import com.metaclock.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -17,6 +18,17 @@ public class UserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    public void saveUserTheme(String username, UserTheme userTheme) {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+        
+        user.setUserTheme(userTheme);
+        userRepository.save(user);
+    }
 
     public void saveTimeZone(String username, String timeZone) {
         User user = userRepository.findByUsername(username);
