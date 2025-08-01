@@ -147,7 +147,8 @@ public class UserController {
                     "token", token,
                     "username", response.getUsername(),
                     "registrationDate", response.getRegistrationDate(),
-                    "timeZone", response.getTimeZone()
+                    "timeZone", response.getTimeZone(),
+                    "userTheme", response.getUserTheme()
             )));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));

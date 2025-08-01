@@ -142,11 +142,12 @@ export function UserProvider({ children }) {
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
                 setUserTimeZone(apiResponse.data.timeZone);
+                setUserColorTheme(apiResponse.data.userTheme);
 
-                //console.log('Login success:', apiResponse.data.username);
+                console.log('Login success:', apiResponse.data.username);
                 return {success: true};
             } else {
-                //console.error('Login error:', apiResponse.message);
+                console.error('Login error:', apiResponse.message);
                 return {success: false, message: apiResponse.message};
             }
         } catch (error) {
@@ -154,7 +155,7 @@ export function UserProvider({ children }) {
         }
     }
 
-    const registerUser = async (username, password, timeZone) => {
+    const registerUser = async (username, password, timeZone, colorTheme) => {
         if(!!isLoggedIn) {
             return {success: false, message: "You are already logged in"};
         }
@@ -166,7 +167,13 @@ export function UserProvider({ children }) {
             const response = await fetch("http://localhost:8080/api/users/register", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({username, password, registrationDate: localDate, timeZone} )
+                body: JSON.stringify({
+                    username,
+                    password,
+                    registrationDate: localDate,
+                    timeZone,
+                    userTheme: colorTheme
+                } )
             });
 
             const apiResponse = await response.json();

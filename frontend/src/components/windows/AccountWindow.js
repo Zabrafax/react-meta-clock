@@ -10,6 +10,7 @@ import {useTimeZones} from "../contexts/TimeZoneContext";
 function AccountWindow({ onAccountCrossClick }) {
     const { firstThemeColor, textThemeColor, alphaThemePercent } = useTheme();
     const { currentTimeZoneId } = useTimeZones();
+    const { colorTheme } = useTheme();
 
     const { isLoggedIn, username, registrationDate, registerUser, loginUser, logout } = useUserContext();
 
@@ -51,7 +52,7 @@ function AccountWindow({ onAccountCrossClick }) {
         const username = form.username.value;
         const password = form.password.value;
 
-        registerUser(username, password, currentTimeZoneId);
+        registerUser(username, password, currentTimeZoneId, colorTheme);
 
         setIsRegisterWindow(false);
     }
