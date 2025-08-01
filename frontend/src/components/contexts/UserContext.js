@@ -69,7 +69,7 @@ export function UserProvider({ children }) {
                 if (apiResponse.success) {
                     return {success: true};
                 } else {
-                    console.log("Error saving colorTheme: ", error);
+                    console.log("Error saving colorTheme");
                     return {success: false, message: apiResponse.message};
                 }
             } catch (error) {
