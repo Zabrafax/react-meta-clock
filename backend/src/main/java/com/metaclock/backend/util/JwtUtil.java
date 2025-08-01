@@ -1,5 +1,6 @@
 package com.metaclock.backend.util;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -22,8 +23,13 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
-        return Jwts.parserBuilder().setSigningKey(key).build()
-                .parseClaimsJws(token).getBody().getSubject();
+        try {
+            return Jwts.parserBuilder().setSigningKey(key).build()
+                    .parseClaimsJws(token).getBody().getSubject();
+        } catch (ExpiredJwtException e) {
+            System.out.println("JWT token expired: " + e.getMessage());
+            return null;
+        }
     }
 
     public boolean validateToken(String token, String username) {

@@ -21,7 +21,7 @@ export function TimeZoneProvider({ children }) {
                 const response = await fetch('http://localhost:8080/api/clock/timezones');
 
                 if (!response.ok) {
-                    console.log("Server error while fetching timezones", error);
+                    console.log("Server error while fetching timezones");
                     handleError();
                 }
 

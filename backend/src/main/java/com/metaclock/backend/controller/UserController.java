@@ -66,6 +66,11 @@ public class UserController {
         try {
             String token = authHeader.replace("Bearer ", "");
             String username = jwtUtil.extractUsername(token);
+            if (username == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                        new ApiResponse<>(false, "Invalid or expired token", null)
+                );
+            }
 
             String newToken = jwtUtil.generateToken(username);
             UserResponse response = userService.loginByUserName(username);

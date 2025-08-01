@@ -14,9 +14,6 @@ function ClockGrid(props) {
 
     const { handleError } = useErrorContext();
     const handleErrorRef = useRef(handleError);
-    useEffect(() => {
-        handleErrorRef.current = handleError;
-    }, [handleError]);
 
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);
