@@ -47,7 +47,7 @@ export function UserProvider({ children }) {
 
     const saveColorTheme = async (colorTheme) => {
         if(isLoggedIn) {
-            saveColorTheme(colorTheme);
+            setUserColorTheme(colorTheme);
 
             const token = localStorage.getItem("token");
             if (!token) {
@@ -78,12 +78,6 @@ export function UserProvider({ children }) {
             }
         }
     }
-
-    // themeNumber,
-    //     mainColorHEX,
-    //     accentColorHEX,
-    //     textColorHEX,
-    //     isArrowShadowsEnabled
 
     const saveTimeZone = async (timeZone) => {
         if(isLoggedIn) {

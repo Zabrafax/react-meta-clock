@@ -1,9 +1,12 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {darkenColor} from "../utils/colorUtils";
+import {useUserContext} from "./UserContext";
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
+    const { saveColorTheme } = useUserContext();
+
     const [allFirstThemeColors, setAllFirstThemeColors] = useState(["#1d2d65", "#eaeaea", "#8a89a6", "#4e9762", "#1d2d65"]);
     const [allSecondThemeColors, setAllSecondThemeColors] = useState(["#162652", "#d2d2d2", "#7f7e98", "#478556", "#162652"]);
     const [allAccentThemeColors, setAllAccentThemeColors] = useState(["#dcdcdc", "#000000", "#ffffff", "#ffffff", "#dcdcdc"]);
@@ -27,6 +30,18 @@ export function ThemeProvider({ children }) {
         setArrowShadow(allArrowShadows[currentThemeNumber]);
         setTextThemeColor(allTextThemeColors[currentThemeNumber]);
         setAlphaThemePercent(allAlphaThemePercents[currentThemeNumber]);
+
+        const colorTheme = {
+            currentThemeNumber,
+            firstThemeColor: allFirstThemeColors[currentThemeNumber],
+            accentThemeColor: allAccentThemeColors[currentThemeNumber],
+            textThemeColor: allTextThemeColors[currentThemeNumber],
+            arrowShadow: allArrowShadows[currentThemeNumber],
+        }
+
+        console.log(colorTheme);
+        saveColorTheme(colorTheme);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         currentThemeNumber,
         allFirstThemeColors,

@@ -13,6 +13,7 @@ export function TimeZoneProvider({ children }) {
 
     useEffect(() => {
         saveTimeZone(currentTimeZoneId);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentTimeZoneId]);
 
     useEffect(() => {
@@ -49,6 +50,7 @@ export function TimeZoneProvider({ children }) {
         }
 
         fetchTimeZones();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoggedIn, userTimeZone]);
 
     return (
