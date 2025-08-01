@@ -116,7 +116,8 @@ public class UserController {
                     "token", newToken,
                     "username", response.getUsername(),
                     "registrationDate", response.getRegistrationDate(),
-                    "timeZone", response.getTimeZone()
+                    "timeZone", response.getTimeZone() != null ? response.getTimeZone() : Map.of(),
+                    "userTheme", response.getUserTheme() != null ? response.getUserTheme() : Map.of()
             )));
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,8 +148,8 @@ public class UserController {
                     "token", token,
                     "username", response.getUsername(),
                     "registrationDate", response.getRegistrationDate(),
-                    "timeZone", response.getTimeZone(),
-                    "userTheme", response.getUserTheme()
+                    "timeZone", response.getTimeZone() != null ? response.getTimeZone() : Map.of(),
+                    "userTheme", response.getUserTheme() != null ? response.getUserTheme() : Map.of()
             )));
         } catch (RuntimeException e) {
             return ResponseEntity.ok(new ApiResponse<>(false, e.getMessage(), null));

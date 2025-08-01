@@ -31,7 +31,20 @@ export function UserProvider({ children }) {
                     localStorage.setItem("token", apiResponse.data.token);
                     setUsername(apiResponse.data.username);
                     setRegistrationDate(apiResponse.data.registrationDate);
-                    setUserTimeZone(apiResponse.data.timeZone);
+
+                    const isEmptyObject = obj => obj && Object.keys(obj).length === 0;
+
+                    if (apiResponse.data.timeZone && !isEmptyObject(apiResponse.data.timeZone)) {
+                        setUserTimeZone(apiResponse.data.timeZone);
+                    } else {
+                        console.log("User time zone is null, undefined or empty, auto time zone will be set");
+                    }
+
+                    if (apiResponse.data.userTheme && !isEmptyObject(apiResponse.data.userTheme)) {
+                        setUserColorTheme(apiResponse.data.userTheme);
+                    } else {
+                        console.log("User theme is null, undefined or empty, auto color theme will be set");
+                    }
 
                     //console.log('Token login success:', apiResponse.data.username);
                     return {success: true};
@@ -47,8 +60,6 @@ export function UserProvider({ children }) {
 
     const saveColorTheme = async (colorTheme) => {
         if(isLoggedIn) {
-            setUserColorTheme(colorTheme);
-
             const token = localStorage.getItem("token");
             if (!token) {
                 return;
@@ -81,8 +92,6 @@ export function UserProvider({ children }) {
 
     const saveTimeZone = async (timeZone) => {
         if(isLoggedIn) {
-            setUserTimeZone(timeZone);
-
             const token = localStorage.getItem("token");
             if (!token) {
                 return;
@@ -141,8 +150,20 @@ export function UserProvider({ children }) {
                 localStorage.setItem("token", apiResponse.data.token);
                 setUsername(apiResponse.data.username);
                 setRegistrationDate(apiResponse.data.registrationDate);
-                setUserTimeZone(apiResponse.data.timeZone);
-                setUserColorTheme(apiResponse.data.userTheme);
+
+                const isEmptyObject = obj => obj && Object.keys(obj).length === 0;
+
+                if (apiResponse.data.timeZone && !isEmptyObject(apiResponse.data.timeZone)) {
+                    setUserTimeZone(apiResponse.data.timeZone);
+                } else {
+                    console.log("User time zone is null, undefined or empty, auto time zone will be set");
+                }
+
+                if (apiResponse.data.userTheme && !isEmptyObject(apiResponse.data.userTheme)) {
+                    setUserColorTheme(apiResponse.data.userTheme);
+                } else {
+                    console.log("User theme is null, undefined or empty, auto color theme will be set");
+                }
 
                 console.log('Login success:', apiResponse.data.username);
                 return {success: true};

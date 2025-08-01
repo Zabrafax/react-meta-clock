@@ -40,6 +40,8 @@ export function ThemeProvider({ children }) {
             arrowShadow: allArrowShadows[currentThemeNumber],
         };
         setColorTheme(newTheme);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         currentThemeNumber,
         allFirstThemeColors,
@@ -49,23 +51,26 @@ export function ThemeProvider({ children }) {
     ]);
 
     useEffect(() => {
-        if (isLoggedIn && userColorTheme) {
-            setColorTheme(userColorTheme);
-
-            setCurrentThemeNumber(userColorTheme.currentThemeNumber);
-            setFirstThemeColor(userColorTheme.firstThemeColor);
-            setAccentThemeColor(userColorTheme.accentThemeColor);
-            setTextThemeColor(userColorTheme.textThemeColor);
-            setArrowShadow(userColorTheme.arrowShadow);
-        }
-    }, [isLoggedIn, userColorTheme]);
-
-    useEffect(() => {
-        console.log(colorTheme);
+        console.log("Saving theme...", colorTheme);
         saveColorTheme(colorTheme);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [colorTheme]);
+    
+    useEffect(() => {
+        if (isLoggedIn && userColorTheme) {
+            setColorTheme(userColorTheme);
+
+            setCurrentThemeNumber(userColorTheme.currentThemeNumber);
+            setCustomFirstThemeColor(userColorTheme.firstThemeColor);
+            setCustomDarkenSecondThemeColor(userColorTheme.firstThemeColor);
+            setCustomAccentThemeColor(userColorTheme.accentThemeColor);
+            setCustomTextThemeColor(userColorTheme.textThemeColor);
+            setCustomArrowShadows(userColorTheme.arrowShadow);
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoggedIn, userColorTheme]);
 
     useEffect(() => {
         setFirstThemeColor(allFirstThemeColors[currentThemeNumber]);
@@ -114,7 +119,6 @@ export function ThemeProvider({ children }) {
     function setCustomArrowShadows(state) {
         setAllArrowShadows(prevShadows => {
             const updatedShadows = [...prevShadows];
-            console.log(state);
             updatedShadows[updatedShadows.length - 1] = state;
             return updatedShadows;
         })
