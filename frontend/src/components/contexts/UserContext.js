@@ -6,6 +6,7 @@ export function UserProvider({ children }) {
     const [username, setUsername] = useState(null);
     const [registrationDate, setRegistrationDate] = useState(null);
     const [userTimeZone, setUserTimeZone] = useState(null);
+    const [userColorTheme, setUserColorTheme] = useState(null);
     const isLoggedIn = !!username;
 
     useEffect(() => {
@@ -44,6 +45,46 @@ export function UserProvider({ children }) {
         })()
     }, []);
 
+    const saveColorTheme = async (colorTheme) => {
+        if(isLoggedIn) {
+            saveColorTheme(colorTheme);
+
+            const token = localStorage.getItem("token");
+            if (!token) {
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:8080/api/users/save-color-theme", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ colorTheme: colorTheme })
+                });
+
+                const apiResponse = await response.json();
+
+                if (apiResponse.success) {
+                    return {success: true};
+                } else {
+                    console.log("Error saving colorTheme: ", error);
+                    return {success: false, message: apiResponse.message};
+                }
+            } catch (error) {
+                console.log("Error saving colorTheme: ", error);
+                return {success: false, message: error.message};
+            }
+        }
+    }
+
+    // themeNumber,
+    //     mainColorHEX,
+    //     accentColorHEX,
+    //     textColorHEX,
+    //     isArrowShadowsEnabled
+
     const saveTimeZone = async (timeZone) => {
         if(isLoggedIn) {
             setUserTimeZone(timeZone);
@@ -61,7 +102,7 @@ export function UserProvider({ children }) {
                         "Authorization": `Bearer ${token}`
                     },
                     body: JSON.stringify( {timeZone} )
-                })
+                });
 
                 const apiResponse = await response.json();
 
@@ -163,7 +204,9 @@ export function UserProvider({ children }) {
             loginUser,
             logout,
             saveTimeZone,
-            userTimeZone
+            userTimeZone,
+            saveColorTheme,
+            userColorTheme,
         }}>
             {children}
         </UserContext.Provider>

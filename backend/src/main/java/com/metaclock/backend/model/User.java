@@ -25,4 +25,7 @@ public class User {
     private LocalDate registrationDate;
 
     private String TimeZone;
+
+    @Embedded
+    private UserTheme userTheme;
 }
