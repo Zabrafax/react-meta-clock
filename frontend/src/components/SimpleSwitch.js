@@ -26,12 +26,16 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
         }
     }, [isEnabled]);
 
-    const enable = () => {
+    const enable = (e) => {
+        e.preventDefault();
+
         onEnable();
         setIsEnabled(true);
     }
 
-    const disable = () => {
+    const disable = (e) => {
+        e.preventDefault();
+
         onDisable();
         setIsEnabled(false);
     }
@@ -44,8 +48,9 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
                     <p ref={preText}>[ </p>
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a
-                        className={isEnabled ? undefined : styles.a__disabled}
+                        className={isEnabled ? styles.a__enabled : styles.a__disabled}
                         ref={enableRef}
+                        href="#"
                         onClick={enable}
                     >
                         Enable
@@ -53,8 +58,9 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
                     <p ref={middleText}> / </p>
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a
-                        className={!isEnabled ? undefined : styles.a__disabled}
+                        className={!isEnabled ? styles.a__enabled : styles.a__disabled}
                         ref={disableRef}
+                        href="#"
                         onClick={disable}
                     >
                         Disable
