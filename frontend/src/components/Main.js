@@ -8,8 +8,13 @@ import Footer from "./Footer";
 import { useTheme } from "./contexts/ThemeContext";
 import AccountWindow from "./windows/AccountWindow";
 import {useErrorContext} from "./contexts/ErrorContext";
+import {useDeviceContext} from "./contexts/DeviceContext";
+import MobileHeader from "./MobileHeader";
 
 function Main() {
+    const { isMobile } = useDeviceContext();
+    console.log("isMobile: ", isMobile);
+
     /*
         Theme
      */
@@ -120,13 +125,15 @@ function Main() {
                 backgroundColor: firstThemeColor
             }}
         >
-            {!isFullscreen &&
-                <Header
-                    onAccountClick={onAccountClick}
-                    onSettingsClick={onSettingsClick}
-                    onFullScreenClick={toggleFullscreen}
-                />
-            }
+            {!isFullscreen && (
+                isMobile
+                    ? <MobileHeader />
+                    : <Header
+                        onAccountClick={onAccountClick}
+                        onSettingsClick={onSettingsClick}
+                        onFullScreenClick={toggleFullscreen}
+                    />
+            )}
 
             <main
                 className="Main"

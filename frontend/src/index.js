@@ -7,6 +7,7 @@ import {ThemeProvider} from "./components/contexts/ThemeContext";
 import {TimeZoneProvider} from "./components/contexts/TimeZoneContext";
 import {UserProvider} from "./components/contexts/UserContext";
 import {ErrorProvider} from "./components/contexts/ErrorContext";
+import {DeviceProvider} from "./components/contexts/DeviceContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +16,9 @@ root.render(
         <UserProvider>
             <ThemeProvider>
                 <TimeZoneProvider>
-                    <Main />
+                    <DeviceProvider>
+                        <Main />
+                    </DeviceProvider>
                 </TimeZoneProvider>
             </ThemeProvider>
         </UserProvider>
