@@ -63,7 +63,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                 <div className={styles.Choices__wrapper}>
                     <div className={styles.Choice__options}>
                         {allFirstThemeColors.slice(0, -1).map((color, index) => (
-                            // eslint-disable-next-line jsx-a11y/anchor-has-content,jsx-a11y/anchor-is-valid
+                            // eslint-disable-next-line jsx-a11y/anchor-is-valid
                             <a
                                 key={index}
                                 ref={el => (colorRefs.current[index] = el)}
@@ -72,6 +72,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                                 onClick={() => setCurrentThemeNumber(index)}
                             ></a>
                         ))}
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a
                             key={"custom"}
                             ref={el => (colorRefs.current[allFirstThemeColors.length - 1] = el)}
@@ -130,5 +131,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
         </div>
     );
 });
+
+ThemeSwitch.displayName = "ThemeSwitch";
 
 export default ThemeSwitch;

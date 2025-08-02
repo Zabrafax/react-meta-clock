@@ -20,7 +20,9 @@ function Main() {
      */
     const [isAccountWindowVisible, setIsAccountWindowVisible] = useState(false);
 
-    const onAccountClick = () => {
+    const onAccountClick = (e) => {
+        e.preventDefault();
+
         if (!isAccountWindowVisible) {
             closeAllWindows();
             setIsAccountWindowVisible(true);
@@ -43,7 +45,9 @@ function Main() {
      */
     const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
-    const onSettingsClick = () => {
+    const onSettingsClick = (e) => {
+        e.preventDefault();
+
         if (!isSettingsVisible) {
             closeAllWindows();
             setIsSettingsVisible(true);
@@ -69,7 +73,9 @@ function Main() {
      */
     const [isFullscreen, setIsFullscreen] = useState(false);
 
-    const toggleFullscreen = async () => {
+    const toggleFullscreen = async (e) => {
+        e.preventDefault();
+
         closeAllWindows();
 
         if (!document.fullscreenElement) {

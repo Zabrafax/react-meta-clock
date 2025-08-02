@@ -20,7 +20,7 @@ function TimeZonePicker() {
             textRef.current.getBoundingClientRect().height +
             lineRef.current.getBoundingClientRect().height
         );
-    })
+    }, [isOpen]);
 
     function openDialogWindow() {
         setIsOpen(!isOpen);
@@ -77,6 +77,7 @@ function TimeZonePicker() {
                     }}
                 >
                     {timeZones.map((timezone) => (
+                        /* eslint-disable-next-line jsx-a11y/anchor-is-valid */
                         <a
                             className={styles.Choice__option + ' Small__a__button'}
                             style={{

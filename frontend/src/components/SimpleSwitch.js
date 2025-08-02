@@ -21,8 +21,8 @@ function SimpleSwitch({ name, initialState, onEnable, onDisable } ) {
             const middleWidth = middleText.current.getBoundingClientRect().width;
             const disableWidth = disableRef.current.getBoundingClientRect().width;
 
-            setLeftLineOffset(!!isEnabled ? leftWidth : leftWidth + enableWidth + middleWidth);
-            setLineWidth(!!isEnabled ? enableWidth : disableWidth);
+            setLeftLineOffset(isEnabled ? leftWidth : leftWidth + enableWidth + middleWidth);
+            setLineWidth(isEnabled ? enableWidth : disableWidth);
         }
     }, [isEnabled]);
 

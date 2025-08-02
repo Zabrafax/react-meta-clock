@@ -1,12 +1,10 @@
 import './Clock.css';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import {useTheme} from "../contexts/ThemeContext";
 
 function Clock(props) {
     const { secondThemeColor, accentThemeColor, arrowShadow } = useTheme();
 
-    let secondArrowDegrees = props.secondArrowDegrees;
     let minuteArrowDegrees = props.minuteArrowDegrees;
     let hourArrowDegrees = props.hourArrowDegrees;
 

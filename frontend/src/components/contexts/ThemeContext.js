@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useMemo, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import {darkenColor} from "../utils/colorUtils";
 import {useUserContext} from "./UserContext";
 
@@ -12,6 +12,7 @@ export function ThemeProvider({ children }) {
     const [allAccentThemeColors, setAllAccentThemeColors] = useState(["#dcdcdc", "#000000", "#ffffff", "#ffffff", "#dcdcdc"]);
     const [allArrowShadows, setAllArrowShadows] = useState([true, false, true, true, true]);
     const [allTextThemeColors, setAllTextThemeColors] = useState(["#ffffff", "#000000", "#000000", "#ffffff", "#ffffff"]);
+    // eslint-disable-next-line no-unused-vars
     const [allAlphaThemePercents, setAllAlphaThemePercents] = useState([0.85, 0.85, 0.8, 0.8, 0.85]);
 
     const [currentThemeNumber, setCurrentThemeNumber] = useState(0);

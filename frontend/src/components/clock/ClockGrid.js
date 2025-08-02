@@ -13,7 +13,6 @@ function ClockGrid(props) {
     const { currentTimeZoneId } = useTimeZones();
 
     const { handleError } = useErrorContext();
-    const handleErrorRef = useRef(handleError);
 
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);

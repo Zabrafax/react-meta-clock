@@ -13,19 +13,25 @@ function Header({ onAccountClick, onSettingsClick, onFullScreenClick}) {
                 <h1>Meta Clock</h1>
             </div>
             <div className="Header__buttons">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                     className="Header__a__button"
                     onClick={onAccountClick}
+                    href="#"
                     style={{ "--after-color": textThemeColor }}
                 >ACCOUNT</a>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                     className="Header__a__button"
                     onClick={onSettingsClick}
+                    href="#"
                     style={{ "--after-color": textThemeColor }}
                 >SETTINGS</a>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                     className="Header__a__button"
                     onClick={onFullScreenClick}
+                    href="#"
                     style={{ "--after-color": textThemeColor }}
                 >FULLSCREEN</a>
             </div>
