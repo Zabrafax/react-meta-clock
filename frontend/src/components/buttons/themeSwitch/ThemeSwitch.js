@@ -2,7 +2,7 @@ import styles from './ThemeSwitch.module.css'
 import {forwardRef, useEffect, useRef, useState} from "react";
 import {useTheme} from "../../contexts/ThemeContext";
 import CustomColorPicker from "./CustomColorPicker";
-import SimpleSwitch from "../../SimpleSwitch";
+import SimpleSwitch from "../SimpleSwitch";
 
 const ThemeSwitch = forwardRef(({ name }, ref) => {
     const {
@@ -63,7 +63,7 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                 <div className={styles.Choices__wrapper}>
                     <div className={styles.Choice__options}>
                         {allFirstThemeColors.slice(0, -1).map((color, index) => (
-                            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                            // eslint-disable-next-line jsx-a11y/anchor-has-content, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid
                             <a
                                 key={index}
                                 ref={el => (colorRefs.current[index] = el)}
@@ -72,7 +72,13 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                                 onClick={() => setCurrentThemeNumber(index)}
                             ></a>
                         ))}
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        {/*
+                            eslint-disable-next-line
+                            jsx-a11y/anchor-is-valid,
+                            jsx-a11y/anchor-has-content,
+                            jsx-a11y/click-events-have-key-events,
+                            jsx-a11y/no-static-element-interactions
+                        */}
                         <a
                             key={"custom"}
                             ref={el => (colorRefs.current[allFirstThemeColors.length - 1] = el)}

@@ -133,7 +133,7 @@ export function UserProvider({ children }) {
     }
 
     const loginUser = async (username, password) => {
-        if(!!isLoggedIn) {
+        if(isLoggedIn) {
             return {success: false, message: "You are already logged in"};
         }
 
@@ -177,7 +177,7 @@ export function UserProvider({ children }) {
     }
 
     const registerUser = async (username, password, timeZone, colorTheme) => {
-        if(!!isLoggedIn) {
+        if(isLoggedIn) {
             return {success: false, message: "You are already logged in"};
         }
 

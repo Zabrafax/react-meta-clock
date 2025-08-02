@@ -98,6 +98,8 @@ function ClockGrid(props) {
                 socket.close();
             }
         };
+
+        /* eslint-disable-next-line react-hooks/exhaustive-deps */
     }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled, currentTimeZoneId]);
 
     return (

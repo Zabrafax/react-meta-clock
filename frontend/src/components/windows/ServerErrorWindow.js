@@ -16,7 +16,13 @@ function ServerErrorWindow() {
         >
             <div className="Window__top__wrapper">
                 <h2>Connection Error</h2>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                {/*
+                    eslint-disable-next-line
+                    jsx-a11y/anchor-is-valid,
+                    jsx-a11y/anchor-has-content,
+                    jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-static-element-interactions
+                */}
                 <a
                     className="Closing__cross"
                     onClick={() => window.location.reload()}
@@ -26,7 +32,12 @@ function ServerErrorWindow() {
             <div className="Window__main__wrapper Server__error__window__main__wrapper">
                 <p>Unable to connect to the server</p>
                 <p>Please check your internet connection or try again later :3</p>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                {/*
+                    eslint-disable-next-line
+                    jsx-a11y/anchor-is-valid,
+                    jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-static-element-interactions
+                */}
                 <a
                     style={{ "--after-color": textThemeColor }}
                     className="Small__a__button"

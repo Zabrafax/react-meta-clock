@@ -22,7 +22,9 @@ function AccountWindow({ onAccountCrossClick }) {
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
-    function handleLogout() {
+    function handleLogout(e) {
+        e.preventDefault();
+        
         logout();
     }
 
@@ -57,6 +59,12 @@ function AccountWindow({ onAccountCrossClick }) {
         setIsRegisterWindow(false);
     }
 
+    function handleCrossClick(e) {
+        e.preventDefault();
+
+        onAccountCrossClick();
+    }
+
     return (
         <div
             className={styles.Account__window + ' Window'}
@@ -66,10 +74,16 @@ function AccountWindow({ onAccountCrossClick }) {
         >
             <div className="Window__top__wrapper">
                 <h2>Account</h2>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/anchor-has-content */}
+                {/*
+                    eslint-disable-next-line
+                    jsx-a11y/anchor-has-content,
+                    jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-static-element-interactions,
+                    jsx-a11y/anchor-is-valid
+                */}
                 <a
                     className="Closing__cross"
-                    onClick={onAccountCrossClick}
+                    onClick={handleCrossClick}
                     style={{ "--after-color": textThemeColor }}
                 ></a>
             </div>
@@ -106,6 +120,7 @@ function AccountWindow({ onAccountCrossClick }) {
                         <a
                             className="Small__a__button"
                             onClick={handleLogout}
+                            href="#"
                             style={{
                                 "--after-color": textThemeColor,
                                 "--after-height": "1px"
@@ -170,8 +185,13 @@ function AccountWindow({ onAccountCrossClick }) {
                         </form>
                     </div>
                     <div className={styles.Login__bottom__text}>
-                        <p>Don't have an account? </p>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        <p>Don&#39;t have an account? </p>
+                        {/*
+                            eslint-disable-next-line
+                            jsx-a11y/anchor-is-valid,
+                            jsx-a11y/click-events-have-key-events,
+                            jsx-a11y/no-static-element-interactions
+                        */}
                         <a
                             onClick={() => {setIsRegisterWindow(true)}}
                             className="Small__a__button"
@@ -240,7 +260,12 @@ function AccountWindow({ onAccountCrossClick }) {
                     </div>
                     <div className={styles.Login__bottom__text}>
                         <p>Have an account? </p>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        {/*
+                            eslint-disable-next-line
+                            jsx-a11y/anchor-is-valid,
+                            jsx-a11y/click-events-have-key-events,
+                            jsx-a11y/no-static-element-interactions
+                        */}
                         <a
                             onClick={() => {setIsRegisterWindow(false)}}
                             className="Small__a__button"

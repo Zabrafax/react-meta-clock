@@ -51,6 +51,11 @@ function TimeZonePicker() {
         <div className={styles.TimeZonePicker}>
             <p>Timezone: </p>
             <div className={styles.Vertical__wrapper}>
+                {/*
+                    eslint-disable-next-line
+                    jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-static-element-interactions,
+                */}
                 <div
                     className={styles.Current__choice__wrapper}
                     ref={textRef}
@@ -77,7 +82,13 @@ function TimeZonePicker() {
                     }}
                 >
                     {timeZones.map((timezone) => (
-                        /* eslint-disable-next-line jsx-a11y/anchor-is-valid */
+                        /*
+                            eslint-disable-next-line
+                            jsx-a11y/click-events-have-key-events,
+                            jsx-a11y/no-static-element-interactions,
+                            jsx-a11y/click-events-have-key-events,
+                            jsx-a11y/anchor-is-valid
+                        */
                         <a
                             className={styles.Choice__option + ' Small__a__button'}
                             style={{
@@ -89,31 +100,10 @@ function TimeZonePicker() {
                         >
                             {timezone.label}
                         </a>
-                        // <div
-                        //     className={styles.Choice__option}
-                        //     key={timezone.id}
-                        //     onClick={() => handleTimeZoneChange(timezone.id)}
-                        // >
-                        //     {timezone.label}
-                        // </div>
                     ))}
                 </div>}
             </div>
         </div>
-
-        // <div className={styles.TimeZonePicker}>
-        //     <label htmlFor="timezone">Time zone: </label>
-        //     <select id="timezone" value={currentTimeZoneId} onChange={handleTimeZoneChange}>
-        //         {timeZones.map((timezone) => (
-        //             <option
-        //                 key={timezone.id}
-        //                 value={timezone.id}
-        //             >
-        //                 {timezone.label}
-        //             </option>
-        //         ))}
-        //     </select>
-        // </div>
     );
 }
 

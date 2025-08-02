@@ -35,6 +35,11 @@ function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColo
     return (
         <div className={styles.Color__picker__wrapper}>
             <p>{name}</p>
+            {/*
+                eslint-disable-next-line
+                jsx-a11y/click-events-have-key-events,
+                jsx-a11y/no-static-element-interactions
+            */}
             <div
                 className={styles.Color__pick__tile}
                 style={{

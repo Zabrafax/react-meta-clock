@@ -1,6 +1,6 @@
 import './SettingsWindow.css';
 import './Window.css';
-import SimpleSwitch from "../SimpleSwitch";
+import SimpleSwitch from "../buttons/SimpleSwitch";
 import ThemeSwitch from "../buttons/themeSwitch/ThemeSwitch";
 import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
@@ -73,7 +73,13 @@ function SettingsWindow({
         >
             <div className="Window__top__wrapper">
                 <h2>Settings</h2>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                {/*
+                    eslint-disable-next-line
+                    jsx-a11y/anchor-has-content,
+                    jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-static-element-interactions,
+                    jsx-a11y/anchor-is-valid
+                */}
                 <a
                     className="Closing__cross"
                     onClick={onSettingsCrossClick}
