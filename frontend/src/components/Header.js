@@ -5,6 +5,11 @@ import {useTheme} from "./contexts/ThemeContext";
 function Header({ onAccountClick, onSettingsClick, onFullScreenClick }) {
     const { firstThemeColor, textThemeColor } = useTheme();
 
+    function handleAccountClick(e) {
+        e.preventDefault();
+        onAccountClick();
+    }
+
     return (
         <header
             className={styles.Header}
@@ -15,7 +20,7 @@ function Header({ onAccountClick, onSettingsClick, onFullScreenClick }) {
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                     className={styles.Header__a__button}
-                    onClick={onAccountClick}
+                    onClick={handleAccountClick}
                     href="#"
                     style={{ "--after-color": textThemeColor }}
                 >ACCOUNT</a>

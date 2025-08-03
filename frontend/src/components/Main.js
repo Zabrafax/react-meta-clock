@@ -25,9 +25,7 @@ function Main() {
      */
     const [isAccountWindowVisible, setIsAccountWindowVisible] = useState(false);
 
-    const onAccountClick = (e) => {
-        e.preventDefault();
-
+    const onAccountClick = () => {
         if (!isAccountWindowVisible) {
             closeAllWindows();
             setIsAccountWindowVisible(true);
@@ -127,7 +125,9 @@ function Main() {
         >
             {!isFullscreen && (
                 isMobile
-                    ? <MobileHeader />
+                    ? <MobileHeader
+                        onAccountClick={onAccountClick}
+                    />
                     : <Header
                         onAccountClick={onAccountClick}
                         onSettingsClick={onSettingsClick}
