@@ -58,3 +58,14 @@
 
     transition: 0.5s cubic-bezier(.56,.46,.44,.97);
 }
+
+@media (max-width: 768px) {
+    .Simple__switch {
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+
+    .Simple__switch p, .Simple__switch a {
+        font-size: 1.2rem;
+    }
+}

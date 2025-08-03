@@ -1,5 +1,5 @@
 .Settings__window {
-    z-index: 999;
+    z-index: 800;
     position: absolute;
     /*top: calc(5rem + 1rem);*/
     top: calc(5rem + (100vh - 5rem - 5rem - 250px) / 3);
@@ -44,5 +44,12 @@
 @media (max-width: 768px) {
     .Settings__window {
         width: 100%;
+
+        top: 15vh;
+    }
+
+    .All__settings__wrapper {
+        max-width: 100%;
+        margin: 0;
     }
 }

@@ -87,3 +87,14 @@
 .Choice__option {
     font-size: 1rem;
 }
+
+@media (max-width: 768px) {
+    .TimeZonePicker {
+        justify-content: start;
+        flex-wrap: wrap;
+    }
+
+    .TimeZonePicker p {
+        font-size: 1.2rem;
+    }
+}

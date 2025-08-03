@@ -109,3 +109,18 @@
 
     transition: 0.5s cubic-bezier(.56,.46,.44,.97);
 }
+
+@media (max-width: 768px) {
+    .ThemeSwitch {
+        align-items: start;
+    }
+
+    .ThemeSwitch p, .ThemeSwitch a {
+        font-size: 1.2rem;
+    }
+
+    .Horizontal__wrapper {
+        flex-direction: column;
+        align-items: start;
+    }
+}
