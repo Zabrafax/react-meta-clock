@@ -22,9 +22,7 @@ function AccountWindow({ onAccountCrossClick }) {
     const [isFocusedUsername, setIsFocusedUsername] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
-    function handleLogout(e) {
-        e.preventDefault();
-        
+    function handleLogout() {
         logout();
     }
 
@@ -119,7 +117,10 @@ function AccountWindow({ onAccountCrossClick }) {
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a
                             className="Small__a__button"
-                            onClick={handleLogout}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleLogout();
+                            }}
                             href="#"
                             style={{
                                 "--after-color": textThemeColor,
