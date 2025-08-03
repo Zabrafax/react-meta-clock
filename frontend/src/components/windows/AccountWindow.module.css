@@ -199,3 +199,9 @@
 .Login__bottom__text a {
     user-select: none;
 }
+
+@media (max-width: 768px) {
+    .Account__window {
+        width: 100%;
+    }
+}

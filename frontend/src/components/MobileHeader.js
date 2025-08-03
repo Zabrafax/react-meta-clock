@@ -2,15 +2,33 @@ import styles from './MobileHeader.module.css';
 import {useTheme} from "./contexts/ThemeContext";
 import {useState} from "react";
 import {HEXtoRGBA} from "./utils/colorUtils";
-import MobileHeaderAButton from "./buttons/MobileHeaderAButton";
+import MobileHeaderAButton from "./MobileHeaderAButton";
 
 function MobileHeader({ onAccountClick, onSettingsClick, onFullscreenClick }) {
     const { firstThemeColor, alphaThemePercent, textThemeColor } = useTheme();
 
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const [isNavButtonActive, setIsNavButtonActive] = useState(false);
 
     function toggleNav() {
         setIsNavOpen(!isNavOpen);
+        setIsNavButtonActive(true);
+        setTimeout(() => setIsNavButtonActive(false), 1000);
+    }
+
+    function handleAccountClick() {
+        setIsNavOpen(false);
+        setTimeout(() => onAccountClick(), 200);
+    }
+
+    function handleSettingsClick() {
+        setIsNavOpen(false);
+        setTimeout(() => onSettingsClick(), 200);
+    }
+
+    function handleFullscreenClick() {
+        setIsNavOpen(false);
+        setTimeout(() => onFullscreenClick(), 200);
     }
 
     return (
@@ -21,7 +39,7 @@ function MobileHeader({ onAccountClick, onSettingsClick, onFullscreenClick }) {
             >
                 <h1>Meta Clock</h1>
                 <button
-                    className={styles.NavButton}
+                    className={`${styles.NavButton} ${isNavButtonActive ? styles.active : ''}`}
                     style={{ color: textThemeColor }}
                     onClick={toggleNav}
                 >
@@ -45,17 +63,17 @@ function MobileHeader({ onAccountClick, onSettingsClick, onFullscreenClick }) {
                     <MobileHeaderAButton
                         name="ACCOUNT"
                         textThemeColor={textThemeColor}
-                        onClick={onAccountClick}
+                        onClick={handleAccountClick}
                     />
                     <MobileHeaderAButton
                         name="SETTINGS"
                         textThemeColor={textThemeColor}
-                        onClick={onSettingsClick}
+                        onClick={handleSettingsClick}
                     />
                     <MobileHeaderAButton
                         name="FULLSCREEN"
                         textThemeColor={textThemeColor}
-                        onClick={onFullscreenClick}
+                        onClick={handleFullscreenClick}
                     />
                 </nav>
             }

@@ -1,4 +1,4 @@
-import styles from "../MobileHeader.module.css";
+import styles from "./MobileHeader.module.css";
 import {useState} from "react";
 
 function MobileHeaderAButton( {name, textThemeColor, onClick } ) {

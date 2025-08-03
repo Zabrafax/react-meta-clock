@@ -30,7 +30,7 @@
     border: none;
 }
 
-.NavButton:active {
+.NavButton.active {
     opacity: 0.5;
 }
 

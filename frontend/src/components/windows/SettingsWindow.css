@@ -40,3 +40,9 @@
     align-items: start;
     flex-wrap: nowrap;
 }
+
+@media (max-width: 768px) {
+    .Settings__window {
+        width: 100%;
+    }
+}
