@@ -48,9 +48,7 @@ function Main() {
      */
     const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
-    const onSettingsClick = (e) => {
-        e.preventDefault();
-
+    const onSettingsClick = () => {
         if (!isSettingsVisible) {
             closeAllWindows();
             setIsSettingsVisible(true);
@@ -76,9 +74,7 @@ function Main() {
      */
     const [isFullscreen, setIsFullscreen] = useState(false);
 
-    const toggleFullscreen = async (e) => {
-        e.preventDefault();
-
+    const toggleFullscreen = async () => {
         closeAllWindows();
 
         if (!document.fullscreenElement) {
@@ -127,11 +123,13 @@ function Main() {
                 isMobile
                     ? <MobileHeader
                         onAccountClick={onAccountClick}
+                        onSettingsClick={onSettingsClick}
+                        onFullscreenClick={toggleFullscreen}
                     />
                     : <Header
                         onAccountClick={onAccountClick}
                         onSettingsClick={onSettingsClick}
-                        onFullScreenClick={toggleFullscreen}
+                        onFullscreenClick={toggleFullscreen}
                     />
             )}
 

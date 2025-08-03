@@ -4,7 +4,7 @@ import {useState} from "react";
 import {HEXtoRGBA} from "./utils/colorUtils";
 import MobileHeaderAButton from "./buttons/MobileHeaderAButton";
 
-function MobileHeader({ onAccountClick, onSettingsClick, onFullScreenClick }) {
+function MobileHeader({ onAccountClick, onSettingsClick, onFullscreenClick }) {
     const { firstThemeColor, alphaThemePercent, textThemeColor } = useTheme();
 
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -55,7 +55,7 @@ function MobileHeader({ onAccountClick, onSettingsClick, onFullScreenClick }) {
                     <MobileHeaderAButton
                         name="FULLSCREEN"
                         textThemeColor={textThemeColor}
-                        onClick={onFullScreenClick}
+                        onClick={onFullscreenClick}
                     />
                 </nav>
             }
