@@ -1,5 +1,5 @@
 import './Clock.css';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTheme} from "../contexts/ThemeContext";
 
 function Clock(props) {
@@ -7,11 +7,18 @@ function Clock(props) {
 
     let minuteArrowDegrees = props.minuteArrowDegrees;
     let hourArrowDegrees = props.hourArrowDegrees;
+    let size = props.size;
+
+    const [sizeString, setSizeString] = useState('');
+
+    useEffect(() => {
+        setSizeString(size === 2 ? 'Small' : (size === 1 ? 'Medium' : ''));
+    }, [size])
 
     return (
-        <div className="Clock-wrapper">
+        <div className={`Clock-wrapper ${sizeString}`}>
             <div
-                className="Clock-background"
+                className={`Clock-background ${sizeString}`}
                 style={{ backgroundColor: secondThemeColor }}
             >
                 {/*<div style={{'--second-arrow-degrees': `${secondArrowDegrees}deg` }} className="Clock-second-arrow"></div>*/}
@@ -21,7 +28,7 @@ function Clock(props) {
                         backgroundColor: accentThemeColor,
                         boxShadow: (arrowShadow) ? '0 0 5px 0px black' : 'none'
                     }}
-                    className="Clock-minute-arrow"
+                    className={`Clock-minute-arrow ${sizeString}`}
                 ></div>
                 <div
                     style={{
@@ -29,7 +36,7 @@ function Clock(props) {
                         backgroundColor: accentThemeColor,
                         boxShadow: (arrowShadow) ? '0 0 5px 0px black' : 'none'
                     }}
-                    className="Clock-hour-arrow"
+                    className={`Clock-hour-arrow ${sizeString}`}
                 ></div>
             </div>
         </div>

@@ -1,3 +1,5 @@
-.Clock-grid-container {
+.Clock__grid__container {
     display: grid;
+    width: fit-content;
+    height: fit-content;
 }

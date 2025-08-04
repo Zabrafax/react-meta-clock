@@ -13,16 +13,32 @@ function ClockGrid(props) {
 
     const { currentTimeZoneId } = useTimeZones();
     const { handleError } = useErrorContext();
-    const { isTablet } = useDeviceContext();
+    const { isTablet, isMobile } = useDeviceContext();
 
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);
+    const [gridSize, setGridSize] = useState(0);
 
     const [minuteArrowDegreesArray, setMinuteArrowDegreesArray] = useState([]);
     const [hourArrowDegreesArray, setHourArrowDegreesArray] = useState([]);
 
     const previousMinuteArrowDegreesArray = useRef("");
     const previousHourArrowDegreesArray = useRef("");
+
+    useEffect(() => {
+        if(isTablet) {
+            setGridSize(2)
+        } else {
+            if(isSecondsEnabled) {
+                setGridSize(1);
+            } else {
+                setGridSize(0);
+            }
+        }
+
+        console.log(gridSize);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isSecondsEnabled, isMobile, isTablet]);
 
     useEffect(() => {
         if (!currentTimeZoneId) {
@@ -106,7 +122,7 @@ function ClockGrid(props) {
 
     return (
         <div
-            className="Clock-grid-container"
+            className="Clock__grid__container"
             style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}
         >
             {Array.from({length: gridRows * gridCols}).map((_, i) => (
@@ -114,6 +130,7 @@ function ClockGrid(props) {
                     key={i}
                     minuteArrowDegrees={minuteArrowDegreesArray[i] != null ? minuteArrowDegreesArray[i] : 0}
                     hourArrowDegrees={hourArrowDegreesArray[i] != null ? hourArrowDegreesArray[i] : 0}
+                    size={gridSize}
                 />
             ))}
         </div>

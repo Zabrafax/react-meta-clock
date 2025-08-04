@@ -106,32 +106,60 @@
     position: absolute;
 }
 
-@media (max-width: 768px) {
-    .Clock-wrapper {
-        padding: 2px;
-    }
 
-    .Clock-background {
-        height: 60px;
-    }
+.Clock-wrapper.Medium {
+    padding: 3px;
+}
 
-    .Clock-minute-arrow {
-        height: 31px;
-        width: 5px;
+.Clock-background.Medium {
+    height: 80px;
+}
 
-        left: calc(50% - (5px / 2));
-        top: calc(60px / 2 - (31px - (5px / 2)));
+.Clock-minute-arrow.Medium {
+    height: 41px;
+    width: 6px;
 
-        transform-origin: 50% calc(31px - (5px / 2));
-    }
+    left: calc(50% - (6px / 2));
+    top: calc(80px / 2 - (41px - (6px / 2)));
 
-    .Clock-hour-arrow {
-        height: 27px;
-        width: 5px;
+    transform-origin: 50% calc(41px - (6px / 2));
+}
 
-        left: calc(50% - (5px / 2));
-        top: calc(60px / 2 - (27px - (5px / 2)));
+.Clock-hour-arrow.Medium {
+    height: 38px;
+    width: 6px;
 
-        transform-origin: 50% calc(27px - (5px / 2));
-    }
+    left: calc(50% - (6px / 2));
+    top: calc(80px / 2 - (38px - (6px / 2)));
+
+    transform-origin: 50% calc(38px - (6px / 2));
+}
+
+
+.Clock-wrapper.Small {
+    padding: 2px;
+}
+
+.Clock-background.Small {
+    height: 60px;
+}
+
+.Clock-minute-arrow.Small {
+    height: 31px;
+    width: 5px;
+
+    left: calc(50% - (5px / 2));
+    top: calc(60px / 2 - (31px - (5px / 2)));
+
+    transform-origin: 50% calc(31px - (5px / 2));
+}
+
+.Clock-hour-arrow.Small {
+    height: 27px;
+    width: 5px;
+
+    left: calc(50% - (5px / 2));
+    top: calc(60px / 2 - (27px - (5px / 2)));
+
+    transform-origin: 50% calc(27px - (5px / 2));
 }
