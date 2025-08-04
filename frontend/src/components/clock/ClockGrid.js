@@ -13,7 +13,7 @@ function ClockGrid(props) {
 
     const { currentTimeZoneId } = useTimeZones();
     const { handleError } = useErrorContext();
-    const { isMobile } = useDeviceContext();
+    const { isTablet } = useDeviceContext();
 
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);
@@ -40,7 +40,7 @@ function ClockGrid(props) {
                 isSecondsEnabled,
                 isSeparatorsEnabled,
                 timeZoneId: currentTimeZoneId,
-                isMobile,
+                isVertical: isTablet,
             }));
             //setIsServerErrorWindowVisible(false);
             console.log("Websocket connected, subscribe message sent");
@@ -102,7 +102,7 @@ function ClockGrid(props) {
         };
 
         /* eslint-disable-next-line react-hooks/exhaustive-deps */
-    }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled, currentTimeZoneId]);
+    }, [cols, rows, isSecondsEnabled, isSeparatorsEnabled, currentTimeZoneId, isTablet]);
 
     return (
         <div

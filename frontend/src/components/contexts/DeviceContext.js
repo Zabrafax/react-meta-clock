@@ -4,10 +4,12 @@ const DeviceContext = createContext();
 
 export function DeviceProvider({ children }) {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isTablet, setIsTablet] = useState(window.innerWidth <= 1024);
 
     useEffect(() => {
         function handleResize() {
             setIsMobile(window.innerWidth <= 768);
+            setIsTablet(window.innerWidth <= 768);
         }
 
         window.addEventListener('resize', handleResize);
@@ -16,7 +18,8 @@ export function DeviceProvider({ children }) {
     
     return (
         <DeviceContext.Provider value={{
-            isMobile
+            isMobile,
+            isTablet,
         }}>
             {children}
         </DeviceContext.Provider>

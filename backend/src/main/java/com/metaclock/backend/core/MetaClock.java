@@ -24,10 +24,10 @@ public class MetaClock {
             int cols,
             boolean isSecondsEnabled,
             boolean isSeparatorsEnabled,
-            boolean isMobile
+            boolean isVertical
     ) {
-        if (isMobile) {
-            return getClockGridResponseForMobile(clock, rows, cols, isSecondsEnabled);
+        if (isVertical) {
+            return getClockGridResponseVertical(clock, rows, cols, isSecondsEnabled);
         }
 
         int totalRows = rows;
@@ -79,7 +79,7 @@ public class MetaClock {
         return new ClockGridResponse(totalRows, totalCols, clockCoordinatesArray);
     }
 
-    private ClockGridResponse getClockGridResponseForMobile(
+    private ClockGridResponse getClockGridResponseVertical(
             Clock clock,
             int rows,
             int cols,
