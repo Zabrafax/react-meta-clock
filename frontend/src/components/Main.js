@@ -136,8 +136,8 @@ function Main() {
             <main
                 className="Main"
                 style={{
-                    marginTop: isFullscreen ? "0" : "5rem",
-                    minHeight: isFullscreen ? "100vh" : "calc(100vh - 5rem - 5rem)",
+                    marginTop: isFullscreen ? "0" : (isMobile ? "4rem" : "5rem"),
+                    minHeight: isFullscreen ? "100vh" : (isMobile ? "calc(100vh - 4rem - 5rem)" : "calc(100vh - 5rem - 5rem)"),
                     justifyContent: isFullscreen ? "center" : "start",
                     backgroundColor: firstThemeColor
                 }}

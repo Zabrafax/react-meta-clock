@@ -3,6 +3,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import Clock from "./Clock";
 import {useTimeZones} from "../contexts/TimeZoneContext";
 import {useErrorContext} from "../contexts/ErrorContext";
+import {useDeviceContext} from "../contexts/DeviceContext";
 
 function ClockGrid(props) {
     const rows = props.rows;
@@ -11,8 +12,8 @@ function ClockGrid(props) {
     const isSeparatorsEnabled = props.isSeparatorsEnabled;
 
     const { currentTimeZoneId } = useTimeZones();
-
     const { handleError } = useErrorContext();
+    const { isMobile } = useDeviceContext();
 
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);
@@ -38,7 +39,8 @@ function ClockGrid(props) {
                 cols,
                 isSecondsEnabled,
                 isSeparatorsEnabled,
-                timeZoneId: currentTimeZoneId
+                timeZoneId: currentTimeZoneId,
+                isMobile,
             }));
             //setIsServerErrorWindowVisible(false);
             console.log("Websocket connected, subscribe message sent");
@@ -105,8 +107,8 @@ function ClockGrid(props) {
     return (
         <div
             className="Clock-grid-container"
-            style={{gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
-        }}>
+            style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}
+        >
             {Array.from({length: gridRows * gridCols}).map((_, i) => (
                 <Clock
                     key={i}

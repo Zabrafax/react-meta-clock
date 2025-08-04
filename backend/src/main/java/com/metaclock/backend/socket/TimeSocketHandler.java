@@ -26,12 +26,17 @@ public class TimeSocketHandler extends TextWebSocketHandler {
         boolean isSecondsEnabled;
         boolean isSeparatorsEnabled;
         String timeZoneId;
-        public Parameters(int rows, int cols, boolean isSecondsEnabled, boolean isSeparatorsEnabled, String timeZoneId) {
+        boolean isMobile;
+        public Parameters(
+                int rows, int cols, boolean isSecondsEnabled,
+                boolean isSeparatorsEnabled, String timeZoneId, boolean isMobile
+        ) {
             this.rows = rows;
             this.cols = cols;
             this.isSecondsEnabled = isSecondsEnabled;
             this.isSeparatorsEnabled = isSeparatorsEnabled;
             this.timeZoneId = timeZoneId;
+            this.isMobile = isMobile;
         }
     }
 
@@ -73,10 +78,15 @@ public class TimeSocketHandler extends TextWebSocketHandler {
                 isSeparatorsEnabled = jsonNode.get("isSeparatorsEnabled").asBoolean();
             }
 
+            boolean isMobile = false;
+            if(jsonNode.get("isMobile") != null) {
+                isMobile = jsonNode.get("isMobile").asBoolean();
+            }
+
             String timeZoneId = jsonNode.get("timeZoneId").asText();
 
-            clients.put(session, new Parameters(rows, cols, isSecondsEnabled, isSeparatorsEnabled, timeZoneId));
-            System.out.println("Client subscribed to " + rows + "x" + cols);
+            clients.put(session, new Parameters(rows, cols, isSecondsEnabled, isSeparatorsEnabled, timeZoneId, isMobile));
+            System.out.println("Client subscribed to " + rows + "x" + cols + ", isMobile: " + isMobile);
         }
 
         if (type.equals("unsubscribe")) {
@@ -106,7 +116,8 @@ public class TimeSocketHandler extends TextWebSocketHandler {
                             entry.getValue().rows,
                             entry.getValue().cols,
                             entry.getValue().isSecondsEnabled,
-                            entry.getValue().isSeparatorsEnabled
+                            entry.getValue().isSeparatorsEnabled,
+                            entry.getValue().isMobile
                     );
 
                     String json = mapper.writeValueAsString(clockGridResponse);

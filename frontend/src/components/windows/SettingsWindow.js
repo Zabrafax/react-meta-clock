@@ -6,6 +6,7 @@ import {useTheme} from "../contexts/ThemeContext";
 import {HEXtoRGBA} from "../utils/colorUtils";
 import TimeZonePicker from "../buttons/TimeZonePicker";
 import {useEffect, useRef, useState} from "react";
+import {useDeviceContext} from "../contexts/DeviceContext";
 
 function SettingsWindow({
                             onSettingsCrossClick,
@@ -16,6 +17,7 @@ function SettingsWindow({
                         }) {
 
     const { firstThemeColor, textThemeColor, alphaThemePercent } = useTheme();
+    const { isMobile } = useDeviceContext();
 
     const themeSwitchRef = useRef();
     const [themeSwitchWidth, setThemeSwitchWidth] = useState(0);
@@ -95,8 +97,20 @@ function SettingsWindow({
                     }}
                 >
                     <div className="Setting__switch__wrapper">
-                        <SimpleSwitch name="Seconds" initialState={isSecondsEnabled} onEnable={enableSeconds} onDisable={disableSeconds}/>
-                        <SimpleSwitch name="Separators" initialState={isSeparatorsEnabled} onEnable={enableSeparators} onDisable={disableSeparators}/>
+                        <SimpleSwitch
+                            name="Seconds"
+                            initialState={isSecondsEnabled}
+                            onEnable={enableSeconds}
+                            onDisable={disableSeconds}
+                        />
+                        {!isMobile &&
+                            <SimpleSwitch
+                                name="Separators"
+                                initialState={isSeparatorsEnabled}
+                                onEnable={enableSeparators}
+                                onDisable={disableSeparators}
+                            />
+                        }
                     </div>
                     <ThemeSwitch
                         name="Theme Colors"

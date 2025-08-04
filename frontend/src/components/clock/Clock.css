@@ -105,3 +105,33 @@
 
     position: absolute;
 }
+
+@media (max-width: 768px) {
+    .Clock-wrapper {
+        padding: 2px;
+    }
+
+    .Clock-background {
+        height: 60px;
+    }
+
+    .Clock-minute-arrow {
+        height: 31px;
+        width: 5px;
+
+        left: calc(50% - (5px / 2));
+        top: calc(60px / 2 - (31px - (5px / 2)));
+
+        transform-origin: 50% calc(31px - (5px / 2));
+    }
+
+    .Clock-hour-arrow {
+        height: 27px;
+        width: 5px;
+
+        left: calc(50% - (5px / 2));
+        top: calc(60px / 2 - (27px - (5px / 2)));
+
+        transform-origin: 50% calc(27px - (5px / 2));
+    }
+}

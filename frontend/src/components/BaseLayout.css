@@ -56,3 +56,10 @@
     font-size: 0.8rem !important;
     font-style: italic;
 }
+
+@media (max-width: 768px) {
+    .Main {
+        margin-top: 4rem;
+        padding: 1rem 1rem;
+    }
+}

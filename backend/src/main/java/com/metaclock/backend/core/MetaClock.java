@@ -23,8 +23,13 @@ public class MetaClock {
             int rows,
             int cols,
             boolean isSecondsEnabled,
-            boolean isSeparatorsEnabled
+            boolean isSeparatorsEnabled,
+            boolean isMobile
     ) {
+        if (isMobile) {
+            return getClockGridResponseForMobile(clock, rows, cols, isSecondsEnabled);
+        }
+
         int totalRows = rows;
         int totalCols;
 
@@ -67,6 +72,58 @@ public class MetaClock {
 
                     currentNumber++;
                     col += 2;
+                }
+            }
+        }
+
+        return new ClockGridResponse(totalRows, totalCols, clockCoordinatesArray);
+    }
+
+    private ClockGridResponse getClockGridResponseForMobile(
+            Clock clock,
+            int rows,
+            int cols,
+            boolean isSecondsEnabled
+    ) {
+        int totalRows;
+        int totalCols = cols * 2;
+        int totalNumbers;
+
+        if(isSecondsEnabled) {
+            totalRows = rows * 3;
+            totalNumbers = 6;
+        }
+        else {
+            totalRows = rows * 2;
+            totalNumbers = 4;
+        }
+
+        updateNumbers(clock);
+
+        ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[totalRows * totalCols];
+
+        System.out.println();
+
+        int numberCol = 0;
+        int numberRow = 0;
+
+        for (int number = 0; number < totalNumbers; number++) {
+            numberCol = (number % 2) * cols;
+            numberRow = (number / 2) * rows;
+
+            for (int digitRow = 0; digitRow < rows; digitRow++) {
+                for (int digitCol = 0; digitCol < cols; digitCol++) {
+                    ClockCoordinates clockCoordinates =
+                            numbersMapping3X2.getClockCoordinatesForNumberAndClock(
+                                    this.numbers[number],
+                                    digitRow,
+                                    digitCol
+                            );
+                    int targetRow = numberRow + digitRow;
+                    int targetCol = numberCol + digitCol;
+                    int index = targetRow * totalCols + targetCol;
+
+                    clockCoordinatesArray[index] = clockCoordinates;
                 }
             }
         }
