@@ -54,6 +54,8 @@
 }
 
 .React__color__picker {
+    z-index: 875;
+
     position: absolute;
     transform-origin: 0 0;
     right: calc(100% + 1rem);

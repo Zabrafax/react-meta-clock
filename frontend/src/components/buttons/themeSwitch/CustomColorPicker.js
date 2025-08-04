@@ -1,10 +1,13 @@
 import styles from './ThemeSwitchColorPicker.module.css'
 import { useState, useEffect, useRef } from 'react'
 import { ChromePicker } from 'react-color';
+import {useDeviceContext} from "../../contexts/DeviceContext";
 
 function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColor} ) {
     const [isPickerOpened, setIsPickerOpened] = useState(false);
     const pickerRef = useRef(null);
+
+    const { isMobile } = useDeviceContext();
 
     function handleTileClick() {
         setIsPickerOpened(prev => !prev);
@@ -53,11 +56,23 @@ function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColo
                 <div
                     className={styles.React__color__picker}
                     ref={pickerRef}
+                    style={{
+                        position: isMobile ? 'fixed' : undefined,
+                        left: isMobile ? 0 : undefined,
+                        right: isMobile ? 0 : "calc(100% + 1rem)"
+                    }}
                 >
                     <ChromePicker
                         style={{fontFamily: 'inherit'}}
                         color={ currentColor }
                         onChange={handleColorChange}
+                        styles={{
+                            default: {
+                                picker: {
+                                    width: isMobile ? 100 + 'vw' : undefined,
+                                },
+                            },
+                        }}
                     />
                 </div>
             }
