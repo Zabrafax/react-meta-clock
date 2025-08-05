@@ -19,7 +19,7 @@ export function TimeZoneProvider({ children }) {
     useEffect(() => {
         async function fetchTimeZones() {
             try {
-                const response = await fetch('/api/clock/timezones');
+                const response = await fetch(`${process.env.REACT_APP_API_BASE}/clock/timezones`);
 
                 if (!response.ok) {
                     console.log("Server error while fetching timezones");
@@ -27,6 +27,7 @@ export function TimeZoneProvider({ children }) {
                 }
 
                 const data = await response.json();
+                console.log('data from server:', data);
 
                 const deviceZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                 const userOffsetSeconds = -new Date().getTimezoneOffset() * 60;
