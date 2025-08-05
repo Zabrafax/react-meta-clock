@@ -17,7 +17,7 @@ export function UserProvider({ children }) {
             }
 
             try {
-                const response = await fetch("http://localhost:8080/api/users/verify-token", {
+                const response = await fetch("/api/users/verify-token", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -66,7 +66,7 @@ export function UserProvider({ children }) {
             }
 
             try {
-                const response = await fetch("http://localhost:8080/api/users/save-color-theme", {
+                const response = await fetch("/api/users/save-color-theme", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -98,7 +98,7 @@ export function UserProvider({ children }) {
             }
 
             try {
-                const response = await fetch("http://localhost:8080/api/users/save-timezone", {
+                const response = await fetch("/api/users/save-timezone", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -138,7 +138,7 @@ export function UserProvider({ children }) {
         }
 
         try {
-            const response = await fetch("http://localhost:8080/api/users/login", {
+            const response = await fetch("/api/users/login", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({username, password})
@@ -185,7 +185,7 @@ export function UserProvider({ children }) {
             const today = new Date();
             const localDate = today.toISOString().slice(0, 10);
 
-            const response = await fetch("http://localhost:8080/api/users/register", {
+            const response = await fetch("/api/users/register", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({

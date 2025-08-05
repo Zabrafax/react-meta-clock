@@ -102,8 +102,6 @@ public class MetaClock {
 
         ClockCoordinates[] clockCoordinatesArray = new ClockCoordinates[totalRows * totalCols];
 
-        System.out.println();
-
         int numberCol = 0;
         int numberRow = 0;
 

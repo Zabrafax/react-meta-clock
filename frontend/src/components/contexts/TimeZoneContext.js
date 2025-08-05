@@ -19,7 +19,7 @@ export function TimeZoneProvider({ children }) {
     useEffect(() => {
         async function fetchTimeZones() {
             try {
-                const response = await fetch('http://localhost:8080/api/clock/timezones');
+                const response = await fetch('/api/clock/timezones');
 
                 if (!response.ok) {
                     console.log("Server error while fetching timezones");
