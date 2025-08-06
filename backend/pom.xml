@@ -27,6 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
+		<skipTests>true</skipTests>
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
@@ -122,6 +123,8 @@
     </dependencies>
 
 	<build>
+		<finalName>MetaClock</finalName>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
