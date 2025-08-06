@@ -18,7 +18,6 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     private final UserService userService;
     private final JwtUtil jwtUtil;

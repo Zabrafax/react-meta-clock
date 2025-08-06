@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/clock")
-@CrossOrigin(origins = "http://localhost:3000")
 public class MetaClockController {
 
     @GetMapping("/timezones")
