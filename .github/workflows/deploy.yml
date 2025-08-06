@@ -27,6 +27,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          REACT_APP_API_BASE: https://react-meta-clock.onrender.com/api
 
       - name: List build folder
         run: ls -la build
