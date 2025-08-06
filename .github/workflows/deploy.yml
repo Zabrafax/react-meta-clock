@@ -1,6 +1,5 @@
 name: Deploy React (frontend) to GitHub Pages
 
-
 on:
   push:
     branches:
