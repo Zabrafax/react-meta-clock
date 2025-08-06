@@ -46,7 +46,9 @@ function ClockGrid(props) {
             return;
         }
 
-        const socket = new WebSocket("ws://localhost:8080/clock/coordinates");
+        const backendUrl = process.env.REACT_APP_API_BASE || window.location.origin;
+        const wsProtocol = backendUrl.startsWith("https") ? "wss" : "ws";
+        const socket = new WebSocket(`${wsProtocol}://${new URL(backendUrl).host}/clock/coordinates`);
 
         socket.onopen = () => {
             socket.send(JSON.stringify({
