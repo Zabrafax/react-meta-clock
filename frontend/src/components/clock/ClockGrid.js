@@ -29,7 +29,7 @@ function ClockGrid(props) {
         if(isTablet) {
             setGridSize(2)
         } else {
-            if(isSecondsEnabled) {
+            if(isSecondsEnabled && isSeparatorsEnabled) {
                 setGridSize(1);
             } else {
                 setGridSize(0);
@@ -38,7 +38,7 @@ function ClockGrid(props) {
 
         console.log(gridSize);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isSecondsEnabled, isMobile, isTablet]);
+    }, [isSecondsEnabled, isSeparatorsEnabled, isMobile, isTablet]);
 
     useEffect(() => {
         if (!currentTimeZoneId) {

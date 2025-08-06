@@ -1,12 +1,14 @@
 {
   "name": "meta-clock",
   "version": "0.1.0",
+  "homepage": "https://zabrafax.github.io/spring-react-meta-clock",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^6.3.0",
     "http-proxy-middleware": "^3.0.5",
     "react": "^19.1.0",
     "react-color": "^2.19.3",

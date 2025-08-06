@@ -7,9 +7,9 @@ const ThemeContext = createContext();
 export function ThemeProvider({ children }) {
     const { saveColorTheme, isLoggedIn, userColorTheme } = useUserContext();
 
-    const [allFirstThemeColors, setAllFirstThemeColors] = useState(["#1d2d65", "#eaeaea", "#8a89a6", "#4e9762", "#1d2d65"]);
-    const [allSecondThemeColors, setAllSecondThemeColors] = useState(["#162652", "#d2d2d2", "#7f7e98", "#478556", "#162652"]);
-    const [allAccentThemeColors, setAllAccentThemeColors] = useState(["#dcdcdc", "#000000", "#ffffff", "#ffffff", "#dcdcdc"]);
+    const [allFirstThemeColors, setAllFirstThemeColors] = useState(["#1d2d65", "#eaeaea", "#8a89a6", "#1f1f1f", "#1d2d65"]);
+    const [allSecondThemeColors, setAllSecondThemeColors] = useState(["#162652", "#d2d2d2", "#7f7e98", "#111111", "#162652"]);
+    const [allAccentThemeColors, setAllAccentThemeColors] = useState(["#dcdcdc", "#000000", "#ffffff", "#d9d9d9", "#dcdcdc"]);
     const [allArrowShadows, setAllArrowShadows] = useState([true, false, true, true, true]);
     const [allTextThemeColors, setAllTextThemeColors] = useState(["#ffffff", "#000000", "#000000", "#ffffff", "#ffffff"]);
     // eslint-disable-next-line no-unused-vars
