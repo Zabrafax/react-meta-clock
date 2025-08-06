@@ -36,7 +36,7 @@ function ClockGrid(props) {
             }
         }
 
-        console.log(gridSize);
+        //console.log(gridSize);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isSecondsEnabled, isSeparatorsEnabled, isMobile, isTablet]);
 
@@ -61,7 +61,7 @@ function ClockGrid(props) {
                 isVertical: isTablet,
             }));
             //setIsServerErrorWindowVisible(false);
-            console.log("Websocket connected, subscribe message sent");
+            //console.log("Websocket connected, subscribe message sent");
         };
 
         socket.onmessage = (event) => {
@@ -107,9 +107,9 @@ function ClockGrid(props) {
             const errorCodes = [1002, 1006, 1008, 1009, 1011, 1015];
             if(errorCodes.includes(event.code)) {
                 handleError();
-                console.log("WebSocket closed with error: " + event.code);
+                //console.log("WebSocket closed with error: " + event.code);
             }
-            console.log("WebSocket closed: " + event.code);
+            //console.log("WebSocket closed: " + event.code);
         };
 
         return () => {

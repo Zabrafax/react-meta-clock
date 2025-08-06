@@ -27,7 +27,6 @@ export function TimeZoneProvider({ children }) {
                 }
 
                 const data = await response.json();
-                console.log('data from server:', data);
 
                 const deviceZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                 const userOffsetSeconds = -new Date().getTimezoneOffset() * 60;

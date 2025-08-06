@@ -78,7 +78,6 @@ export function UserProvider({ children }) {
                 const apiResponse = await response.json();
 
                 if (apiResponse.success) {
-                    console.log("Theme saved");
                     return {success: true};
                 } else {
                     console.log("Error saving colorTheme");
