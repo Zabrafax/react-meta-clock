@@ -12,7 +12,9 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
         setCustomArrowShadows, arrowShadow,
         setCustomTextThemeColor, textThemeColor,
 
-        currentThemeNumber, setCurrentThemeNumber
+        currentThemeNumber, setCurrentThemeNumber,
+
+        saveColorThemeFromContext
     } = useTheme();
 
     const [leftLineOffset, setLeftLineOffset] = useState(0);
@@ -112,18 +114,21 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                             onChange={handleMainCustomColorsChange}
                             lineColor={accentThemeColor}
                             borderColor={accentThemeColor}
+                            onClose={saveColorThemeFromContext}
                         />
                         <CustomColorPicker
                             name={"Accent color: "}
                             currentColor={accentThemeColor}
                             onChange={handleAccentCustomColorChange}
                             lineColor={textThemeColor}
+                            onClose={saveColorThemeFromContext}
                         />
                         <CustomColorPicker
                             name={"Text color: "}
                             currentColor={textThemeColor}
                             onChange={handleTextCustomColorChange}
                             lineColor={accentThemeColor}
+                            onClose={saveColorThemeFromContext}
                         />
                         <SimpleSwitch
                             name="Arrows shadow"

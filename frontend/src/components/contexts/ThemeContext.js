@@ -51,12 +51,17 @@ export function ThemeProvider({ children }) {
         allArrowShadows
     ]);
 
-    useEffect(() => {
+    function saveColorThemeFromContext() {
         console.log("Saving theme...", colorTheme);
         saveColorTheme(colorTheme);
+    }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [colorTheme]);
+    // useEffect(() => {
+    //     console.log("Saving theme...", colorTheme);
+    //     saveColorTheme(colorTheme);
+    //
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [colorTheme]);
     
     useEffect(() => {
         if (isLoggedIn && userColorTheme) {
@@ -144,7 +149,8 @@ export function ThemeProvider({ children }) {
 
             currentThemeNumber, setCurrentThemeNumber,
 
-            colorTheme
+            colorTheme,
+            saveColorThemeFromContext
         }}>
             {children}
         </ThemeContext.Provider>

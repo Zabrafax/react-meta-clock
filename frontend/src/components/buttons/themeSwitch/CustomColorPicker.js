@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { ChromePicker } from 'react-color';
 import {useDeviceContext} from "../../contexts/DeviceContext";
 
-function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColor} ) {
+function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColor, onClose} ) {
     const [isPickerOpened, setIsPickerOpened] = useState(false);
     const pickerRef = useRef(null);
 
@@ -16,6 +16,12 @@ function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColo
     const handleColorChange = (color) => {
         onChange(color.hex);
     };
+
+    useEffect(() => {
+        if (!isPickerOpened && onClose) {
+            onClose();
+        }
+    }, [isPickerOpened, onClose]);
 
     useEffect(() => {
         function handleClickOutside(event) {
