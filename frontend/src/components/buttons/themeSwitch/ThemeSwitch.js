@@ -133,8 +133,14 @@ const ThemeSwitch = forwardRef(({ name }, ref) => {
                         <SimpleSwitch
                             name="Arrows shadow"
                             initialState={arrowShadow}
-                            onEnable={enableArrowShadow}
-                            onDisable={disableArrowShadow}
+                            onEnable={() => {
+                                enableArrowShadow();
+                                saveColorThemeFromContext();
+                            }}
+                            onDisable={() => {
+                                disableArrowShadow();
+                                saveColorThemeFromContext();
+                            }}
                         />
                     </div>
                 </div>
