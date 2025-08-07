@@ -1,7 +1,7 @@
 {
   "name": "meta-clock",
   "version": "0.1.0",
-  "homepage": "https://Zabrafax.github.io/spring-react-meta-clock/",
+  "homepage": "https://zabrafax.github.io/spring-react-meta-clock/",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
