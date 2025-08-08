@@ -7,6 +7,8 @@ function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColo
     const [isPickerOpened, setIsPickerOpened] = useState(false);
     const pickerRef = useRef(null);
 
+    const prevIsPickerOpened = useRef(isPickerOpened);
+
     const { isMobile } = useDeviceContext();
 
     function handleTileClick() {
@@ -18,9 +20,12 @@ function CustomColorPicker( {name, currentColor, onChange, lineColor, borderColo
     };
 
     useEffect(() => {
-        if (!isPickerOpened && onClose) {
-            onClose();
+        if (prevIsPickerOpened.current === true && isPickerOpened === false) {
+            if (onClose) {
+                onClose();
+            }
         }
+        prevIsPickerOpened.current = isPickerOpened;
     }, [isPickerOpened, onClose]);
 
     useEffect(() => {

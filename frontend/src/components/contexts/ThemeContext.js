@@ -52,7 +52,7 @@ export function ThemeProvider({ children }) {
     ]);
 
     function saveColorThemeFromContext() {
-        //console.log("Saving theme...", colorTheme);
+        console.log("Saving theme...", colorTheme);
         saveColorTheme(colorTheme);
     }
 
