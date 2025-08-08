@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/spring-react-meta-clock/static/css/main.46efd66d.css",
-    "main.js": "/spring-react-meta-clock/static/js/main.1a8879bd.js",
+    "main.css": "/spring-react-meta-clock/static/css/main.69fdc75f.css",
+    "main.js": "/spring-react-meta-clock/static/js/main.e750e9d3.js",
     "static/js/453.fbbd3758.chunk.js": "/spring-react-meta-clock/static/js/453.fbbd3758.chunk.js",
     "index.html": "/spring-react-meta-clock/index.html",
-    "main.46efd66d.css.map": "/spring-react-meta-clock/static/css/main.46efd66d.css.map",
-    "main.1a8879bd.js.map": "/spring-react-meta-clock/static/js/main.1a8879bd.js.map",
+    "main.69fdc75f.css.map": "/spring-react-meta-clock/static/css/main.69fdc75f.css.map",
+    "main.e750e9d3.js.map": "/spring-react-meta-clock/static/js/main.e750e9d3.js.map",
     "453.fbbd3758.chunk.js.map": "/spring-react-meta-clock/static/js/453.fbbd3758.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.46efd66d.css",
-    "static/js/main.1a8879bd.js"
+    "static/css/main.69fdc75f.css",
+    "static/js/main.e750e9d3.js"
   ]
 }
