@@ -13,7 +13,7 @@ function ClockGrid(props) {
 
     const { currentTimeZoneId } = useTimeZones();
     const { handleError } = useErrorContext();
-    const { isTablet, isMobile } = useDeviceContext();
+    const { isTablet, isMobile, isSmallHorizontal } = useDeviceContext();
 
     const [gridRows, setGridRows] = useState(rows);
     const [gridCols, setGridCols] = useState(cols * 6);
@@ -26,7 +26,7 @@ function ClockGrid(props) {
     const previousHourArrowDegreesArray = useRef("");
 
     useEffect(() => {
-        if(isTablet) {
+        if(isTablet || isSmallHorizontal) {
             setGridSize(2)
         } else {
             if(isSecondsEnabled && isSeparatorsEnabled) {
@@ -41,6 +41,8 @@ function ClockGrid(props) {
     }, [isSecondsEnabled, isSeparatorsEnabled, isMobile, isTablet]);
 
     useEffect(() => {
+        console.log("isMobile: ", isMobile + ", isTablet: " + isTablet);
+
         if (!currentTimeZoneId) {
             //console.warn("Timezone is not defined, waiting...");
             return;
