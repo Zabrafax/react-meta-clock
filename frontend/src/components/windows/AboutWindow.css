@@ -1,0 +1,78 @@
+.About__window {
+    z-index: 1000;
+    position: absolute;
+    top: calc(5rem + (100vh - 5rem - 5rem - 300px) / 3);
+    left: auto;
+
+    width: 500px;
+    height: fit-content;
+    max-height: 450px;
+
+    font-weight: 200;
+}
+
+.About__window__main__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    text-align: left;
+}
+
+.About__window .Small__a__button {
+    font-weight: initial;
+}
+
+.About__window p {
+    font-size: 1.2rem;
+}
+
+.About__window p:not(:first-of-type) {
+    margin-top: 0.5rem;
+}
+
+.About__window p a {
+    position: relative;
+
+    font-size: 1.2rem !important;
+    font-style: italic;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.About__window p a::after {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background-color: var(--after-color, black);
+
+    transform: translateZ(0) scaleX(0);
+    transition: transform 0.2s;
+}
+
+.About__window p a:hover::after, .About__window p a:focus::after {
+    transform: translateZ(0) scaleX(1);
+}
+
+.About__window .Small__a__button {
+    margin-top: 1rem;
+
+    align-self: center;
+
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .About__window {
+        width: 100%;
+    }
+}

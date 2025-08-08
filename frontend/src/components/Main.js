@@ -10,6 +10,7 @@ import AccountWindow from "./windows/AccountWindow";
 import {useErrorContext} from "./contexts/ErrorContext";
 import {useDeviceContext} from "./contexts/DeviceContext";
 import MobileHeader from "./MobileHeader";
+import AboutWindow from "./windows/AboutWindow";
 
 function Main() {
     const { isMobile } = useDeviceContext();
@@ -61,11 +62,30 @@ function Main() {
     }
 
     /*
+        About window
+     */
+    const [isAboutWindowVisible, setIsAboutWindowVisible] = useState(false);
+
+    const onAboutClick = () => {
+        if (!isAboutWindowVisible) {
+            closeAllWindows();
+            setIsAboutWindowVisible(true);
+        } else {
+            setIsAboutWindowVisible(false);
+        }
+    }
+
+    const onAboutCrossClick = () => {
+        setIsAboutWindowVisible(false);
+    }
+
+    /*
         Close all windows
      */
     const closeAllWindows = () => {
-        setIsSettingsVisible(false);
         setIsAccountWindowVisible(false);
+        setIsSettingsVisible(false);
+        setIsAboutWindowVisible(false);
     }
 
     /*
@@ -123,11 +143,13 @@ function Main() {
                     ? <MobileHeader
                         onAccountClick={onAccountClick}
                         onSettingsClick={onSettingsClick}
+                        onAboutClick={onAboutClick}
                         onFullscreenClick={toggleFullscreen}
                     />
                     : <Header
                         onAccountClick={onAccountClick}
                         onSettingsClick={onSettingsClick}
+                        onAboutClick={onAboutClick}
                         onFullscreenClick={toggleFullscreen}
                     />
             )}
@@ -162,6 +184,12 @@ function Main() {
                     setIsSecondsEnabled={setIsSecondsEnabled}
                     isSeparatorsEnabled={isSeparatorsEnabled}
                     setIsSeparatorsEnabled={setIsSeparatorsEnabled}
+                />
+            }
+
+            {isAboutWindowVisible &&
+                <AboutWindow
+                    onAboutCrossClick={onAboutCrossClick}
                 />
             }
 

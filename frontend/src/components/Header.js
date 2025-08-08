@@ -2,7 +2,7 @@ import './BaseLayout.css';
 import styles from './Header.module.css';
 import {useTheme} from "./contexts/ThemeContext";
 
-function Header({ onAccountClick, onSettingsClick, onFullscreenClick }) {
+function Header({ onAccountClick, onSettingsClick, onAboutClick, onFullscreenClick }) {
     const { firstThemeColor, textThemeColor } = useTheme();
 
     function handleAccountClick(e) {
@@ -13,6 +13,11 @@ function Header({ onAccountClick, onSettingsClick, onFullscreenClick }) {
     function handleSettingsClick(e) {
         e.preventDefault();
         onSettingsClick();
+    }
+
+    function handleAboutClick(e) {
+        e.preventDefault();
+        onAboutClick();
     }
 
     function handleFullscreenClick(e) {
@@ -41,6 +46,13 @@ function Header({ onAccountClick, onSettingsClick, onFullscreenClick }) {
                     href="#"
                     style={{ "--after-color": textThemeColor }}
                 >SETTINGS</a>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a
+                    className={styles.Header__a__button}
+                    onClick={handleAboutClick}
+                    href="#"
+                    style={{ "--after-color": textThemeColor }}
+                >ABOUT</a>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                     className={styles.Header__a__button}
