@@ -7,21 +7,29 @@ function Header({ onAccountClick, onSettingsClick, onAboutClick, onFullscreenCli
 
     function handleAccountClick(e) {
         e.preventDefault();
+        e.currentTarget.blur();
+
         onAccountClick();
     }
 
     function handleSettingsClick(e) {
         e.preventDefault();
+        e.currentTarget.blur();
+
         onSettingsClick();
     }
 
     function handleAboutClick(e) {
         e.preventDefault();
+        e.currentTarget.blur();
+
         onAboutClick();
     }
 
     function handleFullscreenClick(e) {
         e.preventDefault();
+        e.currentTarget.blur();
+
         onFullscreenClick();
     }
 
