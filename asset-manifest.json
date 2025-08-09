@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/spring-react-meta-clock/static/css/main.f70c5270.css",
-    "main.js": "/spring-react-meta-clock/static/js/main.dac7dca0.js",
+    "main.js": "/spring-react-meta-clock/static/js/main.88913406.js",
     "static/js/453.fbbd3758.chunk.js": "/spring-react-meta-clock/static/js/453.fbbd3758.chunk.js",
     "index.html": "/spring-react-meta-clock/index.html",
     "main.f70c5270.css.map": "/spring-react-meta-clock/static/css/main.f70c5270.css.map",
-    "main.dac7dca0.js.map": "/spring-react-meta-clock/static/js/main.dac7dca0.js.map",
+    "main.88913406.js.map": "/spring-react-meta-clock/static/js/main.88913406.js.map",
     "453.fbbd3758.chunk.js.map": "/spring-react-meta-clock/static/js/453.fbbd3758.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f70c5270.css",
-    "static/js/main.dac7dca0.js"
+    "static/js/main.88913406.js"
   ]
 }
