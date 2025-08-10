@@ -3,6 +3,7 @@
 **View on GitHub Pages:** https://zabrafax.github.io/spring-react-meta-clock/  
 *Note: The server may take a few minutes to start.*
 
+![Preview](./assets/readme/meta-clock.gif)
 
 ## Meta Clock allows you to display time in an interesting and elegant way.
 
